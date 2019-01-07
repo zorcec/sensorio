@@ -12066,7 +12066,7 @@ Linker script and memory map
                 0x0000000040106db4                _text_end = ABSOLUTE (.)
                 0x0000000040106db4                _etext = .
 
-.rodata         0x000000003ffe8510      0xb14
+.rodata         0x000000003ffe8510      0xb10
                 0x000000003ffe8510                _rodata_start = ABSOLUTE (.)
  *(.sdk.version)
  .sdk.version   0x000000003ffe8510        0xf /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libmain.a(app_main.o)
@@ -12098,236 +12098,235 @@ Linker script and memory map
  .rodata.str1.1
                 0x000000003ffe8878       0x3c .pioenvs/d1_mini/src/configurations.cpp.o
  .rodata.str1.1
-                0x000000003ffe88b4       0xdf .pioenvs/d1_mini/src/connectivity.cpp.o
+                0x000000003ffe88b4       0xde .pioenvs/d1_mini/src/connectivity.cpp.o
  .rodata.str1.1
-                0x000000003ffe8993       0x2c .pioenvs/d1_mini/src/logger.cpp.o
+                0x000000003ffe8992       0x2c .pioenvs/d1_mini/src/logger.cpp.o
  .rodata.str1.1
-                0x000000003ffe89bf       0x2f .pioenvs/d1_mini/src/main.cpp.o
+                0x000000003ffe89be       0x2f .pioenvs/d1_mini/src/main.cpp.o
  .rodata.CSWTCH$87
-                0x000000003ffe89ee        0x6 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiSTA.cpp.o)
+                0x000000003ffe89ed        0x6 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiSTA.cpp.o)
  .rodata._ZZN24BufferedStreamDataSourceI13ProgmemStreamE14release_bufferEPKhjE19__PRETTY_FUNCTION__
-                0x000000003ffe89f4       0x9e .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x000000003ffe89f3       0x9e .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
  .rodata._ZZN24BufferedStreamDataSourceI13ProgmemStreamE10get_bufferEjE19__PRETTY_FUNCTION__
-                0x000000003ffe8a92       0x94 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x000000003ffe8a91       0x94 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
  .rodata._ZZN13ClientContext18_write_from_sourceEP10DataSourceE19__PRETTY_FUNCTION__
-                0x000000003ffe8b26       0x36 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x000000003ffe8b25       0x36 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
  .rodata._ZZN13ClientContext10_connectedEP7tcp_pcblE19__PRETTY_FUNCTION__
-                0x000000003ffe8b5c       0x31 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x000000003ffe8b5b       0x31 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
  .rodata._ZZN16BufferDataSource14release_bufferEPKhjE19__PRETTY_FUNCTION__
-                0x000000003ffe8b8d       0x46 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x000000003ffe8b8c       0x46 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
  .rodata._ZZN16BufferDataSource10get_bufferEjE19__PRETTY_FUNCTION__
-                0x000000003ffe8bd3       0x3c .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x000000003ffe8bd2       0x3c .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
  .rodata.str1.1
-                0x000000003ffe8c0f       0x11 .pioenvs/d1_mini/libFrameworkArduino.a(Print.cpp.o)
+                0x000000003ffe8c0e       0x11 .pioenvs/d1_mini/libFrameworkArduino.a(Print.cpp.o)
  .rodata.str1.1
-                0x000000003ffe8c20       0x59 .pioenvs/d1_mini/libFrameworkArduino.a(abi.cpp.o)
+                0x000000003ffe8c1f       0x59 .pioenvs/d1_mini/libFrameworkArduino.a(abi.cpp.o)
  .rodata._ZZSt25__throw_bad_function_callvE8__func__
-                0x000000003ffe8c79       0x1a .pioenvs/d1_mini/libFrameworkArduino.a(abi.cpp.o)
+                0x000000003ffe8c78       0x1a .pioenvs/d1_mini/libFrameworkArduino.a(abi.cpp.o)
  .rodata._ZZ18__cxa_pure_virtualE8__func__
-                0x000000003ffe8c93       0x13 .pioenvs/d1_mini/libFrameworkArduino.a(abi.cpp.o)
+                0x000000003ffe8c92       0x13 .pioenvs/d1_mini/libFrameworkArduino.a(abi.cpp.o)
  .rodata.str1.1
-                0x000000003ffe8ca6       0x6d .pioenvs/d1_mini/libFrameworkArduino.a(core_esp8266_main.cpp.o)
+                0x000000003ffe8ca5       0x6d .pioenvs/d1_mini/libFrameworkArduino.a(core_esp8266_main.cpp.o)
  .rodata._ZZL9loop_taskP11ETSEventTagE8__func__
-                0x000000003ffe8d13        0xa .pioenvs/d1_mini/libFrameworkArduino.a(core_esp8266_main.cpp.o)
+                0x000000003ffe8d12        0xa .pioenvs/d1_mini/libFrameworkArduino.a(core_esp8266_main.cpp.o)
  .rodata._ZZ7__yieldE8__func__
-                0x000000003ffe8d1d        0x8 .pioenvs/d1_mini/libFrameworkArduino.a(core_esp8266_main.cpp.o)
+                0x000000003ffe8d1c        0x8 .pioenvs/d1_mini/libFrameworkArduino.a(core_esp8266_main.cpp.o)
  .rodata.str1.1
-                0x000000003ffe8d25       0x23 .pioenvs/d1_mini/libFrameworkArduino.a(core_esp8266_postmortem.c.o)
+                0x000000003ffe8d24       0x23 .pioenvs/d1_mini/libFrameworkArduino.a(core_esp8266_postmortem.c.o)
  .rodata.str1.1
-                0x000000003ffe8d48       0x76 .pioenvs/d1_mini/libFrameworkArduino.a(umm_malloc.c.o)
+                0x000000003ffe8d47       0x76 .pioenvs/d1_mini/libFrameworkArduino.a(umm_malloc.c.o)
  .rodata.__func__$3293
-                0x000000003ffe8dbe       0x13 .pioenvs/d1_mini/libFrameworkArduino.a(umm_malloc.c.o)
+                0x000000003ffe8dbd       0x13 .pioenvs/d1_mini/libFrameworkArduino.a(umm_malloc.c.o)
  .rodata.str1.1
-                0x000000003ffe8dd1        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(Esp-version.cpp.o)
+                0x000000003ffe8dd0        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(Esp-version.cpp.o)
  .rodata.str1.1
-                0x000000003ffe8dd5       0x28 .pioenvs/d1_mini/libFrameworkArduino.a(Updater.cpp.o)
+                0x000000003ffe8dd4       0x28 .pioenvs/d1_mini/libFrameworkArduino.a(Updater.cpp.o)
                                          0x29 (size before relaxing)
- *fill*         0x000000003ffe8dfd        0x3 
  .rodata.str1.4
-                0x000000003ffe8e00        0xc /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(pm_for_bcn_only_mode.o)
+                0x000000003ffe8dfc        0xc /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(pm_for_bcn_only_mode.o)
  .rodata.str1.4
-                0x000000003ffe8e0c        0x8 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(pp.o)
+                0x000000003ffe8e08        0x8 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(pp.o)
                                          0x10 (size before relaxing)
  .rodata.str1.4
-                0x000000003ffe8e14        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(wdev.o)
+                0x000000003ffe8e10        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(wdev.o)
                                           0xc (size before relaxing)
  .rodata.str1.4
-                0x000000003ffe8e18        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(lmac.o)
+                0x000000003ffe8e14        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(lmac.o)
                                           0xc (size before relaxing)
  .rodata.str1.4
-                0x000000003ffe8e1c        0x3 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(pm.o)
+                0x000000003ffe8e18        0x3 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(pm.o)
                                           0xb (size before relaxing)
- *fill*         0x000000003ffe8e1f        0x1 
+ *fill*         0x000000003ffe8e1b        0x1 
  .rodata.str1.4
-                0x000000003ffe8e20        0x3 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libnet80211.a(ieee80211_hostap.o)
+                0x000000003ffe8e1c        0x3 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libnet80211.a(ieee80211_hostap.o)
                                           0x8 (size before relaxing)
  .rodata.str1.4
                 0x0000000000000000        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libnet80211.a(ieee80211_sta.o)
  .rodata.str1.4
                 0x0000000000000000        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libnet80211.a(ieee80211_ie_vendor.o)
- *fill*         0x000000003ffe8e23        0x1 
+ *fill*         0x000000003ffe8e1f        0x1 
  .rodata.str1.4
-                0x000000003ffe8e24        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libmain.a(app_main.o)
+                0x000000003ffe8e20        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libmain.a(app_main.o)
                                           0xc (size before relaxing)
  .rodata.str1.4
-                0x000000003ffe8e28        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libmain.a(ets_timer.o)
+                0x000000003ffe8e24        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libmain.a(ets_timer.o)
                                           0xc (size before relaxing)
  .rodata.str1.1
-                0x000000003ffe8e2c        0xa /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-nano-vfprintf_float.o)
+                0x000000003ffe8e28        0xa /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-nano-vfprintf_float.o)
                                          0x12 (size before relaxing)
  .rodata.str1.1
-                0x000000003ffe8e36       0x22 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-nano-vfprintf_i.o)
+                0x000000003ffe8e32       0x22 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-nano-vfprintf_i.o)
  .rodata.str1.1
-                0x000000003ffe8e58        0x5 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-nano-vfscanf_float.o)
+                0x000000003ffe8e54        0x5 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-nano-vfscanf_float.o)
  .rodata.str1.1
                 0x0000000000000000        0x5 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-strtod.o)
                                           0xc (size before relaxing)
  .rodata.str1.1
-                0x000000003ffe8e5d        0xd /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-dtoa.o)
+                0x000000003ffe8e59        0xd /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-dtoa.o)
                                           0xf (size before relaxing)
  .rodata.str1.1
-                0x000000003ffe8e6a        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-impure.o)
+                0x000000003ffe8e66        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-impure.o)
  .rodata.str1.1
-                0x000000003ffe8e6c        0x6 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-locale.o)
+                0x000000003ffe8e68        0x6 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-locale.o)
                                           0xb (size before relaxing)
  .rodata.str1.1
-                0x000000003ffe8e72       0x11 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-nano-svfprintf.o)
+                0x000000003ffe8e6e       0x11 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-nano-svfprintf.o)
  .rodata.str1.1
                 0x0000000000000000       0x11 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/libc/xtensa-lx106-elf/lib/libc.a(lib_a-nano-vfprintf.o)
  .rodata.str1.1
                 0x0000000000000000        0x1 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-esp.o)
  .rodata.CSWTCH$17
-                0x000000003ffe8e83       0x10 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-esp.o)
+                0x000000003ffe8e7f       0x10 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-esp.o)
  .rodata.CSWTCH$15
-                0x000000003ffe8e93       0x11 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-esp.o)
+                0x000000003ffe8e8f       0x11 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-esp.o)
  .rodata.ethbroadcast
-                0x000000003ffe8ea4        0x6 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-esp.o)
-                0x000000003ffe8ea4                ethbroadcast
+                0x000000003ffe8ea0        0x6 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-esp.o)
+                0x000000003ffe8ea0                ethbroadcast
  .rodata.CSWTCH$11
-                0x000000003ffe8eaa       0x11 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-git.o)
+                0x000000003ffe8ea6       0x11 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-git.o)
  .rodata.CSWTCH$9
-                0x000000003ffe8ebb       0x11 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-git.o)
+                0x000000003ffe8eb7       0x11 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(lwip-git.o)
  .rodata.str1.1
-                0x000000003ffe8ecc       0x29 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(esp-dhcpserver.o)
+                0x000000003ffe8ec8       0x29 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(esp-dhcpserver.o)
  .rodata.ethzero
-                0x000000003ffe8ef5        0x6 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(ethernet.o)
-                0x000000003ffe8ef5                ethzero
+                0x000000003ffe8ef1        0x6 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(ethernet.o)
+                0x000000003ffe8ef1                ethzero
  .rodata.ethbroadcast_LWIP2
-                0x000000003ffe8efb        0x6 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(ethernet.o)
-                0x000000003ffe8efb                ethbroadcast_LWIP2
- *fill*         0x000000003ffe8f01        0x3 
+                0x000000003ffe8ef7        0x6 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(ethernet.o)
+                0x000000003ffe8ef7                ethbroadcast_LWIP2
+ *fill*         0x000000003ffe8efd        0x3 
  .rodata.memp_pools
-                0x000000003ffe8f04       0x28 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f04                memp_pools
+                0x000000003ffe8f00       0x28 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f00                memp_pools
  .rodata.memp_PBUF_POOL
-                0x000000003ffe8f2c        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f2c                memp_PBUF_POOL
+                0x000000003ffe8f28        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f28                memp_PBUF_POOL
  .rodata.memp_PBUF
-                0x000000003ffe8f2e        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f2e                memp_PBUF
+                0x000000003ffe8f2a        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f2a                memp_PBUF
  .rodata.memp_SYS_TIMEOUT
-                0x000000003ffe8f30        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f30                memp_SYS_TIMEOUT
+                0x000000003ffe8f2c        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f2c                memp_SYS_TIMEOUT
  .rodata.memp_IGMP_GROUP
-                0x000000003ffe8f32        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f32                memp_IGMP_GROUP
+                0x000000003ffe8f2e        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f2e                memp_IGMP_GROUP
  .rodata.memp_ARP_QUEUE
-                0x000000003ffe8f34        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f34                memp_ARP_QUEUE
+                0x000000003ffe8f30        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f30                memp_ARP_QUEUE
  .rodata.memp_TCP_SEG
-                0x000000003ffe8f36        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f36                memp_TCP_SEG
+                0x000000003ffe8f32        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f32                memp_TCP_SEG
  .rodata.memp_TCP_PCB_LISTEN
-                0x000000003ffe8f38        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f38                memp_TCP_PCB_LISTEN
+                0x000000003ffe8f34        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f34                memp_TCP_PCB_LISTEN
  .rodata.memp_TCP_PCB
-                0x000000003ffe8f3a        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f3a                memp_TCP_PCB
+                0x000000003ffe8f36        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f36                memp_TCP_PCB
  .rodata.memp_UDP_PCB
-                0x000000003ffe8f3c        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f3c                memp_UDP_PCB
+                0x000000003ffe8f38        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f38                memp_UDP_PCB
  .rodata.memp_RAW_PCB
-                0x000000003ffe8f3e        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
-                0x000000003ffe8f3e                memp_RAW_PCB
+                0x000000003ffe8f3a        0x2 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(memp.o)
+                0x000000003ffe8f3a                memp_RAW_PCB
  .rodata.tcp_pcb_lists
-                0x000000003ffe8f40       0x10 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(tcp.o)
-                0x000000003ffe8f40                tcp_pcb_lists
+                0x000000003ffe8f3c       0x10 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(tcp.o)
+                0x000000003ffe8f3c                tcp_pcb_lists
  .rodata.tcp_persist_backoff
-                0x000000003ffe8f50        0x7 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(tcp.o)
+                0x000000003ffe8f4c        0x7 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(tcp.o)
  .rodata.tcp_backoff
-                0x000000003ffe8f57        0xd /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(tcp.o)
+                0x000000003ffe8f53        0xd /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(tcp.o)
  .rodata.lwip_cyclic_timers
-                0x000000003ffe8f64       0x30 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(timeouts.o)
-                0x000000003ffe8f64                lwip_cyclic_timers
+                0x000000003ffe8f60       0x30 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(timeouts.o)
+                0x000000003ffe8f60                lwip_cyclic_timers
  .rodata.str1.1
-                0x000000003ffe8f94        0x7 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(dns.o)
- *fill*         0x000000003ffe8f9b        0x1 
+                0x000000003ffe8f90        0x7 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(dns.o)
+ *fill*         0x000000003ffe8f97        0x1 
  .rodata.dns_mquery_v4group
-                0x000000003ffe8f9c        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(dns.o)
-                0x000000003ffe8f9c                dns_mquery_v4group
+                0x000000003ffe8f98        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(dns.o)
+                0x000000003ffe8f98                dns_mquery_v4group
  .rodata.tcp_input
-                0x000000003ffe8fa0       0x20 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(tcp_in.o)
+                0x000000003ffe8f9c       0x20 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(tcp_in.o)
  .rodata.pbuf_alloc_LWIP2
-                0x000000003ffe8fc0       0x14 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(pbuf.o)
+                0x000000003ffe8fbc       0x14 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(pbuf.o)
  .rodata.dhcp_discover_request_options
-                0x000000003ffe8fd4        0x5 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(dhcp.o)
- *fill*         0x000000003ffe8fd9        0x3 
+                0x000000003ffe8fd0        0x5 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(dhcp.o)
+ *fill*         0x000000003ffe8fd5        0x3 
  .rodata.ip_addr_broadcast
-                0x000000003ffe8fdc        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(ip4_addr.o)
-                0x000000003ffe8fdc                ip_addr_broadcast
+                0x000000003ffe8fd8        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(ip4_addr.o)
+                0x000000003ffe8fd8                ip_addr_broadcast
  .rodata.ip_addr_any
-                0x000000003ffe8fe0        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(ip4_addr.o)
-                0x000000003ffe8fe0                ip_addr_any
+                0x000000003ffe8fdc        0x4 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/liblwip2.a(ip4_addr.o)
+                0x000000003ffe8fdc                ip_addr_any
  *(.gnu.linkonce.r.*)
  *(.rodata1)
-                0x000000003ffe8fe4                __XT_EXCEPTION_TABLE__ = ABSOLUTE (.)
+                0x000000003ffe8fe0                __XT_EXCEPTION_TABLE__ = ABSOLUTE (.)
  *(.xt_except_table)
  *(.gcc_except_table)
  *(.gnu.linkonce.e.*)
  *(.gnu.version_r)
  *(.eh_frame)
-                0x000000003ffe8fe4                . = ((. + 0x3) & 0xfffffffffffffffc)
-                0x000000003ffe8fe4                __init_array_start = ABSOLUTE (.)
+                0x000000003ffe8fe0                . = ((. + 0x3) & 0xfffffffffffffffc)
+                0x000000003ffe8fe0                __init_array_start = ABSOLUTE (.)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
- .ctors         0x000000003ffe8fe4        0x4 .pioenvs/d1_mini/src/configurations.cpp.o
- .ctors         0x000000003ffe8fe8        0x4 .pioenvs/d1_mini/src/connectivity.cpp.o
- .ctors         0x000000003ffe8fec        0x4 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFi.cpp.o)
- .ctors         0x000000003ffe8ff0        0x4 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
- .ctors         0x000000003ffe8ff4        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
- .ctors         0x000000003ffe8ff8        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(IPAddress.cpp.o)
- .ctors         0x000000003ffe8ffc        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(ScheduledFunctions.cpp.o)
- .ctors         0x000000003ffe9000        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(Updater.cpp.o)
+ .ctors         0x000000003ffe8fe0        0x4 .pioenvs/d1_mini/src/configurations.cpp.o
+ .ctors         0x000000003ffe8fe4        0x4 .pioenvs/d1_mini/src/connectivity.cpp.o
+ .ctors         0x000000003ffe8fe8        0x4 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFi.cpp.o)
+ .ctors         0x000000003ffe8fec        0x4 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+ .ctors         0x000000003ffe8ff0        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
+ .ctors         0x000000003ffe8ff4        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(IPAddress.cpp.o)
+ .ctors         0x000000003ffe8ff8        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(ScheduledFunctions.cpp.o)
+ .ctors         0x000000003ffe8ffc        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(Updater.cpp.o)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x000000003ffe9004                __init_array_end = ABSOLUTE (.)
+                0x000000003ffe9000                __init_array_end = ABSOLUTE (.)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
- .dtors         0x000000003ffe9004        0x4 .pioenvs/d1_mini/src/configurations.cpp.o
- .dtors         0x000000003ffe9008        0x4 .pioenvs/d1_mini/src/connectivity.cpp.o
- .dtors         0x000000003ffe900c        0x4 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
- .dtors         0x000000003ffe9010        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
- .dtors         0x000000003ffe9014        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(ScheduledFunctions.cpp.o)
- .dtors         0x000000003ffe9018        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(Updater.cpp.o)
+ .dtors         0x000000003ffe9000        0x4 .pioenvs/d1_mini/src/configurations.cpp.o
+ .dtors         0x000000003ffe9004        0x4 .pioenvs/d1_mini/src/connectivity.cpp.o
+ .dtors         0x000000003ffe9008        0x4 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+ .dtors         0x000000003ffe900c        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
+ .dtors         0x000000003ffe9010        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(ScheduledFunctions.cpp.o)
+ .dtors         0x000000003ffe9014        0x4 .pioenvs/d1_mini/libFrameworkArduino.a(Updater.cpp.o)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x000000003ffe901c                __XT_EXCEPTION_DESCS__ = ABSOLUTE (.)
+                0x000000003ffe9018                __XT_EXCEPTION_DESCS__ = ABSOLUTE (.)
  *(.xt_except_desc)
  *(.gnu.linkonce.h.*)
-                0x000000003ffe901c                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
+                0x000000003ffe9018                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
  *(.xt_except_desc_end)
  *(.dynamic)
  *(.gnu.version_d)
-                0x000000003ffe901c                . = ALIGN (0x4)
-                0x000000003ffe901c                _bss_table_start = ABSOLUTE (.)
-                0x000000003ffe901c        0x4 LONG 0x3ffe9028 _bss_start
-                0x000000003ffe9020        0x4 LONG 0x3ffef278 _bss_end
-                0x000000003ffe9024                _bss_table_end = ABSOLUTE (.)
-                0x000000003ffe9024                _rodata_end = ABSOLUTE (.)
+                0x000000003ffe9018                . = ALIGN (0x4)
+                0x000000003ffe9018                _bss_table_start = ABSOLUTE (.)
+                0x000000003ffe9018        0x4 LONG 0x3ffe9020 _bss_start
+                0x000000003ffe901c        0x4 LONG 0x3ffef278 _bss_end
+                0x000000003ffe9020                _bss_table_end = ABSOLUTE (.)
+                0x000000003ffe9020                _rodata_end = ABSOLUTE (.)
 
-.bss            0x000000003ffe9028     0x6250
-                0x000000003ffe9028                . = ALIGN (0x8)
-                0x000000003ffe9028                _bss_start = ABSOLUTE (.)
+.bss            0x000000003ffe9020     0x6258
+                0x000000003ffe9020                . = ALIGN (0x8)
+                0x000000003ffe9020                _bss_start = ABSOLUTE (.)
  *(.dynsbss)
  *(.sbss)
  *(.sbss.*)
@@ -12338,7 +12337,8 @@ Linker script and memory map
  *(.gnu.linkonce.sb2.*)
  *(.dynbss)
  *(.bss)
- .bss           0x000000003ffe9028       0x38 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(pm_for_bcn_only_mode.o)
+ .bss           0x000000003ffe9020       0x38 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(pm_for_bcn_only_mode.o)
+ *fill*         0x000000003ffe9058        0x8 
  .bss           0x000000003ffe9060      0x342 /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libpp.a(pp.o)
                 0x000000003ffe9078                pend_flag_noise_check
                 0x000000003ffe9080                pend_flag_periodic_cal
