@@ -8,3 +8,6 @@ bool Configurations::SERIAL_LOGGING = true;
 
 String Configurations::WIFI_SSID = "";
 String Configurations::WIFI_PASSWORD = "";
+
+String MQTT_SERVER = "";
+String MQTT_TOPIC = "sensorio/";
