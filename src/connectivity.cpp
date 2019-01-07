@@ -17,8 +17,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 void Connectivity::connectToWifi() {
     WiFi.begin(Configurations::WIFI_SSID.c_str(), Configurations::WIFI_PASSWORD.c_str());
     Logger::log("Connection to WiFi");
-    while (WiFi.status() != WL_CONNECTED)
-    {
+    while (WiFi.status() != WL_CONNECTED) {
         Logger::log("WiFi connection is still not ready");
         delay(1000);
     }
@@ -32,11 +31,7 @@ void Connectivity::connectToMqtt() {
     while (!client.connected()) {
         if (client.connect(Configurations::ID.c_str())) {
             Logger::log("Connected to MQTT");
-            while(true) {
-                Logger::log("Sending test message");
-                client.publish("sensorio", "hello world");
-                delay(1000);
-            }
+            sendStatus();
         } else {
             Logger::log("MQTT connection is still not ready; will retry in 5s");
         }
@@ -44,7 +39,10 @@ void Connectivity::connectToMqtt() {
     }
 }
 
-void Connectivity::loop()
-{
+void Connectivity::sendStatus() {
+    
+}
+
+void Connectivity::loop() {
   client.loop();
 }

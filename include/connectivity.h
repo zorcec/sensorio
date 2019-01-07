@@ -5,6 +5,7 @@ class Connectivity {
         static void connectToWifi();
         static void connectToMqtt();
         static void loop();
+        static void sendStatus();
     private:
-
+        
 };
