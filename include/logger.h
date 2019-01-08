@@ -3,7 +3,7 @@
 class Logger {
     public:
         static void initialize();
-        static void log(String message);
+        static void log(String);
 
     private:
         static bool isSerialReady;

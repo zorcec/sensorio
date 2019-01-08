@@ -3,11 +3,13 @@
 #include <PubSubClient.h>
 #include <Ethernet.h>
 #include <ArduinoJson.h>
+#include <Wire.h>
 #include "user_interface.h"
 
 #include <connectivity.h>
 #include <configurations.h>
 #include <logger.h>
+#include <sensors.h>
 
 #define DATA_SIZE 500
 
@@ -28,11 +30,18 @@ void Connectivity::sendStatus() {
     data["version"] = Configurations::VERSION;
 
     data.createNestedObject("info");
-    data["info"]["memory"] = system_get_free_heap_size();
+    data["info"]["heap"] = system_get_free_heap_size();
     data["info"]["ssid"] = Configurations::WIFI_SSID;
     data["info"]["rssi"] = WiFi.RSSI(); 
 
-    data.printTo(dataJson);
+    data.createNestedObject("data");
+    data["data"]["temperature"] = Sensors::getTemperature();
+
+    if (Configurations::DEBUG) {
+        data.prettyPrintTo(dataJson);
+    } else {
+        data.printTo(dataJson);
+    }
     Connectivity::sendMessage(dataJson);
 }
 
@@ -73,12 +82,18 @@ void Connectivity::autoconnectToMqtt() {
         while (!client.connected()) {
             if (client.connect(Configurations::ID.c_str())) {
                 Logger::log("MQTT connected");
+                Connectivity::sendStatus();
             } else {
                 Logger::log("MQTT connection is still not ready; will retry in 5s");
             }
             delay(Configurations::MQTT_RECONNECT_TIME);
         }
     }
+}
+
+void Connectivity::startI2c() {
+    Wire.begin(Configurations::I2C_SDA, Configurations::I2C_SCL);
+    Logger::log("I2C ready");
 }
 
 void Connectivity::loop() {

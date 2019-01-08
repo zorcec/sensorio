@@ -2,12 +2,15 @@
 #include <configurations.h>
 #include <logger.h>
 #include <connectivity.h>
+#include <sensors.h>
 
 void setup() {
-  Logger::initialize();
+    Logger::initialize();
+    //Connectivity::startI2c();
+    //Sensors::initialize();
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  Connectivity::loop();
+    Connectivity::loop();
+    //Sensors::loop();
 }
