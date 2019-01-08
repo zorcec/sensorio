@@ -18,30 +18,6 @@ void callback(char* topic, byte* payload, unsigned int length) {
   // handle message arrived
 }
 
-void Connectivity::connectToWifi() {
-    WiFi.begin(Configurations::WIFI_SSID.c_str(), Configurations::WIFI_PASSWORD.c_str());
-    Logger::log("Connection to WiFi");
-    while (WiFi.status() != WL_CONNECTED) {
-        Logger::log("WiFi connection is still not ready");
-        delay(1000);
-    }
-    Logger::log("Connected, IP address: " + WiFi.localIP());
-}
-
-void Connectivity::connectToMqtt() {
-    Logger::log("Connecting to MQTT");
-    client.setServer(Configurations::MQTT_SERVER.c_str(), Configurations::MQTT_PORT);
-    client.setCallback(callback);
-    while (!client.connected()) {
-        if (client.connect(Configurations::ID.c_str())) {
-            Logger::log("Connected to MQTT");
-        } else {
-            Logger::log("MQTT connection is still not ready; will retry in 5s");
-        }
-        delay(5000);
-    }
-}
-
 void Connectivity::sendStatus() {
     char dataJson[DATA_SIZE];
     StaticJsonBuffer<DATA_SIZE> jsonBuffer;
@@ -75,6 +51,38 @@ String Connectivity::getTopic(String name) {
     return topic;
 }
 
+void Connectivity::autoconnectToWifi() {
+    if (WiFi.status() != WL_CONNECTED) {
+        Logger::log("WiFi trying to connect");
+        while (WiFi.status() != WL_CONNECTED) {
+            if (WiFi.begin(Configurations::WIFI_SSID.c_str(), Configurations::WIFI_PASSWORD.c_str()) == WL_CONNECTED) {
+                Logger::log("WiFI connected, IP address: " + WiFi.localIP());
+            } else {
+                Logger::log("WiFI connection is still not ready, will retry in 5s");
+            }
+            delay(Configurations::WIFI_RECONNECT_TIME);
+        }
+    }
+}
+
+void Connectivity::autoconnectToMqtt() {
+    if (!client.connected()) {
+        Logger::log("MQTT trying to connect");
+        client.setServer(Configurations::MQTT_SERVER.c_str(), Configurations::MQTT_PORT);
+        client.setCallback(callback);
+        while (!client.connected()) {
+            if (client.connect(Configurations::ID.c_str())) {
+                Logger::log("MQTT connected");
+            } else {
+                Logger::log("MQTT connection is still not ready; will retry in 5s");
+            }
+            delay(Configurations::MQTT_RECONNECT_TIME);
+        }
+    }
+}
+
 void Connectivity::loop() {
-  client.loop();
+    Connectivity::autoconnectToWifi();
+    Connectivity::autoconnectToMqtt();
+    client.loop();
 }

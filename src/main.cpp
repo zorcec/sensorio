@@ -5,9 +5,6 @@
 
 void setup() {
   Logger::initialize();
-  Connectivity::connectToWifi();
-  Connectivity::connectToMqtt();
-  Connectivity::sendStatus();
 }
 
 void loop() {

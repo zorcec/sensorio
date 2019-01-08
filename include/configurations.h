@@ -10,8 +10,10 @@ class Configurations {
 
         static String WIFI_SSID;
         static String WIFI_PASSWORD;
+        static unsigned int WIFI_RECONNECT_TIME;
 
         static String MQTT_SERVER;
         static int MQTT_PORT;
         static String MQTT_TOPIC;
+        static unsigned int MQTT_RECONNECT_TIME;
 };
