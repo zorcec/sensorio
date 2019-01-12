@@ -3,41 +3,81 @@
 #include <PubSubClient.h>
 #include <Ethernet.h>
 #include <ArduinoJson.h>
+#include <Wire.h>
 #include "user_interface.h"
 
 #include <connectivity.h>
 #include <configurations.h>
 #include <logger.h>
+#include <sensors.h>
 
-#define DATA_SIZE 500
+#define MESSAGE_SIZE 500
 
 WiFiClient espClient;
 PubSubClient client(espClient);
+
+Timer<1> Connectivity::sendDataTimer;
 
 void callback(char* topic, byte* payload, unsigned int length) {
   // handle message arrived
 }
 
+void Connectivity::initialize() {
+    Logger::info("Initializing connectivity");
+    Connectivity::sendDataTimer.every(Configurations::MQTT_SEND_DATA_INTERVAL, Connectivity::autosendData);
+};
+
 void Connectivity::sendStatus() {
-    char dataJson[DATA_SIZE];
-    StaticJsonBuffer<DATA_SIZE> jsonBuffer;
+    char dataJson[MESSAGE_SIZE];
+    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
     JsonObject& data = jsonBuffer.createObject();
 
     // data to be sent
     data["name"] = Configurations::NAME;
     data["version"] = Configurations::VERSION;
+    data["SSID"] = Configurations::WIFI_SSID;
 
-    data.createNestedObject("info");
-    data["info"]["memory"] = system_get_free_heap_size();
-    data["info"]["ssid"] = Configurations::WIFI_SSID;
-    data["info"]["rssi"] = WiFi.RSSI(); 
+    if (Configurations::DEBUG) {
+        data.prettyPrintTo(dataJson);
+    } else {
+        data.printTo(dataJson);
+    }
+    Connectivity::sendMessage(dataJson);
+}
 
-    data.printTo(dataJson);
+bool Connectivity::autosendData(void *) {
+    Connectivity::sendData(true);
+    return true;
+}
+
+void Connectivity::sendData(bool checkData) {
+    if (checkData) {
+        // TODO compare old and current data difference
+    }
+
+    char dataJson[MESSAGE_SIZE];
+    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
+    JsonObject& data = jsonBuffer.createObject();
+  
+    // data to be sent
+    data["temperature"] = Sensors::data.temperature;
+    data["pressure"] = Sensors::data.pressure;
+    data["humidity"] = Sensors::data.humidity;
+    data["visibleLight"] = Sensors::data.visibleLight;
+    data["infraredLight"] = Sensors::data.infraredLight;
+    data["fullSpectrumLight"] = Sensors::data.fullSpectrumLight;
+    data["RSSI"] = Sensors::data.RSSI;
+
+    if (Configurations::DEBUG) {
+        data.prettyPrintTo(dataJson);
+    } else {
+        data.printTo(dataJson);
+    }
     Connectivity::sendMessage(dataJson);
 }
 
 void Connectivity::sendMessage(String dataJson) {
-    Logger::log("MQTT sending message: " + dataJson);
+    Logger::info("MQTT sending message: " + dataJson);
     client.beginPublish(Connectivity::getTopic("STATUS").c_str(), dataJson.length(), false);
     client.print(dataJson);
     client.endPublish();
@@ -53,12 +93,12 @@ String Connectivity::getTopic(String name) {
 
 void Connectivity::autoconnectToWifi() {
     if (WiFi.status() != WL_CONNECTED) {
-        Logger::log("WiFi trying to connect");
+        Logger::info("WiFi trying to connect");
         while (WiFi.status() != WL_CONNECTED) {
             if (WiFi.begin(Configurations::WIFI_SSID.c_str(), Configurations::WIFI_PASSWORD.c_str()) == WL_CONNECTED) {
-                Logger::log("WiFI connected, IP address: " + WiFi.localIP());
+                Logger::info("WiFI connected, IP address: " + WiFi.localIP());
             } else {
-                Logger::log("WiFI connection is still not ready, will retry in 5s");
+                Logger::error("WiFI connection is still not ready, will retry in 5s");
             }
             delay(Configurations::WIFI_RECONNECT_TIME);
         }
@@ -67,14 +107,15 @@ void Connectivity::autoconnectToWifi() {
 
 void Connectivity::autoconnectToMqtt() {
     if (!client.connected()) {
-        Logger::log("MQTT trying to connect");
+        Logger::info("MQTT trying to connect");
         client.setServer(Configurations::MQTT_SERVER.c_str(), Configurations::MQTT_PORT);
         client.setCallback(callback);
         while (!client.connected()) {
             if (client.connect(Configurations::ID.c_str())) {
-                Logger::log("MQTT connected");
+                Logger::info("MQTT connected");
+                Connectivity::sendStatus();
             } else {
-                Logger::log("MQTT connection is still not ready; will retry in 5s");
+                Logger::info("MQTT connection is still not ready; will retry in 5s");
             }
             delay(Configurations::MQTT_RECONNECT_TIME);
         }
@@ -82,7 +123,8 @@ void Connectivity::autoconnectToMqtt() {
 }
 
 void Connectivity::loop() {
-    Connectivity::autoconnectToWifi();
+    //Connectivity::autoconnectToWifi(); not needed, done automatically by the lib
     Connectivity::autoconnectToMqtt();
+    Connectivity::sendDataTimer.tick();
     client.loop();
 }
