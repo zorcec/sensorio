@@ -1,3 +1,9 @@
 [submodule "lib/arduino-timer"]
 	path = lib/arduino-timer
 	url = https://github.com/contrem/arduino-timer.git
+[submodule "lib/TSL2561-Arduino-Library"]
+	path = lib/TSL2561-Arduino-Library
+	url = https://github.com/adafruit/TSL2561-Arduino-Library.git
+[submodule "lib/TSL2561"]
+	path = lib/TSL2561
+	url = https://github.com/adafruit/TSL2561-Arduino-Library.git
