@@ -2,7 +2,9 @@
 
 #include <configurations.h>
 #include <logger.h>
+#include <sensors.h>
 #include <sensors/sensorBME280.h>
+#include <sensors/sensorTSL2561.h>
 
 #define SUPORTED_SENSORS_NR 2
 
@@ -25,12 +27,12 @@ void Sensors::startI2c() {
 void Sensors::start(int* sensors) {
     int sensorsCount = 0;
     if (sensors[57] == 0) {
-        activeSensors[sensorsCount] = SensorTypes::TSL2561;
+        activeSensors[sensorsCount] = SensorTypes::LIGHT_TSL2561;
         sensorsCount++;
     }
     if (sensors[118] == 0) {
         SensorBME280::initialize();
-        activeSensors[sensorsCount] = SensorTypes::BME280;
+        activeSensors[sensorsCount] = SensorTypes::AIR_BME280;
         sensorsCount++;
     }
     Logger::info("Number of sensors started: " + String(sensorsCount));
@@ -62,8 +64,11 @@ bool Sensors::isSensorActive(SensorTypes sensorType) {
 }
 
 void Sensors::loop() {
-    if (Sensors::isSensorActive(SensorTypes::BME280)) {
+    if (Sensors::isSensorActive(SensorTypes::AIR_BME280)) {
         SensorBME280::loop(&data);
+    }
+    if (Sensors::isSensorActive(SensorTypes::LIGHT_TSL2561)) {
+        SensorTSL2561::loop(&data);
     }
     Logger::debug("All sensors refreshed");
 };

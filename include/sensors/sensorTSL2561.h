@@ -1,6 +1,6 @@
 #include <sensors.h>
 
-class SensorBME280 {
+class SensorTSL2561 {
     public:
         static void initialize();
         static void loop(SensorsData*);

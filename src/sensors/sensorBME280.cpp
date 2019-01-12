@@ -6,16 +6,16 @@
 
 #include "BME280I2C.h"
 
-BME280I2C sensor;
+BME280I2C sensorAirBME280;
 BME280::TempUnit temperatureUnit(BME280::TempUnit_Celsius);
 BME280::PresUnit pressureUnit(BME280::PresUnit_Pa);
 
 void SensorBME280::initialize() {
     Logger::info("Initializing BME280");
-    if (!sensor.begin()) {
+    if (!sensorAirBME280.begin()) {
         Logger::warn("BMC280 is not responding");
     }
-    switch(sensor.chipModel()) {
+    switch(sensorAirBME280.chipModel()) {
         case BME280::ChipModel_BME280:
             Logger::info("-> Sensor found");
         break;
@@ -29,10 +29,9 @@ void SensorBME280::initialize() {
 };
 
 void SensorBME280::loop(SensorsData* data) {
-    float pressure(NAN), temperature(NAN), humidity(NAN);
     Logger::info("Refreshing BME280");
-    sensor.read(pressure, temperature, humidity, temperatureUnit, pressureUnit);
-    Logger::debug("-> pressure:\t" + String(pressure));
-    Logger::debug("-> temperature:\t" + String(temperature));
-    Logger::debug("-> humidity:\t" + String(humidity));
+    sensorAirBME280.read(data->pressure, data->temperature, data->humidity, temperatureUnit, pressureUnit);
+    Logger::debug("-> pressure:\t" + String(data->pressure));
+    Logger::debug("-> temperature:\t" + String(data->temperature));
+    Logger::debug("-> humidity:\t" + String(data->humidity));
 };

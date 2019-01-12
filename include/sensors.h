@@ -1,14 +1,20 @@
+#ifndef SENSORS_H
+#define SENSORS_H
+
 #include <Arduino.h>
 
 enum SensorTypes {
-    TSL2561,
-    BME280
+    LIGHT_TSL2561,
+    AIR_BME280
 };
 
 struct SensorsData {
     float temperature;
     float pressure;
     float humidity;
+    uint16_t visibleLight;
+    uint16_t infraredLight;
+    uint16_t fullSpectrumLight;
 };
 
 class Sensors {
@@ -26,3 +32,5 @@ class Sensors {
         static bool isSensorActive(SensorTypes);
 
 };
+
+#endif
