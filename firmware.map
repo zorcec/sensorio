@@ -14391,9 +14391,9 @@ LOAD .pioenvs/d1_mini/libf5b/libPubSubClient_ID89.a
 LOAD .pioenvs/d1_mini/libaee/libWire.a
 LOAD .pioenvs/d1_mini/libcb5/libSPI.a
 LOAD .pioenvs/d1_mini/lib4d1/libBME280_ID901.a
-LOAD .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a
-LOAD .pioenvs/d1_mini/libe46/libarduino-timer.a
 LOAD .pioenvs/d1_mini/lib925/libEthernet.a
+LOAD .pioenvs/d1_mini/libe46/libarduino-timer.a
+LOAD .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a
 LOAD .pioenvs/d1_mini/lib65e/libESP8266WiFi.a
 LOAD .pioenvs/d1_mini/libFrameworkArduinoVariant.a
 LOAD .pioenvs/d1_mini/libFrameworkArduino.a
