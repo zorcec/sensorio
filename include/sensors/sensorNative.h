@@ -1,7 +1,7 @@
 #include <sensors.h>
 #include <timer.h>
 
-class SensorTSL2561 {
+class SensorNative {
     public:
         static void initialize();
         static void loop();

@@ -6,11 +6,11 @@
 
 void setup() {
     Logger::initialize();
+    Connectivity::initialize();
     Sensors::initialize();
 }
 
 void loop() {
-    delay(Configurations::SENSORS_REFRESH_RATE);
-    Sensors::loop();
     Connectivity::loop();
+    Sensors::loop();
 }

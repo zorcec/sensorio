@@ -3,13 +3,12 @@
 #include <configurations.h>
 #include <logger.h>
 #include <sensors.h>
+#include <sensors/sensorNative.h>
 #include <sensors/sensorBME280.h>
 #include <sensors/sensorTSL2561.h>
 
-#define SUPORTED_SENSORS_NR 2
-
-int activeSensors[SUPORTED_SENSORS_NR]; 
-SensorsData data { NAN, NAN, NAN };
+SensorsData Sensors::data { 0, 0, 0, 0, 0, 0, 0 };
+int Sensors::activeSensors[SUPORTED_SENSORS_NR] { 0, 0 };
 
 void Sensors::initialize() {
     Logger::info("Sensors are initializing");
@@ -26,16 +25,18 @@ void Sensors::startI2c() {
 
 void Sensors::start(int* sensors) {
     int sensorsCount = 0;
+    SensorNative::initialize();
     if (sensors[57] == 0) {
-        activeSensors[sensorsCount] = SensorTypes::LIGHT_TSL2561;
+        SensorTSL2561::initialize();
+        Sensors::activeSensors[sensorsCount] = SensorTypes::LIGHT_TSL2561;
         sensorsCount++;
     }
     if (sensors[118] == 0) {
         SensorBME280::initialize();
-        activeSensors[sensorsCount] = SensorTypes::AIR_BME280;
+        Sensors::activeSensors[sensorsCount] = SensorTypes::AIR_BME280;
         sensorsCount++;
     }
-    Logger::info("Number of sensors started: " + String(sensorsCount));
+    Logger::info("Number of sensors started: " + String(sensorsCount + 1));
 }
 
 void Sensors::scan(int* sensors) {
@@ -56,7 +57,7 @@ void Sensors::scan(int* sensors) {
 
 bool Sensors::isSensorActive(SensorTypes sensorType) {
     for (int index = 0; index < SUPORTED_SENSORS_NR; index++) {
-        if (activeSensors[index] == sensorType) {
+        if (Sensors::activeSensors[index] == sensorType) {
             return true;
         }
     }
@@ -64,15 +65,7 @@ bool Sensors::isSensorActive(SensorTypes sensorType) {
 }
 
 void Sensors::loop() {
-    if (Sensors::isSensorActive(SensorTypes::AIR_BME280)) {
-        SensorBME280::loop(&data);
-    }
-    if (Sensors::isSensorActive(SensorTypes::LIGHT_TSL2561)) {
-        SensorTSL2561::loop(&data);
-    }
-    Logger::debug("All sensors refreshed");
-};
-
-SensorsData* Sensors::getData() {
-    return &data;
+    SensorNative::loop();
+    SensorBME280::loop();
+    SensorTSL2561::loop();
 };

@@ -11,30 +11,62 @@
 #include <logger.h>
 #include <sensors.h>
 
-#define DATA_SIZE 500
+#define MESSAGE_SIZE 500
 
 WiFiClient espClient;
 PubSubClient client(espClient);
+
+Timer<1> Connectivity::sendDataTimer;
 
 void callback(char* topic, byte* payload, unsigned int length) {
   // handle message arrived
 }
 
+void Connectivity::initialize() {
+    Logger::info("Initializing connectivity");
+    Connectivity::sendDataTimer.every(Configurations::MQTT_SEND_DATA_INTERVAL, Connectivity::autosendData);
+};
+
 void Connectivity::sendStatus() {
-    char dataJson[DATA_SIZE];
-    StaticJsonBuffer<DATA_SIZE> jsonBuffer;
+    char dataJson[MESSAGE_SIZE];
+    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
     JsonObject& data = jsonBuffer.createObject();
 
     // data to be sent
     data["name"] = Configurations::NAME;
     data["version"] = Configurations::VERSION;
+    data["SSID"] = Configurations::WIFI_SSID;
 
-    data.createNestedObject("info");
-    data["info"]["heap"] = system_get_free_heap_size();
-    data["info"]["ssid"] = Configurations::WIFI_SSID;
-    data["info"]["rssi"] = WiFi.RSSI(); 
+    if (Configurations::DEBUG) {
+        data.prettyPrintTo(dataJson);
+    } else {
+        data.printTo(dataJson);
+    }
+    Connectivity::sendMessage(dataJson);
+}
 
-    data.createNestedObject("data");
+bool Connectivity::autosendData(void *) {
+    Connectivity::sendData(true);
+    return true;
+}
+
+void Connectivity::sendData(bool checkData) {
+    if (checkData) {
+        // TODO compare old and current data difference
+    }
+
+    char dataJson[MESSAGE_SIZE];
+    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
+    JsonObject& data = jsonBuffer.createObject();
+  
+    // data to be sent
+    data["temperature"] = Sensors::data.temperature;
+    data["pressure"] = Sensors::data.pressure;
+    data["humidity"] = Sensors::data.humidity;
+    data["visibleLight"] = Sensors::data.visibleLight;
+    data["infraredLight"] = Sensors::data.infraredLight;
+    data["fullSpectrumLight"] = Sensors::data.fullSpectrumLight;
+    data["RSSI"] = Sensors::data.RSSI;
 
     if (Configurations::DEBUG) {
         data.prettyPrintTo(dataJson);
@@ -91,7 +123,8 @@ void Connectivity::autoconnectToMqtt() {
 }
 
 void Connectivity::loop() {
-    Connectivity::autoconnectToWifi();
+    //Connectivity::autoconnectToWifi(); not needed, done automatically by the lib
     Connectivity::autoconnectToMqtt();
+    Connectivity::sendDataTimer.tick();
     client.loop();
 }
