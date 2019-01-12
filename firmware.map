@@ -8,6 +8,8 @@ Archive member included because of file (symbol)
                               .pioenvs/d1_mini/src/sensors/sensorBME280.cpp.o (_ZN6BME2805beginEv)
 .pioenvs/d1_mini/lib4d1/libBME280_ID901.a(BME280I2C.cpp.o)
                               .pioenvs/d1_mini/src/sensors/sensorBME280.cpp.o (_ZN9BME280I2CC1ERKNS_8SettingsE)
+.pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                              .pioenvs/d1_mini/src/sensors/sensorTSL2561.cpp.o (_ZN7TSL2561C1Eh)
 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFi.cpp.o)
                               .pioenvs/d1_mini/src/connectivity.cpp.o (WiFi)
 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
@@ -16,8 +18,6 @@ Archive member included because of file (symbol)
                               .pioenvs/d1_mini/src/connectivity.cpp.o (_ZN19ESP8266WiFiSTAClass7localIPEv)
 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
                               .pioenvs/d1_mini/src/connectivity.cpp.o (_ZN10WiFiClientD1Ev)
-.pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
-                              .pioenvs/d1_mini/src/sensors/sensorTSL2561.cpp.o (_ZN7TSL2561C1Eh)
 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
                               .pioenvs/d1_mini/src/logger.cpp.o (Serial)
 .pioenvs/d1_mini/libFrameworkArduino.a(IPAddress.cpp.o)
@@ -1022,6 +1022,39 @@ Discarded input sections
                 0x0000000000000000        0x4 .pioenvs/d1_mini/lib4d1/libBME280_ID901.a(BME280I2C.cpp.o)
  .xt.lit        0x0000000000000000       0x20 .pioenvs/d1_mini/lib4d1/libBME280_ID901.a(BME280I2C.cpp.o)
  .xt.prop       0x0000000000000000       0xe4 .pioenvs/d1_mini/lib4d1/libBME280_ID901.a(BME280I2C.cpp.o)
+ .literal._ZN7TSL2561C2Eh
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL256112calculateLuxEtt
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL25616read16Eh
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL25616write8Ehh
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL25617setGainE13tsl2561Gain_t
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL25615beginEv
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL25616enableEv
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL25617disableEv
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL25619setTimingE24tsl2561IntegrationTime_t
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL256117getFullLuminosityEv
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .literal._ZN7TSL256113getLuminosityEh
+                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .text          0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .data          0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .bss           0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .text._ZN7TSL256112calculateLuxEtt
+                0x0000000000000000       0xdd .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .rodata.BUILTIN_LED
+                0x0000000000000000        0x4 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .rodata.TIM_DIV265
+                0x0000000000000000        0x4 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .xt.lit        0x0000000000000000       0x50 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+ .xt.prop       0x0000000000000000      0x2f4 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
  .literal._ZN16ESP8266WiFiClass9printDiagER5Print
                 0x0000000000000000        0x0 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFi.cpp.o)
  .literal.startup._GLOBAL__sub_I__ZN16ESP8266WiFiClass9printDiagER5Print
@@ -1775,39 +1808,6 @@ Discarded input sections
                 0x0000000000000000        0xc .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
  .xt.prop._ZTV24BufferedStreamDataSourceI6StreamE
                 0x0000000000000000        0xc .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
- .literal._ZN7TSL2561C2Eh
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL256112calculateLuxEtt
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL25616read16Eh
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL25616write8Ehh
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL25617setGainE13tsl2561Gain_t
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL25615beginEv
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL25616enableEv
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL25617disableEv
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL25619setTimingE24tsl2561IntegrationTime_t
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL256117getFullLuminosityEv
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .literal._ZN7TSL256113getLuminosityEh
-                0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .text          0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .data          0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .bss           0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .text._ZN7TSL256112calculateLuxEtt
-                0x0000000000000000       0xdd .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .rodata.BUILTIN_LED
-                0x0000000000000000        0x4 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .rodata.TIM_DIV265
-                0x0000000000000000        0x4 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .xt.lit        0x0000000000000000       0x50 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
- .xt.prop       0x0000000000000000      0x2f4 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
  .group         0x0000000000000000       0x10 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
  .group         0x0000000000000000       0x14 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
  .group         0x0000000000000000       0x14 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
@@ -7473,273 +7473,273 @@ Linker script and memory map
                                          0xa9 (size before relaxing)
                 0x0000000040205ac0                _ZN9BME280I2C12ReadRegisterEhPhh
  *fill*         0x0000000040205b39        0x3 
- .text.startup._GLOBAL__sub_I__ZN16ESP8266WiFiClass9printDiagER5Print
-                0x0000000040205b3c       0x15 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFi.cpp.o)
-                                         0x1d (size before relaxing)
- *fill*         0x0000000040205b51        0x3 
- .text._Z23wifi_dns_found_callbackPKcPK8ip4_addrPv
-                0x0000000040205b54       0x27 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
-                                         0x32 (size before relaxing)
-                0x0000000040205b58                _Z23wifi_dns_found_callbackPKcPK8ip4_addrPv
- *fill*         0x0000000040205b7b        0x1 
- .text._ZN23ESP8266WiFiGenericClassC2Ev
-                0x0000000040205b7c       0x19 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
-                                         0x1d (size before relaxing)
-                0x0000000040205b80                _ZN23ESP8266WiFiGenericClassC2Ev
-                0x0000000040205b80                _ZN23ESP8266WiFiGenericClassC1Ev
- *fill*         0x0000000040205b95        0x3 
- .text._ZN23ESP8266WiFiGenericClass10hostByNameEPKcR9IPAddressj
-                0x0000000040205b98       0x81 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
-                                         0xa5 (size before relaxing)
-                0x0000000040205b9c                _ZN23ESP8266WiFiGenericClass10hostByNameEPKcR9IPAddressj
- *fill*         0x0000000040205c19        0x3 
- .text._ZN23ESP8266WiFiGenericClass14_eventCallbackEPv
-                0x0000000040205c1c       0x8a .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
-                                         0xaa (size before relaxing)
-                0x0000000040205c20                _ZN23ESP8266WiFiGenericClass14_eventCallbackEPv
- *fill*         0x0000000040205ca6        0x2 
- .text._ZNSt10_List_baseISt10shared_ptrI22WiFiEventHandlerOpaqueESaIS2_EE8_M_clearEv
-                0x0000000040205ca8       0x32 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
-                                         0x3e (size before relaxing)
-                0x0000000040205ca8                _ZNSt10_List_baseISt10shared_ptrI22WiFiEventHandlerOpaqueESaIS2_EE8_M_clearEv
- *fill*         0x0000000040205cda        0x2 
- .text.startup._GLOBAL__sub_I__ZN23ESP8266WiFiGenericClass11_persistentE
-                0x0000000040205cdc        0x9 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
-                                          0xd (size before relaxing)
- *fill*         0x0000000040205ce5        0x3 
- .text.exit._GLOBAL__sub_D__ZN23ESP8266WiFiGenericClass11_persistentE
-                0x0000000040205ce8       0x15 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
-                                         0x1d (size before relaxing)
- *fill*         0x0000000040205cfd        0x3 
- .text._ZN19ESP8266WiFiSTAClass4RSSIEv
-                0x0000000040205d00       0x15 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiSTA.cpp.o)
-                                         0x1d (size before relaxing)
-                0x0000000040205d00                _ZN19ESP8266WiFiSTAClass4RSSIEv
- *fill*         0x0000000040205d15        0x3 
- .text._ZN10DataSourceD2Ev
-                0x0000000040205d18        0xb .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                0x0000000040205d1c                _ZN10DataSourceD2Ev
-                0x0000000040205d1c                _ZN10DataSourceD1Ev
- *fill*         0x0000000040205d23        0x1 
- .text._ZN16BufferDataSourceD2Ev
-                0x0000000040205d24        0x7 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                          0xb (size before relaxing)
-                0x0000000040205d24                _ZN16BufferDataSourceD1Ev
-                0x0000000040205d24                _ZN16BufferDataSourceD2Ev
- *fill*         0x0000000040205d2b        0x1 
- .text._ZN10DataSourceD0Ev
-                0x0000000040205d2c       0x17 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x1f (size before relaxing)
-                0x0000000040205d2c                _ZN10DataSourceD0Ev
- *fill*         0x0000000040205d43        0x1 
- .text._ZN16BufferDataSourceD0Ev
-                0x0000000040205d44       0x17 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x1f (size before relaxing)
-                0x0000000040205d44                _ZN16BufferDataSourceD0Ev
- *fill*         0x0000000040205d5b        0x1 
- .text._ZN10WiFiClient7connectEPKct
-                0x0000000040205d5c       0x47 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x5b (size before relaxing)
-                0x0000000040205d5c                _ZN10WiFiClient7connectEPKct
- *fill*         0x0000000040205da3        0x1 
- .text._ZN10WiFiClient9availableEv
-                0x0000000040205da4       0x28 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x2f (size before relaxing)
-                0x0000000040205da4                _ZN10WiFiClient9availableEv
- *fill*         0x0000000040205dcc        0x0 
- .text._ZN10WiFiClient9peekBytesEPhj
-                0x0000000040205dcc       0xb2 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0xbe (size before relaxing)
-                0x0000000040205dd0                _ZN10WiFiClient9peekBytesEPhj
- *fill*         0x0000000040205e7e        0x2 
- .text._ZN16BufferDataSource10get_bufferEj
-                0x0000000040205e80       0x33 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x3b (size before relaxing)
-                0x0000000040205e8c                _ZN16BufferDataSource10get_bufferEj
- *fill*         0x0000000040205eb3        0x1 
- .text._ZN16BufferDataSource14release_bufferEPKhj
-                0x0000000040205eb4       0x33 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x3b (size before relaxing)
-                0x0000000040205ec0                _ZN16BufferDataSource14release_bufferEPKhj
- *fill*         0x0000000040205ee7        0x1 
- .text._ZN13ClientContext5abortEv$isra$4
-                0x0000000040205ee8       0x47 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x6f (size before relaxing)
- *fill*         0x0000000040205f2f        0x1 
- .text._ZN13ClientContext5closeEv$isra$5
-                0x0000000040205f30       0x57 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x87 (size before relaxing)
- *fill*         0x0000000040205f87        0x1 
- .text._ZN10WiFiClient4stopEv
-                0x0000000040205f88       0x14 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x1b (size before relaxing)
-                0x0000000040205f88                _ZN10WiFiClient4stopEv
- *fill*         0x0000000040205f9c        0x0 
- .text._ZN13ClientContext8_s_ackedEPvP7tcp_pcbt
-                0x0000000040205f9c       0x1f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x23 (size before relaxing)
-                0x0000000040205f9c                _ZN13ClientContext8_s_ackedEPvP7tcp_pcbt
- *fill*         0x0000000040205fbb        0x1 
- .text._ZN13ClientContext7_s_recvEPvP7tcp_pcbP4pbufl
-                0x0000000040205fbc       0x3e .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x4e (size before relaxing)
-                0x0000000040205fbc                _ZN13ClientContext7_s_recvEPvP7tcp_pcbP4pbufl
- *fill*         0x0000000040205ffa        0x2 
- .text._ZN13ClientContext12_s_connectedEPvP7tcp_pcbl
-                0x0000000040205ffc       0x4f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x5b (size before relaxing)
-                0x0000000040206010                _ZN13ClientContext12_s_connectedEPvP7tcp_pcbl
- *fill*         0x000000004020604b        0x1 
- .text._ZN24BufferedStreamDataSourceI13ProgmemStreamE14release_bufferEPKhj
-                0x000000004020604c       0x5f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x6b (size before relaxing)
-                0x0000000040206060                _ZN24BufferedStreamDataSourceI13ProgmemStreamE14release_bufferEPKhj
- *fill*         0x00000000402060ab        0x1 
- .text._ZN13ClientContext8_s_errorEPvl
-                0x00000000402060ac       0x3a .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x5e (size before relaxing)
-                0x00000000402060ac                _ZN13ClientContext8_s_errorEPvl
- *fill*         0x00000000402060e6        0x2 
- .text._ZN24BufferedStreamDataSourceI13ProgmemStreamE10get_bufferEj
-                0x00000000402060e8       0xd4 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0xec (size before relaxing)
-                0x00000000402060fc                _ZN24BufferedStreamDataSourceI13ProgmemStreamE10get_bufferEj
- .text._ZN13ClientContext7_s_pollEPvP7tcp_pcb
-                0x00000000402061bc       0x1f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x23 (size before relaxing)
-                0x00000000402061bc                _ZN13ClientContext7_s_pollEPvP7tcp_pcb
- *fill*         0x00000000402061db        0x1 
- .text._ZN13ClientContext5unrefEv
-                0x00000000402061dc       0x53 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x6a (size before relaxing)
-                0x00000000402061dc                _ZN13ClientContext5unrefEv
- *fill*         0x000000004020622f        0x1 
- .text._ZN10WiFiClient7connectE9IPAddresst
-                0x0000000040206230      0x127 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                        0x18b (size before relaxing)
-                0x000000004020624c                _ZN10WiFiClient7connectE9IPAddresst
- *fill*         0x0000000040206357        0x1 
- .text._ZN10WiFiClientD2Ev
-                0x0000000040206358       0x4b .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x4f (size before relaxing)
-                0x0000000040206360                _ZN10WiFiClientD2Ev
-                0x0000000040206360                _ZN10WiFiClientD1Ev
- *fill*         0x00000000402063a3        0x1 
- .text._ZN10WiFiClientD0Ev
-                0x00000000402063a4       0x1d .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x29 (size before relaxing)
-                0x00000000402063a4                _ZN10WiFiClientD0Ev
- *fill*         0x00000000402063c1        0x3 
- .text._ZN13ClientContext11_write_someEv
-                0x00000000402063c4       0xb5 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0xbd (size before relaxing)
-                0x00000000402063c4                _ZN13ClientContext11_write_someEv
- *fill*         0x0000000040206479        0x3 
- .text._ZN13ClientContext18_write_from_sourceEP10DataSource
-                0x000000004020647c       0xc6 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0xe6 (size before relaxing)
-                0x0000000040206490                _ZN13ClientContext18_write_from_sourceEP10DataSource
- *fill*         0x0000000040206542        0x2 
- .text._ZN10WiFiClient5writeEPKhj
-                0x0000000040206544       0x59 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x65 (size before relaxing)
-                0x0000000040206548                _ZN10WiFiClient5writeEPKhj
- *fill*         0x000000004020659d        0x3 
- .text._ZN10WiFiClient7write_PEPKcj
-                0x00000000402065a0       0x5b .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x6b (size before relaxing)
-                0x00000000402065a4                _ZN10WiFiClient7write_PEPKcj
- *fill*         0x00000000402065fb        0x1 
- .text._ZN10WiFiClient5flushEv
-                0x00000000402065fc       0x45 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x51 (size before relaxing)
-                0x00000000402065fc                _ZN10WiFiClient5flushEv
- *fill*         0x0000000040206641        0x3 
- .text._ZN13ClientContext8_consumeEj
-                0x0000000040206644       0x67 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x7f (size before relaxing)
-                0x0000000040206644                _ZN13ClientContext8_consumeEj
- *fill*         0x00000000402066ab        0x1 
- .text._ZN10WiFiClient4readEv
-                0x00000000402066ac       0x40 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x44 (size before relaxing)
-                0x00000000402066ac                _ZN10WiFiClient4readEv
- .text._ZN10WiFiClient4readEPhj
-                0x00000000402066ec       0x75 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x7d (size before relaxing)
-                0x00000000402066ec                _ZN10WiFiClient4readEPhj
- *fill*         0x0000000040206761        0x3 
- .text._ZN10WiFiClientC2Ev
-                0x0000000040206764       0x1b .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x27 (size before relaxing)
-                0x0000000040206764                _ZN10WiFiClientC1Ev
-                0x0000000040206764                _ZN10WiFiClientC2Ev
- *fill*         0x000000004020677f        0x1 
- .text._ZN10WiFiClient7stopAllEv
-                0x0000000040206780       0x27 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x2b (size before relaxing)
-                0x0000000040206780                _ZN10WiFiClient7stopAllEv
- *fill*         0x00000000402067a7        0x1 
- .text._ZNSt10unique_ptrIA_hSt14default_deleteIS0_EED2Ev
-                0x00000000402067a8       0x21 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x25 (size before relaxing)
-                0x00000000402067a8                _ZNSt10unique_ptrIA_hSt14default_deleteIS0_EED2Ev
-                0x00000000402067a8                _ZNSt10unique_ptrIA_hSt14default_deleteIS0_EED1Ev
- *fill*         0x00000000402067c9        0x3 
- .text._ZN24BufferedStreamDataSourceI13ProgmemStreamED2Ev
-                0x00000000402067cc       0x22 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x32 (size before relaxing)
-                0x00000000402067cc                _ZN24BufferedStreamDataSourceI13ProgmemStreamED2Ev
-                0x00000000402067cc                _ZN24BufferedStreamDataSourceI13ProgmemStreamED1Ev
- *fill*         0x00000000402067ee        0x2 
- .text._ZN24BufferedStreamDataSourceI13ProgmemStreamED0Ev
-                0x00000000402067f0       0x1d .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                                         0x29 (size before relaxing)
-                0x00000000402067f0                _ZN24BufferedStreamDataSourceI13ProgmemStreamED0Ev
- *fill*         0x000000004020680d        0x3 
  .text._ZN7TSL25616read16Eh
-                0x0000000040206810       0x68 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040205b3c       0x68 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
                                          0x94 (size before relaxing)
-                0x0000000040206810                _ZN7TSL25616read16Eh
+                0x0000000040205b3c                _ZN7TSL25616read16Eh
  .text._ZN7TSL25616write8Ehh
-                0x0000000040206878       0x43 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040205ba4       0x43 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
                                          0x63 (size before relaxing)
-                0x0000000040206878                _ZN7TSL25616write8Ehh
- *fill*         0x00000000402068bb        0x1 
+                0x0000000040205ba4                _ZN7TSL25616write8Ehh
+ *fill*         0x0000000040205be7        0x1 
  .text._ZN7TSL25617setGainE13tsl2561Gain_t
-                0x00000000402068bc       0x43 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040205be8       0x43 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
                                          0x5b (size before relaxing)
-                0x00000000402068bc                _ZN7TSL25617setGainE13tsl2561Gain_t
- *fill*         0x00000000402068ff        0x1 
+                0x0000000040205be8                _ZN7TSL25617setGainE13tsl2561Gain_t
+ *fill*         0x0000000040205c2b        0x1 
  .text._ZN7TSL25615beginEv
-                0x0000000040206900       0x77 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040205c2c       0x77 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
                                          0xb3 (size before relaxing)
-                0x0000000040206900                _ZN7TSL25615beginEv
- *fill*         0x0000000040206977        0x1 
+                0x0000000040205c2c                _ZN7TSL25615beginEv
+ *fill*         0x0000000040205ca3        0x1 
  .text._ZN7TSL25616enableEv
-                0x0000000040206978       0x29 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040205ca4       0x29 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
                                          0x35 (size before relaxing)
-                0x0000000040206978                _ZN7TSL25616enableEv
- *fill*         0x00000000402069a1        0x3 
+                0x0000000040205ca4                _ZN7TSL25616enableEv
+ *fill*         0x0000000040205ccd        0x3 
  .text._ZN7TSL25617disableEv
-                0x00000000402069a4       0x29 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040205cd0       0x29 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
                                          0x35 (size before relaxing)
-                0x00000000402069a4                _ZN7TSL25617disableEv
- *fill*         0x00000000402069cd        0x3 
+                0x0000000040205cd0                _ZN7TSL25617disableEv
+ *fill*         0x0000000040205cf9        0x3 
  .text._ZN7TSL25619setTimingE24tsl2561IntegrationTime_t
-                0x00000000402069d0       0x43 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040205cfc       0x43 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
                                          0x5b (size before relaxing)
-                0x00000000402069d0                _ZN7TSL25619setTimingE24tsl2561IntegrationTime_t
- *fill*         0x0000000040206a13        0x1 
+                0x0000000040205cfc                _ZN7TSL25619setTimingE24tsl2561IntegrationTime_t
+ *fill*         0x0000000040205d3f        0x1 
  .text._ZN7TSL256117getFullLuminosityEv
-                0x0000000040206a14       0x66 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040205d40       0x66 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
                                          0x8a (size before relaxing)
-                0x0000000040206a14                _ZN7TSL256117getFullLuminosityEv
- *fill*         0x0000000040206a7a        0x2 
+                0x0000000040205d40                _ZN7TSL256117getFullLuminosityEv
+ *fill*         0x0000000040205da6        0x2 
  .text._ZN7TSL256113getLuminosityEh
-                0x0000000040206a7c       0x31 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040205da8       0x31 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
                                          0x39 (size before relaxing)
-                0x0000000040206a7c                _ZN7TSL256113getLuminosityEh
+                0x0000000040205da8                _ZN7TSL256113getLuminosityEh
+ *fill*         0x0000000040205dd9        0x3 
+ .text.startup._GLOBAL__sub_I__ZN16ESP8266WiFiClass9printDiagER5Print
+                0x0000000040205ddc       0x15 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFi.cpp.o)
+                                         0x1d (size before relaxing)
+ *fill*         0x0000000040205df1        0x3 
+ .text._Z23wifi_dns_found_callbackPKcPK8ip4_addrPv
+                0x0000000040205df4       0x27 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+                                         0x32 (size before relaxing)
+                0x0000000040205df8                _Z23wifi_dns_found_callbackPKcPK8ip4_addrPv
+ *fill*         0x0000000040205e1b        0x1 
+ .text._ZN23ESP8266WiFiGenericClassC2Ev
+                0x0000000040205e1c       0x19 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+                                         0x1d (size before relaxing)
+                0x0000000040205e20                _ZN23ESP8266WiFiGenericClassC2Ev
+                0x0000000040205e20                _ZN23ESP8266WiFiGenericClassC1Ev
+ *fill*         0x0000000040205e35        0x3 
+ .text._ZN23ESP8266WiFiGenericClass10hostByNameEPKcR9IPAddressj
+                0x0000000040205e38       0x81 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+                                         0xa5 (size before relaxing)
+                0x0000000040205e3c                _ZN23ESP8266WiFiGenericClass10hostByNameEPKcR9IPAddressj
+ *fill*         0x0000000040205eb9        0x3 
+ .text._ZN23ESP8266WiFiGenericClass14_eventCallbackEPv
+                0x0000000040205ebc       0x8a .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+                                         0xaa (size before relaxing)
+                0x0000000040205ec0                _ZN23ESP8266WiFiGenericClass14_eventCallbackEPv
+ *fill*         0x0000000040205f46        0x2 
+ .text._ZNSt10_List_baseISt10shared_ptrI22WiFiEventHandlerOpaqueESaIS2_EE8_M_clearEv
+                0x0000000040205f48       0x32 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+                                         0x3e (size before relaxing)
+                0x0000000040205f48                _ZNSt10_List_baseISt10shared_ptrI22WiFiEventHandlerOpaqueESaIS2_EE8_M_clearEv
+ *fill*         0x0000000040205f7a        0x2 
+ .text.startup._GLOBAL__sub_I__ZN23ESP8266WiFiGenericClass11_persistentE
+                0x0000000040205f7c        0x9 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+                                          0xd (size before relaxing)
+ *fill*         0x0000000040205f85        0x3 
+ .text.exit._GLOBAL__sub_D__ZN23ESP8266WiFiGenericClass11_persistentE
+                0x0000000040205f88       0x15 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+                                         0x1d (size before relaxing)
+ *fill*         0x0000000040205f9d        0x3 
+ .text._ZN19ESP8266WiFiSTAClass4RSSIEv
+                0x0000000040205fa0       0x15 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiSTA.cpp.o)
+                                         0x1d (size before relaxing)
+                0x0000000040205fa0                _ZN19ESP8266WiFiSTAClass4RSSIEv
+ *fill*         0x0000000040205fb5        0x3 
+ .text._ZN10DataSourceD2Ev
+                0x0000000040205fb8        0xb .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x0000000040205fbc                _ZN10DataSourceD2Ev
+                0x0000000040205fbc                _ZN10DataSourceD1Ev
+ *fill*         0x0000000040205fc3        0x1 
+ .text._ZN16BufferDataSourceD2Ev
+                0x0000000040205fc4        0x7 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                          0xb (size before relaxing)
+                0x0000000040205fc4                _ZN16BufferDataSourceD1Ev
+                0x0000000040205fc4                _ZN16BufferDataSourceD2Ev
+ *fill*         0x0000000040205fcb        0x1 
+ .text._ZN10DataSourceD0Ev
+                0x0000000040205fcc       0x17 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x1f (size before relaxing)
+                0x0000000040205fcc                _ZN10DataSourceD0Ev
+ *fill*         0x0000000040205fe3        0x1 
+ .text._ZN16BufferDataSourceD0Ev
+                0x0000000040205fe4       0x17 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x1f (size before relaxing)
+                0x0000000040205fe4                _ZN16BufferDataSourceD0Ev
+ *fill*         0x0000000040205ffb        0x1 
+ .text._ZN10WiFiClient7connectEPKct
+                0x0000000040205ffc       0x47 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x5b (size before relaxing)
+                0x0000000040205ffc                _ZN10WiFiClient7connectEPKct
+ *fill*         0x0000000040206043        0x1 
+ .text._ZN10WiFiClient9availableEv
+                0x0000000040206044       0x28 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x2f (size before relaxing)
+                0x0000000040206044                _ZN10WiFiClient9availableEv
+ *fill*         0x000000004020606c        0x0 
+ .text._ZN10WiFiClient9peekBytesEPhj
+                0x000000004020606c       0xb2 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0xbe (size before relaxing)
+                0x0000000040206070                _ZN10WiFiClient9peekBytesEPhj
+ *fill*         0x000000004020611e        0x2 
+ .text._ZN16BufferDataSource10get_bufferEj
+                0x0000000040206120       0x33 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x3b (size before relaxing)
+                0x000000004020612c                _ZN16BufferDataSource10get_bufferEj
+ *fill*         0x0000000040206153        0x1 
+ .text._ZN16BufferDataSource14release_bufferEPKhj
+                0x0000000040206154       0x33 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x3b (size before relaxing)
+                0x0000000040206160                _ZN16BufferDataSource14release_bufferEPKhj
+ *fill*         0x0000000040206187        0x1 
+ .text._ZN13ClientContext5abortEv$isra$4
+                0x0000000040206188       0x47 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x6f (size before relaxing)
+ *fill*         0x00000000402061cf        0x1 
+ .text._ZN13ClientContext5closeEv$isra$5
+                0x00000000402061d0       0x57 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x87 (size before relaxing)
+ *fill*         0x0000000040206227        0x1 
+ .text._ZN10WiFiClient4stopEv
+                0x0000000040206228       0x14 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x1b (size before relaxing)
+                0x0000000040206228                _ZN10WiFiClient4stopEv
+ *fill*         0x000000004020623c        0x0 
+ .text._ZN13ClientContext8_s_ackedEPvP7tcp_pcbt
+                0x000000004020623c       0x1f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x23 (size before relaxing)
+                0x000000004020623c                _ZN13ClientContext8_s_ackedEPvP7tcp_pcbt
+ *fill*         0x000000004020625b        0x1 
+ .text._ZN13ClientContext7_s_recvEPvP7tcp_pcbP4pbufl
+                0x000000004020625c       0x3e .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x4e (size before relaxing)
+                0x000000004020625c                _ZN13ClientContext7_s_recvEPvP7tcp_pcbP4pbufl
+ *fill*         0x000000004020629a        0x2 
+ .text._ZN13ClientContext12_s_connectedEPvP7tcp_pcbl
+                0x000000004020629c       0x4f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x5b (size before relaxing)
+                0x00000000402062b0                _ZN13ClientContext12_s_connectedEPvP7tcp_pcbl
+ *fill*         0x00000000402062eb        0x1 
+ .text._ZN24BufferedStreamDataSourceI13ProgmemStreamE14release_bufferEPKhj
+                0x00000000402062ec       0x5f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x6b (size before relaxing)
+                0x0000000040206300                _ZN24BufferedStreamDataSourceI13ProgmemStreamE14release_bufferEPKhj
+ *fill*         0x000000004020634b        0x1 
+ .text._ZN13ClientContext8_s_errorEPvl
+                0x000000004020634c       0x3a .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x5e (size before relaxing)
+                0x000000004020634c                _ZN13ClientContext8_s_errorEPvl
+ *fill*         0x0000000040206386        0x2 
+ .text._ZN24BufferedStreamDataSourceI13ProgmemStreamE10get_bufferEj
+                0x0000000040206388       0xd4 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0xec (size before relaxing)
+                0x000000004020639c                _ZN24BufferedStreamDataSourceI13ProgmemStreamE10get_bufferEj
+ .text._ZN13ClientContext7_s_pollEPvP7tcp_pcb
+                0x000000004020645c       0x1f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x23 (size before relaxing)
+                0x000000004020645c                _ZN13ClientContext7_s_pollEPvP7tcp_pcb
+ *fill*         0x000000004020647b        0x1 
+ .text._ZN13ClientContext5unrefEv
+                0x000000004020647c       0x53 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x6a (size before relaxing)
+                0x000000004020647c                _ZN13ClientContext5unrefEv
+ *fill*         0x00000000402064cf        0x1 
+ .text._ZN10WiFiClient7connectE9IPAddresst
+                0x00000000402064d0      0x127 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                        0x18b (size before relaxing)
+                0x00000000402064ec                _ZN10WiFiClient7connectE9IPAddresst
+ *fill*         0x00000000402065f7        0x1 
+ .text._ZN10WiFiClientD2Ev
+                0x00000000402065f8       0x4b .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x4f (size before relaxing)
+                0x0000000040206600                _ZN10WiFiClientD2Ev
+                0x0000000040206600                _ZN10WiFiClientD1Ev
+ *fill*         0x0000000040206643        0x1 
+ .text._ZN10WiFiClientD0Ev
+                0x0000000040206644       0x1d .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x29 (size before relaxing)
+                0x0000000040206644                _ZN10WiFiClientD0Ev
+ *fill*         0x0000000040206661        0x3 
+ .text._ZN13ClientContext11_write_someEv
+                0x0000000040206664       0xb5 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0xbd (size before relaxing)
+                0x0000000040206664                _ZN13ClientContext11_write_someEv
+ *fill*         0x0000000040206719        0x3 
+ .text._ZN13ClientContext18_write_from_sourceEP10DataSource
+                0x000000004020671c       0xc6 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0xe6 (size before relaxing)
+                0x0000000040206730                _ZN13ClientContext18_write_from_sourceEP10DataSource
+ *fill*         0x00000000402067e2        0x2 
+ .text._ZN10WiFiClient5writeEPKhj
+                0x00000000402067e4       0x59 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x65 (size before relaxing)
+                0x00000000402067e8                _ZN10WiFiClient5writeEPKhj
+ *fill*         0x000000004020683d        0x3 
+ .text._ZN10WiFiClient7write_PEPKcj
+                0x0000000040206840       0x5b .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x6b (size before relaxing)
+                0x0000000040206844                _ZN10WiFiClient7write_PEPKcj
+ *fill*         0x000000004020689b        0x1 
+ .text._ZN10WiFiClient5flushEv
+                0x000000004020689c       0x45 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x51 (size before relaxing)
+                0x000000004020689c                _ZN10WiFiClient5flushEv
+ *fill*         0x00000000402068e1        0x3 
+ .text._ZN13ClientContext8_consumeEj
+                0x00000000402068e4       0x67 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x7f (size before relaxing)
+                0x00000000402068e4                _ZN13ClientContext8_consumeEj
+ *fill*         0x000000004020694b        0x1 
+ .text._ZN10WiFiClient4readEv
+                0x000000004020694c       0x40 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x44 (size before relaxing)
+                0x000000004020694c                _ZN10WiFiClient4readEv
+ .text._ZN10WiFiClient4readEPhj
+                0x000000004020698c       0x75 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x7d (size before relaxing)
+                0x000000004020698c                _ZN10WiFiClient4readEPhj
+ *fill*         0x0000000040206a01        0x3 
+ .text._ZN10WiFiClientC2Ev
+                0x0000000040206a04       0x1b .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x27 (size before relaxing)
+                0x0000000040206a04                _ZN10WiFiClientC1Ev
+                0x0000000040206a04                _ZN10WiFiClientC2Ev
+ *fill*         0x0000000040206a1f        0x1 
+ .text._ZN10WiFiClient7stopAllEv
+                0x0000000040206a20       0x27 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x2b (size before relaxing)
+                0x0000000040206a20                _ZN10WiFiClient7stopAllEv
+ *fill*         0x0000000040206a47        0x1 
+ .text._ZNSt10unique_ptrIA_hSt14default_deleteIS0_EED2Ev
+                0x0000000040206a48       0x21 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x25 (size before relaxing)
+                0x0000000040206a48                _ZNSt10unique_ptrIA_hSt14default_deleteIS0_EED2Ev
+                0x0000000040206a48                _ZNSt10unique_ptrIA_hSt14default_deleteIS0_EED1Ev
+ *fill*         0x0000000040206a69        0x3 
+ .text._ZN24BufferedStreamDataSourceI13ProgmemStreamED2Ev
+                0x0000000040206a6c       0x22 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x32 (size before relaxing)
+                0x0000000040206a6c                _ZN24BufferedStreamDataSourceI13ProgmemStreamED2Ev
+                0x0000000040206a6c                _ZN24BufferedStreamDataSourceI13ProgmemStreamED1Ev
+ *fill*         0x0000000040206a8e        0x2 
+ .text._ZN24BufferedStreamDataSourceI13ProgmemStreamED0Ev
+                0x0000000040206a90       0x1d .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                                         0x29 (size before relaxing)
+                0x0000000040206a90                _ZN24BufferedStreamDataSourceI13ProgmemStreamED0Ev
  *fill*         0x0000000040206aad        0x3 
  .text._ZN14HardwareSerialD2Ev
                 0x0000000040206ab0        0xb .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
@@ -8272,106 +8272,106 @@ Linker script and memory map
  *fill*         0x0000000040207d91        0x0 
  *fill*         0x0000000040207d91        0x0 
  *fill*         0x0000000040207d91        0x0 
- *fill*         0x0000000040207d91        0x0 
- *fill*         0x0000000040207d91        0x0 
- *fill*         0x0000000040207d91        0x0 
- *fill*         0x0000000040207d91        0x0 
  *fill*         0x0000000040207d91        0x3 
- .text._ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED2Ev
-                0x0000000040207d94       0x39 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
-                0x0000000040207d94                _ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED2Ev
-                0x0000000040207d94                _ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED1Ev
- *fill*         0x0000000040207dcd        0x0 
- *fill*         0x0000000040207dcd        0x0 
- *fill*         0x0000000040207dcd        0x0 
- *fill*         0x0000000040207dcd        0x0 
- *fill*         0x0000000040207dcd        0x0 
- *fill*         0x0000000040207dcd        0x0 
- *fill*         0x0000000040207dcd        0x3 
- .text._ZN16BufferDataSource9availableEv
-                0x0000000040207dd0        0x9 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                0x0000000040207dd0                _ZN16BufferDataSource9availableEv
- *fill*         0x0000000040207dd9        0x3 
- .text._ZN10WiFiClient7connectE6Stringt
-                0x0000000040207ddc       0x18 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                0x0000000040207ddc                _ZN10WiFiClient7connectE6Stringt
- .text._ZN10WiFiClient5writeEh
-                0x0000000040207df4       0x1b .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                0x0000000040207df4                _ZN10WiFiClient5writeEh
- *fill*         0x0000000040207e0f        0x1 
- .text._ZN10WiFiClient4peekEv
-                0x0000000040207e10       0x31 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                0x0000000040207e10                _ZN10WiFiClient4peekEv
- *fill*         0x0000000040207e41        0x3 
- .text._ZN10WiFiClient9connectedEv
-                0x0000000040207e44       0x3f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                0x0000000040207e44                _ZN10WiFiClient9connectedEv
- *fill*         0x0000000040207e83        0x1 
- .text._ZN10WiFiClientcvbEv
-                0x0000000040207e84       0x1c .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                0x0000000040207e84                _ZN10WiFiClientcvbEv
- *fill*         0x0000000040207ea0        0x0 
- .text._ZN24BufferedStreamDataSourceI13ProgmemStreamE9availableEv
-                0x0000000040207ea0        0x9 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
-                0x0000000040207ea0                _ZN24BufferedStreamDataSourceI13ProgmemStreamE9availableEv
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x0 
- *fill*         0x0000000040207ea9        0x3 
  .text._ZN7TSL2561C2Eh
-                0x0000000040207eac       0x12 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
-                0x0000000040207eac                _ZN7TSL2561C1Eh
-                0x0000000040207eac                _ZN7TSL2561C2Eh
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x0 
- *fill*         0x0000000040207ebe        0x2 
+                0x0000000040207d94       0x12 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
+                0x0000000040207d94                _ZN7TSL2561C1Eh
+                0x0000000040207d94                _ZN7TSL2561C2Eh
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x0 
+ *fill*         0x0000000040207da6        0x2 
+ .text._ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED2Ev
+                0x0000000040207da8       0x39 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
+                0x0000000040207da8                _ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED2Ev
+                0x0000000040207da8                _ZNSt14__shared_countILN9__gnu_cxx12_Lock_policyE0EED1Ev
+ *fill*         0x0000000040207de1        0x0 
+ *fill*         0x0000000040207de1        0x0 
+ *fill*         0x0000000040207de1        0x0 
+ *fill*         0x0000000040207de1        0x0 
+ *fill*         0x0000000040207de1        0x0 
+ *fill*         0x0000000040207de1        0x0 
+ *fill*         0x0000000040207de1        0x3 
+ .text._ZN16BufferDataSource9availableEv
+                0x0000000040207de4        0x9 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x0000000040207de4                _ZN16BufferDataSource9availableEv
+ *fill*         0x0000000040207ded        0x3 
+ .text._ZN10WiFiClient7connectE6Stringt
+                0x0000000040207df0       0x18 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x0000000040207df0                _ZN10WiFiClient7connectE6Stringt
+ .text._ZN10WiFiClient5writeEh
+                0x0000000040207e08       0x1b .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x0000000040207e08                _ZN10WiFiClient5writeEh
+ *fill*         0x0000000040207e23        0x1 
+ .text._ZN10WiFiClient4peekEv
+                0x0000000040207e24       0x31 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x0000000040207e24                _ZN10WiFiClient4peekEv
+ *fill*         0x0000000040207e55        0x3 
+ .text._ZN10WiFiClient9connectedEv
+                0x0000000040207e58       0x3f .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x0000000040207e58                _ZN10WiFiClient9connectedEv
+ *fill*         0x0000000040207e97        0x1 
+ .text._ZN10WiFiClientcvbEv
+                0x0000000040207e98       0x1c .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x0000000040207e98                _ZN10WiFiClientcvbEv
+ *fill*         0x0000000040207eb4        0x0 
+ .text._ZN24BufferedStreamDataSourceI13ProgmemStreamE9availableEv
+                0x0000000040207eb4        0x9 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
+                0x0000000040207eb4                _ZN24BufferedStreamDataSourceI13ProgmemStreamE9availableEv
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x0 
+ *fill*         0x0000000040207ebd        0x3 
  .text._ZN9IPAddress10fromStringEPKc
                 0x0000000040207ec0       0x5e .pioenvs/d1_mini/libFrameworkArduino.a(IPAddress.cpp.o)
                 0x0000000040207ec0                _ZN9IPAddress10fromStringEPKc
@@ -14391,10 +14391,10 @@ LOAD .pioenvs/d1_mini/libf5b/libPubSubClient_ID89.a
 LOAD .pioenvs/d1_mini/libaee/libWire.a
 LOAD .pioenvs/d1_mini/libcb5/libSPI.a
 LOAD .pioenvs/d1_mini/lib4d1/libBME280_ID901.a
-LOAD .pioenvs/d1_mini/lib65e/libESP8266WiFi.a
+LOAD .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a
 LOAD .pioenvs/d1_mini/libe46/libarduino-timer.a
 LOAD .pioenvs/d1_mini/lib925/libEthernet.a
-LOAD .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a
+LOAD .pioenvs/d1_mini/lib65e/libESP8266WiFi.a
 LOAD .pioenvs/d1_mini/libFrameworkArduinoVariant.a
 LOAD .pioenvs/d1_mini/libFrameworkArduino.a
 LOAD /home/tomislav/.platformio/packages/framework-arduinoespressif8266/tools/sdk/lib/libhal.a
@@ -14433,11 +14433,11 @@ OUTPUT(.pioenvs/d1_mini/firmware.elf elf32-xtensa-le)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/libaee/libWire.a(Wire.cpp.o)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/lib4d1/libBME280_ID901.a(BME280.cpp.o)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/lib4d1/libBME280_ID901.a(BME280I2C.cpp.o)
+ .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFi.cpp.o)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiSTA.cpp.o)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
- .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/libFrameworkArduino.a(IPAddress.cpp.o)
  .comment       0x0000000000000000       0x22 .pioenvs/d1_mini/libFrameworkArduino.a(Print.cpp.o)
@@ -14682,11 +14682,11 @@ OUTPUT(.pioenvs/d1_mini/firmware.elf elf32-xtensa-le)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/libaee/libWire.a(Wire.cpp.o)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/lib4d1/libBME280_ID901.a(BME280.cpp.o)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/lib4d1/libBME280_ID901.a(BME280I2C.cpp.o)
+ .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFi.cpp.o)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiGeneric.cpp.o)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(ESP8266WiFiSTA.cpp.o)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/lib65e/libESP8266WiFi.a(WiFiClient.cpp.o)
- .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/lib83f/libTSL2561-Arduino-Library.a(TSL2561.cpp.o)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/libFrameworkArduino.a(HardwareSerial.cpp.o)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/libFrameworkArduino.a(IPAddress.cpp.o)
  .xtensa.info   0x0000000000000000        0x0 .pioenvs/d1_mini/libFrameworkArduino.a(Print.cpp.o)
