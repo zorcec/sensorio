@@ -35,7 +35,6 @@ void Connectivity::sendStatus() {
     data["info"]["rssi"] = WiFi.RSSI(); 
 
     data.createNestedObject("data");
-    data["data"]["temperature"] = Sensors::getTemperature();
 
     if (Configurations::DEBUG) {
         data.prettyPrintTo(dataJson);
@@ -46,7 +45,7 @@ void Connectivity::sendStatus() {
 }
 
 void Connectivity::sendMessage(String dataJson) {
-    Logger::log("MQTT sending message: " + dataJson);
+    Logger::info("MQTT sending message: " + dataJson);
     client.beginPublish(Connectivity::getTopic("STATUS").c_str(), dataJson.length(), false);
     client.print(dataJson);
     client.endPublish();
@@ -62,12 +61,12 @@ String Connectivity::getTopic(String name) {
 
 void Connectivity::autoconnectToWifi() {
     if (WiFi.status() != WL_CONNECTED) {
-        Logger::log("WiFi trying to connect");
+        Logger::info("WiFi trying to connect");
         while (WiFi.status() != WL_CONNECTED) {
             if (WiFi.begin(Configurations::WIFI_SSID.c_str(), Configurations::WIFI_PASSWORD.c_str()) == WL_CONNECTED) {
-                Logger::log("WiFI connected, IP address: " + WiFi.localIP());
+                Logger::info("WiFI connected, IP address: " + WiFi.localIP());
             } else {
-                Logger::log("WiFI connection is still not ready, will retry in 5s");
+                Logger::error("WiFI connection is still not ready, will retry in 5s");
             }
             delay(Configurations::WIFI_RECONNECT_TIME);
         }
@@ -76,24 +75,19 @@ void Connectivity::autoconnectToWifi() {
 
 void Connectivity::autoconnectToMqtt() {
     if (!client.connected()) {
-        Logger::log("MQTT trying to connect");
+        Logger::info("MQTT trying to connect");
         client.setServer(Configurations::MQTT_SERVER.c_str(), Configurations::MQTT_PORT);
         client.setCallback(callback);
         while (!client.connected()) {
             if (client.connect(Configurations::ID.c_str())) {
-                Logger::log("MQTT connected");
+                Logger::info("MQTT connected");
                 Connectivity::sendStatus();
             } else {
-                Logger::log("MQTT connection is still not ready; will retry in 5s");
+                Logger::info("MQTT connection is still not ready; will retry in 5s");
             }
             delay(Configurations::MQTT_RECONNECT_TIME);
         }
     }
-}
-
-void Connectivity::startI2c() {
-    Wire.begin(Configurations::I2C_SDA, Configurations::I2C_SCL);
-    Logger::log("I2C ready");
 }
 
 void Connectivity::loop() {

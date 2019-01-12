@@ -20,4 +20,6 @@ class Configurations {
 
         static int8 I2C_SDA;
         static int8 I2C_SCL;
+
+        static int32 SENSORS_REFRESH_RATE;
 };
