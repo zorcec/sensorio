@@ -9,7 +9,7 @@ class Connectivity {
         static void sendStatus();
         static bool autosendData(void *);
         static void sendData(bool);
-        static void sendMessage(String);
+        static void sendMessage(String, String);
         static String getTopic(String);
         static String askDevice(int8, byte);
 

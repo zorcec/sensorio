@@ -42,7 +42,7 @@ void Connectivity::sendStatus() {
     } else {
         data.printTo(dataJson);
     }
-    Connectivity::sendMessage(dataJson);
+    Connectivity::sendMessage("STATUS", dataJson);
 }
 
 bool Connectivity::autosendData(void *) {
@@ -73,12 +73,12 @@ void Connectivity::sendData(bool checkData) {
     } else {
         data.printTo(dataJson);
     }
-    Connectivity::sendMessage(dataJson);
+    Connectivity::sendMessage("DATA", dataJson);
 }
 
-void Connectivity::sendMessage(String dataJson) {
+void Connectivity::sendMessage(String topic, String dataJson) {
     Logger::info("MQTT sending message: " + dataJson);
-    client.beginPublish(Connectivity::getTopic("STATUS").c_str(), dataJson.length(), false);
+    client.beginPublish(Connectivity::getTopic(topic).c_str(), dataJson.length(), false);
     client.print(dataJson);
     client.endPublish();
 }

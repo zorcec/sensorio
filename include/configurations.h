@@ -14,7 +14,7 @@ class Configurations {
         static int16_t WIFI_RECONNECT_TIME;
 
         static String MQTT_SERVER;
-        static int MQTT_PORT;
+        static int16_t MQTT_PORT;
         static String MQTT_TOPIC;
         static int16_t MQTT_RECONNECT_TIME;
         static int16_t MQTT_SEND_DATA_INTERVAL;
@@ -28,6 +28,7 @@ class Configurations {
         static int8 I2C_SDA;
         static int8 I2C_SCL;
 
+        static int8_t SENSORS_PIR_GPIO;
         static int16_t SENSORS_NATIVE_REFRESH_INTERVAL;
         static int16_t SENSORS_BME280_REFRESH_INTERVAL;
         static int16_t SENSORS_TSL2561_REFRESH_INTERVAL;

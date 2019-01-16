@@ -6,6 +6,7 @@
 #include <sensors/sensorNative.h>
 #include <sensors/sensorBME280.h>
 #include <sensors/sensorTSL2561.h>
+#include <sensors/sensorPIR.h>
 
 SensorsData Sensors::data { 0, 0, 0, 0, 0, 0, 0 };
 int Sensors::activeSensors[SUPORTED_SENSORS_NR] { 0, 0 };
@@ -18,6 +19,8 @@ void Sensors::initialize() {
 void Sensors::startI2c() {
     int sensors[127];
     Logger::info("-> Starting I2c");
+    Logger::debug(" -> SDA GPIO" + String(Configurations::I2C_SDA));
+    Logger::debug(" -> SCL GPIO" + String(Configurations::I2C_SCL));
     Wire.begin(Configurations::I2C_SDA, Configurations::I2C_SCL);
     Sensors::scan(sensors);
     Sensors::start(sensors);
@@ -34,6 +37,10 @@ void Sensors::start(int* sensors) {
     if (sensors[118] == 0) {
         SensorBME280::initialize();
         Sensors::activeSensors[sensorsCount] = SensorTypes::AIR_BME280;
+        sensorsCount++;
+    }
+    if (Configurations::SENSORS_PIR_GPIO != NAN) { 
+        SensorPIR::initialize();
         sensorsCount++;
     }
     Logger::info("Number of sensors started: " + String(sensorsCount + 1));
@@ -68,4 +75,5 @@ void Sensors::loop() {
     SensorNative::loop();
     SensorBME280::loop();
     SensorTSL2561::loop();
+    SensorPIR::loop();
 };
