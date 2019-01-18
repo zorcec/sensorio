@@ -18,7 +18,7 @@ void SensorNative::loop() {
 
 bool SensorNative::refresh(void *) {
     Logger::trace("Refreshing NATIVE");
-    Sensors::data.RSSI = WiFi.RSSI() / 255; 
+    Sensors::data.RSSI = WiFi.RSSI(); 
     Logger::trace("-> RSSI:\t" + String(Sensors::data.RSSI));
     return true;
 };
