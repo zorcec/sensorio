@@ -28,7 +28,7 @@ void SensorBME280::initialize() {
         default:
             Logger::error("-> Sensor error");
     }
-    SensorBME280::sensorReadTimer.every(Configurations::SENSORS_BME280_REFRESH_INTERVAL, SensorBME280::refresh);
+    SensorBME280::sensorReadTimer.every(Configurations::REFRESH_INTERVALS.BME280, SensorBME280::refresh);
 };
 
 void SensorBME280::loop() {
@@ -36,10 +36,10 @@ void SensorBME280::loop() {
 };
 
 bool SensorBME280::refresh(void *) {
-    Logger::info("Refreshing BME280");
+    Logger::trace("Refreshing BME280");
     sensorAirBME280.read(Sensors::data.pressure, Sensors::data.temperature, Sensors::data.humidity, temperatureUnit, pressureUnit);
-    Logger::debug("-> pressure:\t" + String(Sensors::data.pressure));
-    Logger::debug("-> temperature:\t" + String(Sensors::data.temperature));
-    Logger::debug("-> humidity:\t" + String(Sensors::data.humidity));
+    Logger::trace("-> pressure:\t" + String(Sensors::data.pressure));
+    Logger::trace("-> temperature:\t" + String(Sensors::data.temperature));
+    Logger::trace("-> humidity:\t" + String(Sensors::data.humidity));
     return true;
 }

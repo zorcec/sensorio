@@ -5,18 +5,20 @@
 #include <ArduinoJson.h>
 #include <Wire.h>
 #include "user_interface.h"
+#include <cmath> 
 
 #include <connectivity.h>
 #include <configurations.h>
 #include <logger.h>
 #include <sensors.h>
 
-#define MESSAGE_SIZE 500
-
 WiFiClient espClient;
 PubSubClient client(espClient);
 
 Timer<1> Connectivity::sendDataTimer;
+StaticJsonBuffer<MESSAGE_SIZE> Connectivity::jsonBuffer;
+JsonObject& Connectivity::jsonData = jsonBuffer.createObject();
+SensorsData Connectivity::sentData;
 
 void callback(char* topic, byte* payload, unsigned int length) {
   // handle message arrived
@@ -28,7 +30,6 @@ void Connectivity::initialize() {
 };
 
 void Connectivity::sendStatus() {
-    char dataJson[MESSAGE_SIZE];
     StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
     JsonObject& data = jsonBuffer.createObject();
 
@@ -37,49 +38,72 @@ void Connectivity::sendStatus() {
     data["version"] = Configurations::VERSION;
     data["SSID"] = Configurations::WIFI_SSID;
 
-    if (Configurations::DEBUG) {
-        data.prettyPrintTo(dataJson);
-    } else {
-        data.printTo(dataJson);
-    }
-    Connectivity::sendMessage("STATUS", dataJson);
+    Connectivity::sendJson("STATUS", data);
 }
 
 bool Connectivity::autosendData(void *) {
-    Connectivity::sendData(true);
+    if(Connectivity::checkDiff()) {
+        Connectivity::sendData();
+    } else {
+        Logger::trace("Not sending; difference is not large enough");
+    }
     return true;
 }
 
-void Connectivity::sendData(bool checkData) {
-    if (checkData) {
-        // TODO compare old and current data difference
+bool Connectivity::checkDiff() {
+    SensorsData& sent = Connectivity::sentData;
+    SensorsData& current = Sensors::data;
+    SensorsData& diff = Configurations::SEND_DATA_DIFFERENCES;
+    if (abs(current.temperature - sent.temperature) >= diff.temperature) {
+        return true;
     }
-
-    char dataJson[MESSAGE_SIZE];
-    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
-    JsonObject& data = jsonBuffer.createObject();
-  
-    // data to be sent
-    data["temperature"] = Sensors::data.temperature;
-    data["pressure"] = Sensors::data.pressure;
-    data["humidity"] = Sensors::data.humidity;
-    data["visibleLight"] = Sensors::data.visibleLight;
-    data["infraredLight"] = Sensors::data.infraredLight;
-    data["fullSpectrumLight"] = Sensors::data.fullSpectrumLight;
-    data["RSSI"] = Sensors::data.RSSI;
-
-    if (Configurations::DEBUG) {
-        data.prettyPrintTo(dataJson);
-    } else {
-        data.printTo(dataJson);
+    if (abs(current.fullSpectrumLight - sent.fullSpectrumLight) >= diff.fullSpectrumLight) {
+        return true;
     }
-    Connectivity::sendMessage("DATA", dataJson);
+    return false;
 }
 
-void Connectivity::sendMessage(String topic, String dataJson) {
-    Logger::info("MQTT sending message: " + dataJson);
-    client.beginPublish(Connectivity::getTopic(topic).c_str(), dataJson.length(), false);
-    client.print(dataJson);
+void Connectivity::sendEvent(String eventName) {
+    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
+    JsonObject& data = jsonBuffer.createObject();
+
+    // data to be sent
+    data["name"] = eventName;
+
+    Connectivity::sendJson("EVENT", data);
+}
+
+void Connectivity::sendData() {
+    JsonObject& json = Connectivity::jsonData;
+    SensorsData& sent = Connectivity::sentData;
+
+    // data to be sent
+    json["temperature"]         = sent.temperature          = Sensors::data.temperature;
+    json["pressure"]            = sent.pressure             = Sensors::data.pressure;
+    json["humidity"]            = sent.humidity             = Sensors::data.humidity;
+    json["visibleLight"]        = sent.visibleLight         = Sensors::data.visibleLight;
+    json["infraredLight"]       = sent.infraredLight        = Sensors::data.infraredLight;
+    json["fullSpectrumLight"]   = sent.fullSpectrumLight    = Sensors::data.fullSpectrumLight;
+    json["RSSI"]                = sent.RSSI                 = Sensors::data.RSSI;
+
+    Connectivity::sendJson("DATA", Connectivity::jsonData);
+}
+
+void Connectivity::sendJson(String topic, JsonObject& dataJson) {
+    char jsonMessage[MESSAGE_SIZE];
+    if (Configurations::LOGGING_LEVEL == LogType::DEBUG) {
+        dataJson.prettyPrintTo(jsonMessage);
+    } else {
+        dataJson.printTo(jsonMessage);
+    }
+    Connectivity::sendMessage(topic, jsonMessage);
+}
+
+void Connectivity::sendMessage(String topic, String message) {
+    String fullTopic = Connectivity::getTopic(topic).c_str();
+    Logger::info("MQTT sending to: " + fullTopic + ", message: " + message);
+    client.beginPublish(fullTopic.c_str(), message.length(), false);
+    client.print(message);
     client.endPublish();
 }
 

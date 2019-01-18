@@ -11,9 +11,9 @@ enum SensorTypes {
 };
 
 struct SensorsData {
-    float temperature;
-    float pressure;
-    float humidity;
+    float_t temperature;
+    float_t pressure;
+    float_t humidity;
     uint16_t visibleLight;
     uint16_t infraredLight;
     uint16_t fullSpectrumLight;

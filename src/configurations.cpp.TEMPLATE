@@ -9,7 +9,7 @@ bool Configurations::DEBUG = true;
 
 String Configurations::WIFI_SSID = "";
 String Configurations::WIFI_PASSWORD = "";
-int16_t Configurations::WIFI_RECONNECT_TIME = 5000;
+int16_t Configurations::WIFI_RECONNECT_TIME = 1000; // will be ignored atm.
 
 String Configurations::MQTT_SERVER = "192.168.0.2";
 int16_t Configurations::MQTT_PORT = 1883;

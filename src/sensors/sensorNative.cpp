@@ -9,7 +9,7 @@ Timer<1> SensorNative::sensorReadTimer;
 
 void SensorNative::initialize() {
     Logger::info("Initializing NATIVE");
-    SensorNative::sensorReadTimer.every(Configurations::SENSORS_NATIVE_REFRESH_INTERVAL, SensorNative::refresh);
+    SensorNative::sensorReadTimer.every(Configurations::REFRESH_INTERVALS.native, SensorNative::refresh);
 };
 
 void SensorNative::loop() {
@@ -17,8 +17,8 @@ void SensorNative::loop() {
 };
 
 bool SensorNative::refresh(void *) {
-    Logger::info("Refreshing NATIVE");
-    Sensors::data.RSSI = WiFi.RSSI(); 
-    Logger::debug("-> RSSI:\t" + String(Sensors::data.RSSI));
+    Logger::trace("Refreshing NATIVE");
+    Sensors::data.RSSI = WiFi.RSSI() / 255; 
+    Logger::trace("-> RSSI:\t" + String(Sensors::data.RSSI));
     return true;
 };

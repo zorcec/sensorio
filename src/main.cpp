@@ -6,8 +6,8 @@
 
 void setup() {
     Logger::initialize();
-    Connectivity::initialize();
     Sensors::initialize();
+    Connectivity::initialize();
 }
 
 void loop() {

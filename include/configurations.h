@@ -1,4 +1,15 @@
+#ifndef CONFIGURATION_H
+#define CONFIGURATION_H
+
 #include <Arduino.h>
+#include <sensors.h>
+#include <logger.h>
+
+struct RefreshIntervals {
+    int16_t native;
+    int16_t BME280;
+    int16_t TSL2561;
+};
 
 class Configurations {
     public:
@@ -7,7 +18,7 @@ class Configurations {
         static String NAME;
         static String VERSION;
         static bool SERIAL_LOGGING;
-        static bool DEBUG;
+        static LogType LOGGING_LEVEL;
 
         static String WIFI_SSID;
         static String WIFI_PASSWORD;
@@ -19,17 +30,14 @@ class Configurations {
         static int16_t MQTT_RECONNECT_TIME;
         static int16_t MQTT_SEND_DATA_INTERVAL;
 
-        static float_t SEND_DATA_TEMPERATURE_DIFFERENCE;
-        static float_t SEND_DATA_PRESSURE_DIFFERENCE;
-        static float_t SEND_DATA_HUMIDITY_DIFFERENCE;
-        static float_t SEND_DATA_FULLSPECTRUM_DIFFERENCE;
-        static float_t SEND_DATA_RSSI_DIFFERENCE;
-
         static int8 I2C_SDA;
         static int8 I2C_SCL;
 
         static int8_t SENSORS_PIR_GPIO;
-        static int16_t SENSORS_NATIVE_REFRESH_INTERVAL;
-        static int16_t SENSORS_BME280_REFRESH_INTERVAL;
-        static int16_t SENSORS_TSL2561_REFRESH_INTERVAL;
+
+        static RefreshIntervals REFRESH_INTERVALS;
+        static SensorsData SEND_DATA_DIFFERENCES;
+
 };
+
+#endif
