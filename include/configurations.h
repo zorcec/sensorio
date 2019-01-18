@@ -19,6 +19,7 @@ class Configurations {
         static String VERSION;
         static bool SERIAL_LOGGING;
         static LogType LOGGING_LEVEL;
+        static int8_t SLEEP;
 
         static String WIFI_SSID;
         static String WIFI_PASSWORD;

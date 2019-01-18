@@ -6,6 +6,7 @@ String Configurations::NAME = "SENSORIO";
 String Configurations::VERSION = "development";
 bool Configurations::SERIAL_LOGGING = true;
 LogType Configurations::LOGGING_LEVEL = LogType::DEBUG;
+int8_t Configurations::SLEEP = 100;
 
 String Configurations::WIFI_SSID = "";
 String Configurations::WIFI_PASSWORD = "";
