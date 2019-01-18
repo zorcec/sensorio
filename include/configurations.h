@@ -11,6 +11,12 @@ struct RefreshIntervals {
     int16_t TSL2561;
 };
 
+struct LedGPIO {
+    uint8_t RED;
+    uint8_t GREEN;
+    uint8_t BLUE;
+};
+
 class Configurations {
     public:
         static void initialize();
@@ -38,6 +44,8 @@ class Configurations {
 
         static RefreshIntervals REFRESH_INTERVALS;
         static SensorsData SEND_DATA_DIFFERENCES;
+
+        static LedGPIO LED_GPIO;
 
 };
 
