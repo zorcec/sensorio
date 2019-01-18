@@ -5,9 +5,33 @@ String Configurations::ID = "development_1";
 String Configurations::NAME = "SENSORIO";
 String Configurations::VERSION = "development";
 bool Configurations::SERIAL_LOGGING = true;
+bool Configurations::DEBUG = true;
 
 String Configurations::WIFI_SSID = "";
 String Configurations::WIFI_PASSWORD = "";
+int16_t Configurations::WIFI_RECONNECT_TIME = 5000;
 
-String MQTT_SERVER = "";
-String MQTT_TOPIC = "sensorio/";
+String Configurations::MQTT_SERVER = "192.168.0.2";
+int16_t Configurations::MQTT_PORT = 1883;
+String Configurations::MQTT_TOPIC = "sensorio";
+int16_t Configurations::MQTT_RECONNECT_TIME = 5000;
+int16_t Configurations::MQTT_SEND_DATA_INTERVAL = 10000;
+
+float_t Configurations::SEND_DATA_TEMPERATURE_DIFFERENCE = 0.2;
+float_t Configurations::SEND_DATA_PRESSURE_DIFFERENCE = 10;
+float_t Configurations::SEND_DATA_HUMIDITY_DIFFERENCE = 0.5;
+float_t Configurations::SEND_DATA_FULLSPECTRUM_DIFFERENCE = 5;
+float_t Configurations::SEND_DATA_RSSI_DIFFERENCE = 10;
+
+
+int8_t Configurations::I2C_SCL = 5;
+int8_t Configurations::I2C_SDA = 4;
+
+// interupt sensors
+int8_t Configurations::SENSORS_PIR_GPIO = 0;
+
+// sensors with refresh rate
+int16_t Configurations::SENSORS_NATIVE_REFRESH_INTERVAL = 10000;
+int16_t Configurations::SENSORS_BME280_REFRESH_INTERVAL = 1000;
+int16_t Configurations::SENSORS_TSL2561_REFRESH_INTERVAL = 1000;
+
