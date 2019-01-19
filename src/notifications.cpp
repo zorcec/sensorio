@@ -1,4 +1,5 @@
 #include <notifications.h>
+#include <connectivity.h>
 
 #define PWM_MAX 1023
 
@@ -19,6 +20,7 @@ void Notifications::initialize() {
         pinMode(Configurations::LED_GPIO.BLUE, OUTPUT);
         Notifications::led(LedColor::BLUE, 0);
     }
+    Connectivity::subscribe(Configurations::MQTT_TOPIC_NOTIFY, false);
 };
 
 int16_t Notifications::calculateBrightness(int8_t percentage) {

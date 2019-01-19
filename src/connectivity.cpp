@@ -20,6 +20,10 @@ StaticJsonBuffer<MESSAGE_SIZE> Connectivity::jsonBuffer;
 JsonObject& Connectivity::jsonData = jsonBuffer.createObject();
 SensorsData Connectivity::sentData;
 
+String Connectivity::subscribeTopicData = "/CMD/" + Connectivity::getTopic("DATA");
+String Connectivity::subscribeTopicStatus = "/CMD/" + Connectivity::getTopic("STATUS");;
+String Connectivity::subscribeTopicConfiguration = "/CMD/" + Connectivity::getTopic("CONFIGURATION");
+
 void callback(char* topic, byte* payload, unsigned int length) {
   // handle message arrived
 }
@@ -108,7 +112,7 @@ void Connectivity::sendMessage(String topic, String message) {
 }
 
 String Connectivity::getTopic(String name) {
-    String topic = "{TOPIC}/{ID}/{NAME}";
+    String topic = "/{TOPIC}/{ID}/{NAME}";
     topic.replace("{TOPIC}", Configurations::MQTT_TOPIC);
     topic.replace("{ID}", Configurations::ID);
     topic.replace("{NAME}", name);
@@ -137,6 +141,11 @@ void Connectivity::autoconnectToMqtt() {
         while (!client.connected()) {
             if (client.connect(Configurations::ID.c_str())) {
                 Logger::info("MQTT connected");
+                Connectivity::subscribe(Connectivity::subscribeTopicStatus, false);
+                Connectivity::subscribe(Connectivity::subscribeTopicData, false);
+                Connectivity::subscribe(Connectivity::subscribeTopicConfiguration, false);
+                Logger::debug("-> waiting 1s");
+                delay(1000);
                 Connectivity::sendStatus();
             } else {
                 Logger::info("MQTT connection is still not ready; will retry in 5s");
@@ -144,6 +153,21 @@ void Connectivity::autoconnectToMqtt() {
             delay(Configurations::MQTT_RECONNECT_TIME);
         }
     }
+}
+
+bool Connectivity::subscribe(String topic, bool custom) {
+    if (client.connected()) {
+        String fullTopic;
+        if (custom) {
+            fullTopic = topic;
+        } else {
+            fullTopic = "/cmd" + Connectivity::getTopic(topic);
+        }
+        client.subscribe(fullTopic.c_str());
+        Logger::info("MQTT subscription: " + String(topic));
+        return true;
+    }
+    return false;
 }
 
 void Connectivity::loop() {

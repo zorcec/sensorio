@@ -17,6 +17,7 @@ class Connectivity {
         static void sendMessage(String, String);
         static String getTopic(String);
         static String askDevice(int8, byte);
+        static bool subscribe(String, bool);
 
     private:
         static void autoconnectToWifi();
@@ -26,4 +27,8 @@ class Connectivity {
         static JsonObject& jsonData;
         static StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
         static SensorsData sentData;
+        static String subscribeTopicData;
+        static String subscribeTopicStatus;
+        static String subscribeTopicConfiguration;
+
 };

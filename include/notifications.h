@@ -24,4 +24,5 @@ class Notifications {
     
     private:
         static int16_t calculateBrightness(int8_t);
+        static String subscribeTopicNotification;
 };
