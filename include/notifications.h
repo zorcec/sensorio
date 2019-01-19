@@ -1,11 +1,13 @@
 #include <Arduino.h>
+#include <ArduinoJson.h>
 #include <configurations.h>
 #include <logger.h>
 
 enum LedColor {
     RED,
     GREEN,
-    BLUE
+    BLUE,
+    PURPLE,
 };
 
 enum LedEffect {
@@ -21,8 +23,10 @@ class Notifications {
         static void loop();
         static void led(LedColor, float_t);
         static void led(LedColor, float_t, LedEffect*);
+        static void onMessage(JsonObject&);
     
     private:
-        static int16_t calculateBrightness(int8_t);
+        static float_t calculateBrightness(float_t);
         static String subscribeTopicNotification;
+        static void changeLed(int8_t, float_t);
 };

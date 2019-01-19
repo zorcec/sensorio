@@ -7,9 +7,9 @@
 
 void setup() {
     Logger::initialize();
-    Notifications::initialize();
     Sensors::initialize();
     Connectivity::initialize();
+    Notifications::initialize();
 }
 
 void loop() {
