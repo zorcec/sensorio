@@ -11,6 +11,12 @@ struct RefreshIntervals {
     int16_t TSL2561;
 };
 
+struct LedGPIO {
+    uint8_t RED;
+    uint8_t GREEN;
+    uint8_t BLUE;
+};
+
 class Configurations {
     public:
         static void initialize();
@@ -30,6 +36,10 @@ class Configurations {
         static String MQTT_TOPIC;
         static int16_t MQTT_RECONNECT_TIME;
         static int16_t MQTT_SEND_DATA_INTERVAL;
+        static String MQTT_TOPIC_NOTIFY;
+        static String MQTT_TOPIC_DATA;
+        static String MQTT_TOPIC_STATUS;
+        static String MQTT_TOPIC_CONFIGURATION;
 
         static int8 I2C_SDA;
         static int8 I2C_SCL;
@@ -38,6 +48,8 @@ class Configurations {
 
         static RefreshIntervals REFRESH_INTERVALS;
         static SensorsData SEND_DATA_DIFFERENCES;
+
+        static LedGPIO LED_GPIO;
 
 };
 

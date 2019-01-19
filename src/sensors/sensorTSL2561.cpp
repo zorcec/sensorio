@@ -22,10 +22,14 @@ void SensorTSL2561::initialize() {
     sensorLightTSL2561.setGain(TSL2561_GAIN_16X);                 // set 16x gain (for dim situations)
     sensorLightTSL2561.setTiming(TSL2561_INTEGRATIONTIME_101MS);  // medium integration time (medium light)
 
-    SensorTSL2561::sensorReadTimer.every(Configurations::REFRESH_INTERVALS.TSL2561, SensorTSL2561::refresh);
+    SensorTSL2561::refresh();
+    SensorTSL2561::sensorReadTimer.every(
+        Configurations::REFRESH_INTERVALS.BME280, 
+        [](void*) -> bool { return SensorTSL2561::refresh(); }
+    );
 };
 
-bool SensorTSL2561::refresh(void *) {
+bool SensorTSL2561::refresh() {
     Logger::trace("Refreshing TSL2561");
     Sensors::data.visibleLight = sensorLightTSL2561.getLuminosity(TSL2561_VISIBLE);     
     Sensors::data.infraredLight = sensorLightTSL2561.getLuminosity(TSL2561_INFRARED);

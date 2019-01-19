@@ -2,7 +2,6 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 #include <Ethernet.h>
-#include <ArduinoJson.h>
 #include <Wire.h>
 #include "user_interface.h"
 #include <cmath> 
@@ -20,12 +19,13 @@ StaticJsonBuffer<MESSAGE_SIZE> Connectivity::jsonBuffer;
 JsonObject& Connectivity::jsonData = jsonBuffer.createObject();
 SensorsData Connectivity::sentData;
 
-void callback(char* topic, byte* payload, unsigned int length) {
-  // handle message arrived
-}
+MqttCallback* Connectivity::mqttCallbacks = new MqttCallback[10];
+uint8_t Connectivity::mqttCallbackCount = 0;
 
 void Connectivity::initialize() {
     Logger::info("Initializing connectivity");
+    delay(2000);
+    Logger::debug("-> waiting for 2s");
     Connectivity::sendDataTimer.every(Configurations::MQTT_SEND_DATA_INTERVAL, Connectivity::autosendData);
 };
 
@@ -108,11 +108,44 @@ void Connectivity::sendMessage(String topic, String message) {
 }
 
 String Connectivity::getTopic(String name) {
-    String topic = "{TOPIC}/{ID}/{NAME}";
+    String topic = "/{TOPIC}/{ID}/{NAME}";
     topic.replace("{TOPIC}", Configurations::MQTT_TOPIC);
     topic.replace("{ID}", Configurations::ID);
     topic.replace("{NAME}", name);
     return topic;
+}
+
+
+void Connectivity::addMqttCallback(String topic, callbackHandler_t callback) {
+    Connectivity::mqttCallbacks[Connectivity::mqttCallbackCount] = MqttCallback { topic, callback };
+    Connectivity::mqttCallbackCount++;
+}
+
+callbackHandler_t Connectivity::getMqttCallback(String topic) {
+    MqttCallback* current;
+    for (uint8_t index = 0; index < Connectivity::mqttCallbackCount; index++) {
+        current = &Connectivity::mqttCallbacks[index];
+        if (current->topic == topic) {
+            return current->callback;
+        }
+    }
+}
+
+void callback(char* topic, byte* payload, unsigned int length) {
+    StaticJsonBuffer<500> jsonBuffer;   
+    String topicStr = String(topic);
+    payload[length] = '\0'; // will make sure payload is clean
+    String message = (char*)payload;
+    JsonObject& jsonObj = jsonBuffer.parseObject(message);
+
+    Logger::info("Received message on: " + topicStr);
+    if (Configurations::LOGGING_LEVEL <= LogType::DEBUG) {
+        String data;
+        jsonObj.prettyPrintTo(data);
+        Logger::debug("-> " + data);
+    }
+    callbackHandler_t callback = Connectivity::getMqttCallback(topicStr);
+    callback(jsonObj);
 }
 
 void Connectivity::autoconnectToWifi() {
@@ -137,6 +170,11 @@ void Connectivity::autoconnectToMqtt() {
         while (!client.connected()) {
             if (client.connect(Configurations::ID.c_str())) {
                 Logger::info("MQTT connected");
+                Connectivity::subscribe(Configurations::MQTT_TOPIC_STATUS, Connectivity::callbackNoop);
+                Connectivity::subscribe(Configurations::MQTT_TOPIC_DATA, Connectivity::callbackNoop);
+                Connectivity::subscribe(Configurations::MQTT_TOPIC_CONFIGURATION, Connectivity::callbackNoop);
+                Logger::debug("-> waiting 1s");
+                delay(1000);
                 Connectivity::sendStatus();
             } else {
                 Logger::info("MQTT connection is still not ready; will retry in 5s");
@@ -146,8 +184,35 @@ void Connectivity::autoconnectToMqtt() {
     }
 }
 
+bool Connectivity::subscribe(String topic, callbackHandler_t callback) {
+    if (client.connected()) {
+        String fullTopic;
+        if (topic[0] == '/') {
+            fullTopic = topic;
+        } else {
+            fullTopic = "/cmd" + Connectivity::getTopic(topic);
+        }
+        client.subscribe(fullTopic.c_str());
+        Connectivity::addMqttCallback(fullTopic, callback);
+        Logger::info("MQTT subscription: " + String(fullTopic));
+        return true;
+    } else {
+        Logger::warn("Cannot subscribe yet: " + topic);
+        Logger::debug("-> trying to reconnect");
+        Connectivity::autoconnectToMqtt();
+        Connectivity::subscribe(topic, callback);
+    }
+    return false;
+}
+
+void Connectivity::callbackNoop(JsonObject& message) {
+    String data;
+    message.prettyPrintTo(data);
+    Logger::debug("Noop message: " + data);
+}
+
 void Connectivity::loop() {
-    //Connectivity::autoconnectToWifi(); not needed, done automatically by the lib
+    //Connectivity::autoconnectToWifi(); not needed, done automatically by the MQTT lib
     Connectivity::autoconnectToMqtt();
     Connectivity::sendDataTimer.tick();
     client.loop();
