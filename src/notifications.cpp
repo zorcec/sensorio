@@ -73,16 +73,14 @@ void Notifications::led(LedColor color, float_t brightness, LedEffect* effect, b
     Notifications::currentColor = color;;
     Notifications::currentBrightness = brightness;
     Notifications::currentEffect = effect;
-    if (!refresh) {
-        if (Configurations::LED_GPIO.RED >= 0) {
-            analogWrite(Configurations::LED_GPIO.RED, PWM_MAX);
-        }
-        if (Configurations::LED_GPIO.GREEN >= 0) {
-            analogWrite(Configurations::LED_GPIO.GREEN, PWM_MAX);
-        }
-        if (Configurations::LED_GPIO.BLUE >= 0) {
-            analogWrite(Configurations::LED_GPIO.BLUE, PWM_MAX);
-        }
+    if (Configurations::LED_GPIO.RED >= 0) {
+        analogWrite(Configurations::LED_GPIO.RED, PWM_MAX);
+    }
+    if (Configurations::LED_GPIO.GREEN >= 0) {
+        analogWrite(Configurations::LED_GPIO.GREEN, PWM_MAX);
+    }
+    if (Configurations::LED_GPIO.BLUE >= 0) {
+        analogWrite(Configurations::LED_GPIO.BLUE, PWM_MAX);
     }
     switch(color) {
         case LedColor::RED:
