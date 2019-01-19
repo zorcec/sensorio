@@ -54,7 +54,7 @@ bool Connectivity::checkDiff() {
     SensorsData& sent = Connectivity::sentData;
     SensorsData& current = Sensors::data;
     SensorsData& diff = Configurations::SEND_DATA_DIFFERENCES;
-    if (abs(current.temperature - sent.temperature) >= diff.temperature) {
+    if (fabs(current.temperature - sent.temperature) >= diff.temperature) {
         return true;
     }
     if (abs(current.fullSpectrumLight - sent.fullSpectrumLight) >= diff.fullSpectrumLight) {
