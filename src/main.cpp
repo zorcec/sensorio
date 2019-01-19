@@ -15,6 +15,7 @@ void setup() {
 void loop() {
     Connectivity::loop();
     Sensors::loop();
+    Notifications::loop();
 
     delay(Configurations::SLEEP);
 }
