@@ -147,7 +147,7 @@ void Connectivity::autoconnectToMqtt() {
 }
 
 void Connectivity::loop() {
-    //Connectivity::autoconnectToWifi(); not needed, done automatically by the lib
+    //Connectivity::autoconnectToWifi(); not needed, done automatically by the MQTT lib
     Connectivity::autoconnectToMqtt();
     Connectivity::sendDataTimer.tick();
     client.loop();

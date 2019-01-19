@@ -9,16 +9,19 @@ enum LedColor {
 };
 
 enum LedEffect {
-    NORMAL,
-    BLINK_SLOW,
-    BLINK_FAST
+    BLINK_1X,
+    BLINK_3X,
+    CONTINUOUS_BLINK,
+    FADE
 };
 
 class Notifications {
     public:
         static void initialize();
-        static void led(LedColor, float_t, LedEffect);
+        static void loop();
+        static void led(LedColor, float_t);
+        static void led(LedColor, float_t, LedEffect*);
     
     private:
-        static int8_t calculateBrightness(int8_t);
+        static int16_t calculateBrightness(int8_t);
 };
