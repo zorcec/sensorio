@@ -77,8 +77,9 @@ void Notifications::led(LedColor color, float_t brightness, LedEffect* effect) {
             Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue);
             break;
         case LedColor::PURPLE:
-            Notifications::changeLed(Configurations::LED_GPIO.RED, pwmValue / 2.0f);
-            Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue / 2.0f);
+            float_t value = PWM_MAX - (PWM_MAX - pwmValue) / 2.0f;
+            Notifications::changeLed(Configurations::LED_GPIO.RED, value);
+            Notifications::changeLed(Configurations::LED_GPIO.BLUE, value);
             break;
     }
 };
