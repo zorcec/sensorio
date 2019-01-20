@@ -3,8 +3,6 @@
 
 #define PWM_MAX 1023.0f
 
-Timer<1> Notifications::colorRefreshTimer;
-
 LedColor Notifications::currentColor = LedColor::RED;
 float_t Notifications::currentBrightness = 0;
 LedEffect* Notifications::currentEffect = {};
@@ -27,13 +25,7 @@ void Notifications::initialize() {
         Notifications::led(LedColor::BLUE, 0);
     }
     Connectivity::subscribe(Configurations::MQTT_TOPIC_NOTIFY, Notifications::onMessage);
-    Notifications::colorRefreshTimer.every(250, [](void*) -> bool { return Notifications::refreshColor(); });
 };
-
-bool Notifications::refreshColor() {
-    Notifications::led(Notifications::currentColor, Notifications::currentBrightness, Notifications::currentEffect, true);
-    return true;
-}
 
 void Notifications::onMessage(JsonObject& data) {
     Logger::info("Notification received message");
@@ -63,13 +55,12 @@ float_t Notifications::calculateBrightness(float_t percentage) {
 };
 
 void Notifications::led(LedColor color, float_t brightness) {
-    LedEffect effects[] = { LedEffect::FADE };
-    Notifications::led(color, brightness, effects, false);
+    LedEffect effects[] = { };
+    Notifications::led(color, brightness, effects);
 }
 
-void Notifications::led(LedColor color, float_t brightness, LedEffect* effect, bool refresh) {
+void Notifications::led(LedColor color, float_t brightness, LedEffect* effect) {
     float_t pwmValue = Notifications::calculateBrightness(brightness);
-    float_t dualValue = PWM_MAX - (PWM_MAX - pwmValue) / 2.0f;
     Notifications::currentColor = color;;
     Notifications::currentBrightness = brightness;
     Notifications::currentEffect = effect;
@@ -93,27 +84,32 @@ void Notifications::led(LedColor color, float_t brightness, LedEffect* effect, b
             Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue);
             break;
         case LedColor::PURPLE:
-            Notifications::changeLed(Configurations::LED_GPIO.RED, dualValue);
-            Notifications::changeLed(Configurations::LED_GPIO.BLUE, dualValue);
+            Notifications::changeLed(Configurations::LED_GPIO.RED, pwmValue);
+            Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue);
             break;
         case LedColor::ORANGE:
-            Notifications::changeLed(Configurations::LED_GPIO.RED, dualValue);
-            Notifications::changeLed(Configurations::LED_GPIO.GREEN, dualValue);
+            Notifications::changeLed(Configurations::LED_GPIO.RED, pwmValue);
+            Notifications::changeLed(Configurations::LED_GPIO.GREEN, pwmValue);
             break;
         case LedColor::TURQUOISE:
-            Notifications::changeLed(Configurations::LED_GPIO.BLUE, dualValue);
-            Notifications::changeLed(Configurations::LED_GPIO.GREEN, dualValue);
+            Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue);
+            Notifications::changeLed(Configurations::LED_GPIO.GREEN, pwmValue);
+            break;
+        case LedColor::WHITE:
+            Notifications::changeLed(Configurations::LED_GPIO.RED, pwmValue);
+            Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue);
+            Notifications::changeLed(Configurations::LED_GPIO.GREEN, pwmValue);
             break;
     }
 };
 
 void Notifications::changeLed(int8_t gpio, float_t pwmValue) {
     if (gpio >= 0) {
-        Logger::trace("Changing led state on GPIO " + String(gpio) + ", pwm: " + String(pwmValue));
+        Logger::debug("Changing led state on GPIO " + String(gpio) + ", pwm: " + String(pwmValue));
         analogWrite(gpio, pwmValue);
     }
 }
 
 void Notifications::loop() {
-    Notifications::colorRefreshTimer.tick();
+    
 };
