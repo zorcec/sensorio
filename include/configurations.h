@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <sensors.h>
 #include <logger.h>
+#include <ArduinoJson.h>
 
 struct RefreshIntervals {
     int16_t native;
@@ -17,38 +18,45 @@ struct LedGPIO {
     uint8_t BLUE;
 };
 
+struct ConfigurationData {
+    String ID;
+    String NAME;
+    String VERSION;
+    bool SERIAL_LOGGING;
+    LogType LOGGING_LEVEL;
+
+    String WIFI_SSID;
+    String WIFI_PASSWORD;
+    int16_t WIFI_RECONNECT_TIME;
+
+    String MQTT_SERVER;
+    int16_t MQTT_PORT;
+    String MQTT_TOPIC;
+    int16_t MQTT_RECONNECT_TIME;
+    int16_t MQTT_SEND_DATA_INTERVAL;
+    String MQTT_TOPIC_NOTIFY;
+    String MQTT_TOPIC_DATA;
+    String MQTT_TOPIC_STATUS;
+    String MQTT_TOPIC_CONFIGURATION;
+    String MQTT_TOPIC_ADMINISTRATION;
+
+    int8 I2C_SDA;
+    int8 I2C_SCL;
+
+    int8_t SENSORS_PIR_GPIO;
+
+    RefreshIntervals REFRESH_INTERVALS;
+    SensorsData SEND_DATA_DIFFERENCES;
+
+    LedGPIO LED_GPIO;
+};
+
 class Configurations {
+
     public:
         static void initialize();
-        static String ID;
-        static String NAME;
-        static String VERSION;
-        static bool SERIAL_LOGGING;
-        static LogType LOGGING_LEVEL;
-
-        static String WIFI_SSID;
-        static String WIFI_PASSWORD;
-        static int16_t WIFI_RECONNECT_TIME;
-
-        static String MQTT_SERVER;
-        static int16_t MQTT_PORT;
-        static String MQTT_TOPIC;
-        static int16_t MQTT_RECONNECT_TIME;
-        static int16_t MQTT_SEND_DATA_INTERVAL;
-        static String MQTT_TOPIC_NOTIFY;
-        static String MQTT_TOPIC_DATA;
-        static String MQTT_TOPIC_STATUS;
-        static String MQTT_TOPIC_CONFIGURATION;
-
-        static int8 I2C_SDA;
-        static int8 I2C_SCL;
-
-        static int8_t SENSORS_PIR_GPIO;
-
-        static RefreshIntervals REFRESH_INTERVALS;
-        static SensorsData SEND_DATA_DIFFERENCES;
-
-        static LedGPIO LED_GPIO;
+        static void onMessage(JsonObject& data);
+        static ConfigurationData data;
 
 };
 

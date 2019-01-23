@@ -30,7 +30,7 @@ void SensorBME280::initialize() {
     }
     SensorBME280::refresh();
     SensorBME280::sensorReadTimer.every(
-        Configurations::REFRESH_INTERVALS.BME280, 
+        Configurations::data.REFRESH_INTERVALS.BME280, 
         [](void*) -> bool { return SensorBME280::refresh(); }
     );
 };

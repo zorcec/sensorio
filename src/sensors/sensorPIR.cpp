@@ -7,10 +7,10 @@
 
 void SensorPIR::initialize() {
     Logger::info("Initializing PIR");
-    Logger::debug("-> on GPIO" + String(Configurations::SENSORS_PIR_GPIO));
+    Logger::debug("-> on GPIO" + String(Configurations::data.SENSORS_PIR_GPIO));
 
-    pinMode(Configurations::SENSORS_PIR_GPIO, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(Configurations::SENSORS_PIR_GPIO), SensorPIR::interupt, HIGH);
+    pinMode(Configurations::data.SENSORS_PIR_GPIO, INPUT_PULLUP);
+    attachInterrupt(digitalPinToInterrupt(Configurations::data.SENSORS_PIR_GPIO), SensorPIR::interupt, HIGH);
 };
 
 void SensorPIR::loop() {

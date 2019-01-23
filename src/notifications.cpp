@@ -9,22 +9,22 @@ LedEffect* Notifications::currentEffect = {};
 
 void Notifications::initialize() {
     Logger::info("Initializing Notifications");
-    if (Configurations::LED_GPIO.RED > 0) {
-        Logger::debug("-> LED (red) GPIO" + String(Configurations::LED_GPIO.RED));
-        pinMode(Configurations::LED_GPIO.RED, OUTPUT);
+    if (Configurations::data.LED_GPIO.RED > 0) {
+        Logger::debug("-> LED (red) GPIO" + String(Configurations::data.LED_GPIO.RED));
+        pinMode(Configurations::data.LED_GPIO.RED, OUTPUT);
         Notifications::led(LedColor::RED, 0);
     }
-    if (Configurations::LED_GPIO.GREEN > 0) {
-        Logger::debug("-> LED (green) GPIO" + String(Configurations::LED_GPIO.GREEN));
-        pinMode(Configurations::LED_GPIO.GREEN, OUTPUT);
+    if (Configurations::data.LED_GPIO.GREEN > 0) {
+        Logger::debug("-> LED (green) GPIO" + String(Configurations::data.LED_GPIO.GREEN));
+        pinMode(Configurations::data.LED_GPIO.GREEN, OUTPUT);
         Notifications::led(LedColor::GREEN, 0);
     }
-    if (Configurations::LED_GPIO.BLUE > 0) {
-        Logger::debug("-> LED (blue) GPIO" + String(Configurations::LED_GPIO.BLUE));
-        pinMode(Configurations::LED_GPIO.BLUE, OUTPUT);
+    if (Configurations::data.LED_GPIO.BLUE > 0) {
+        Logger::debug("-> LED (blue) GPIO" + String(Configurations::data.LED_GPIO.BLUE));
+        pinMode(Configurations::data.LED_GPIO.BLUE, OUTPUT);
         Notifications::led(LedColor::BLUE, 0);
     }
-    Connectivity::subscribe(Configurations::MQTT_TOPIC_NOTIFY, Notifications::onMessage);
+    Connectivity::subscribe(Configurations::data.MQTT_TOPIC_NOTIFY, Notifications::onMessage);
 };
 
 void Notifications::onMessage(JsonObject& data) {
@@ -65,41 +65,41 @@ void Notifications::led(LedColor color, float_t brightness, LedEffect* effect) {
     Notifications::currentColor = color;;
     Notifications::currentBrightness = brightness;
     Notifications::currentEffect = effect;
-    if (Configurations::LED_GPIO.RED >= 0) {
-        analogWrite(Configurations::LED_GPIO.RED, PWM_MAX);
+    if (Configurations::data.LED_GPIO.RED >= 0) {
+        analogWrite(Configurations::data.LED_GPIO.RED, PWM_MAX);
     }
-    if (Configurations::LED_GPIO.GREEN >= 0) {
-        analogWrite(Configurations::LED_GPIO.GREEN, PWM_MAX);
+    if (Configurations::data.LED_GPIO.GREEN >= 0) {
+        analogWrite(Configurations::data.LED_GPIO.GREEN, PWM_MAX);
     }
-    if (Configurations::LED_GPIO.BLUE >= 0) {
-        analogWrite(Configurations::LED_GPIO.BLUE, PWM_MAX);
+    if (Configurations::data.LED_GPIO.BLUE >= 0) {
+        analogWrite(Configurations::data.LED_GPIO.BLUE, PWM_MAX);
     }
     switch(color) {
         case LedColor::RED:
-            Notifications::changeLed(Configurations::LED_GPIO.RED, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.RED, pwmValue);
             break;
         case LedColor::GREEN:
-            Notifications::changeLed(Configurations::LED_GPIO.GREEN, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, pwmValue);
             break;
         case LedColor::BLUE:
-            Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, pwmValue);
             break;
         case LedColor::PURPLE:
-            Notifications::changeLed(Configurations::LED_GPIO.RED, pwmValue);
-            Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.RED, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, pwmValue);
             break;
         case LedColor::ORANGE:
-            Notifications::changeLed(Configurations::LED_GPIO.RED, pwmValue);
-            Notifications::changeLed(Configurations::LED_GPIO.GREEN, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.RED, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, pwmValue);
             break;
         case LedColor::TURQUOISE:
-            Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue);
-            Notifications::changeLed(Configurations::LED_GPIO.GREEN, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, pwmValue);
             break;
         case LedColor::WHITE:
-            Notifications::changeLed(Configurations::LED_GPIO.RED, pwmValue);
-            Notifications::changeLed(Configurations::LED_GPIO.BLUE, pwmValue);
-            Notifications::changeLed(Configurations::LED_GPIO.GREEN, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.RED, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, pwmValue);
+            Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, pwmValue);
             break;
     }
 };

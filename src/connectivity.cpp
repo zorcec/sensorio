@@ -5,6 +5,7 @@
 #include <Wire.h>
 #include "user_interface.h"
 #include <cmath> 
+#include <Esp.h>
 
 #include <connectivity.h>
 #include <configurations.h>
@@ -26,17 +27,21 @@ void Connectivity::initialize() {
     Logger::info("Initializing connectivity");
     delay(2000);
     Logger::debug("-> waiting for 2s");
-    Connectivity::sendDataTimer.every(Configurations::MQTT_SEND_DATA_INTERVAL, Connectivity::autosendData);
+    Connectivity::sendDataTimer.every(Configurations::data.MQTT_SEND_DATA_INTERVAL, Connectivity::autosendData);
 }
 
 void Connectivity::onMessageStatus(JsonObject& data) {
-    Logger::info("Connectivity received STATUS request");
+    Logger::info("Connectivity received STATUS comand");
     Connectivity::sendStatus();
 }
 
 void Connectivity::onMessageData(JsonObject& data) {
-    Logger::info("Connectivity received DATA request");
+    Logger::info("Connectivity received DATA comand");
     Connectivity::sendData();
+}
+
+void Connectivity::onMessageConfiguration(JsonObject& data) {
+    Logger::info("Connectivity received CONFIGURATION comand");
 }
 
 void Connectivity::sendStatus() {
@@ -44,9 +49,14 @@ void Connectivity::sendStatus() {
     JsonObject& data = jsonBuffer.createObject();
 
     // data to be sent
-    data["name"] = Configurations::NAME;
-    data["version"] = Configurations::VERSION;
-    data["SSID"] = Configurations::WIFI_SSID;
+    data["name"] = Configurations::data.NAME;
+    data["version"] = Configurations::data.VERSION;
+    data["SSID"] = Configurations::data.WIFI_SSID;
+
+    data["info"] = data.createNestedObject("info");
+    data["info"]["cpu"] = ESP.getCpuFreqMHz();
+    data["info"]["heap"] = ESP.getFreeHeap();
+    data["info"]["reset_reason"] = ESP.getResetReason();
 
     Connectivity::sendJson("STATUS", data);
 }
@@ -63,7 +73,7 @@ bool Connectivity::autosendData(void *) {
 bool Connectivity::checkDiff() {
     SensorsData& sent = Connectivity::sentData;
     SensorsData& current = Sensors::data;
-    SensorsData& diff = Configurations::SEND_DATA_DIFFERENCES;
+    SensorsData& diff = Configurations::data.SEND_DATA_DIFFERENCES;
     if (fabs(current.temperature - sent.temperature) >= diff.temperature) {
         return true;
     }
@@ -101,7 +111,7 @@ void Connectivity::sendData() {
 
 void Connectivity::sendJson(String topic, JsonObject& dataJson) {
     char jsonMessage[MESSAGE_SIZE];
-    if (Configurations::LOGGING_LEVEL == LogType::DEBUG) {
+    if (Configurations::data.LOGGING_LEVEL == LogType::DEBUG) {
         dataJson.prettyPrintTo(jsonMessage);
     } else {
         dataJson.printTo(jsonMessage);
@@ -119,8 +129,8 @@ void Connectivity::sendMessage(String topic, String message) {
 
 String Connectivity::getTopic(String name) {
     String topic = "/{TOPIC}/{ID}/{NAME}";
-    topic.replace("{TOPIC}", Configurations::MQTT_TOPIC);
-    topic.replace("{ID}", Configurations::ID);
+    topic.replace("{TOPIC}", Configurations::data.MQTT_TOPIC);
+    topic.replace("{ID}", Configurations::data.ID);
     topic.replace("{NAME}", name);
     return topic;
 }
@@ -149,7 +159,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
     JsonObject& jsonObj = jsonBuffer.parseObject(message);
 
     Logger::info("Received message on: " + topicStr);
-    if (Configurations::LOGGING_LEVEL <= LogType::DEBUG) {
+    if (Configurations::data.LOGGING_LEVEL <= LogType::DEBUG) {
         String data;
         jsonObj.prettyPrintTo(data);
         Logger::debug("-> " + data);
@@ -162,12 +172,12 @@ void Connectivity::autoconnectToWifi() {
     if (WiFi.status() != WL_CONNECTED) {
         Logger::info("WiFi trying to connect");
         while (WiFi.status() != WL_CONNECTED) {
-            if (WiFi.begin(Configurations::WIFI_SSID.c_str(), Configurations::WIFI_PASSWORD.c_str()) == WL_CONNECTED) {
+            if (WiFi.begin(Configurations::data.WIFI_SSID.c_str(), Configurations::data.WIFI_PASSWORD.c_str()) == WL_CONNECTED) {
                 Logger::info("WiFI connected, IP address: " + WiFi.localIP());
             } else {
                 Logger::error("WiFI connection is still not ready, will retry in 5s");
             }
-            delay(Configurations::WIFI_RECONNECT_TIME);
+            delay(Configurations::data.WIFI_RECONNECT_TIME);
         }
     }
 }
@@ -175,21 +185,21 @@ void Connectivity::autoconnectToWifi() {
 void Connectivity::autoconnectToMqtt() {
     if (!client.connected()) {
         Logger::info("MQTT trying to connect");
-        client.setServer(Configurations::MQTT_SERVER.c_str(), Configurations::MQTT_PORT);
+        client.setServer(Configurations::data.MQTT_SERVER.c_str(), Configurations::data.MQTT_PORT);
         client.setCallback(callback);
         while (!client.connected()) {
-            if (client.connect(Configurations::ID.c_str())) {
+            if (client.connect(Configurations::data.ID.c_str())) {
                 Logger::info("MQTT connected");
-                Connectivity::subscribe(Configurations::MQTT_TOPIC_STATUS, Connectivity::onMessageStatus);
-                Connectivity::subscribe(Configurations::MQTT_TOPIC_DATA, Connectivity::onMessageData);
-                Connectivity::subscribe(Configurations::MQTT_TOPIC_CONFIGURATION, Connectivity::callbackNoop);
+                Connectivity::subscribe(Configurations::data.MQTT_TOPIC_STATUS, Connectivity::onMessageStatus);
+                Connectivity::subscribe(Configurations::data.MQTT_TOPIC_DATA, Connectivity::onMessageData);
+                Connectivity::subscribe(Configurations::data.MQTT_TOPIC_CONFIGURATION, Connectivity::callbackNoop);
                 Logger::debug("-> waiting 1s");
                 delay(1000);
                 Connectivity::sendStatus();
             } else {
                 Logger::info("MQTT connection is still not ready; will retry in 5s");
             }
-            delay(Configurations::MQTT_RECONNECT_TIME);
+            delay(Configurations::data.MQTT_RECONNECT_TIME);
         }
     }
 }

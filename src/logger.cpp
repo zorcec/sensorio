@@ -5,7 +5,7 @@
 bool Logger::isSerialReady = false;
 
 void Logger::initialize() {
-    if (Configurations::SERIAL_LOGGING) {
+    if (Configurations::data.SERIAL_LOGGING) {
         Serial.begin(115200);
         Serial.println();
         isSerialReady = true;
@@ -19,7 +19,7 @@ void Logger::log(String message) {
 }
 
 void Logger::log(LogType type, String message) {
-    if (type >= Configurations::LOGGING_LEVEL) {
+    if (type >= Configurations::data.LOGGING_LEVEL) {
         String fullMessage = "[{TYPE}]\t{MESSAGE}";
         String typeStr = "";
         switch(type) {

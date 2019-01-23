@@ -24,7 +24,7 @@ void SensorTSL2561::initialize() {
 
     SensorTSL2561::refresh();
     SensorTSL2561::sensorReadTimer.every(
-        Configurations::REFRESH_INTERVALS.TSL2561, 
+        Configurations::data.REFRESH_INTERVALS.TSL2561, 
         [](void*) -> bool { return SensorTSL2561::refresh(); }
     );
 };

@@ -11,7 +11,7 @@ void SensorNative::initialize() {
     Logger::info("Initializing NATIVE");
     SensorNative::refresh();
     SensorNative::sensorReadTimer.every(
-        Configurations::REFRESH_INTERVALS.BME280, 
+        Configurations::data.REFRESH_INTERVALS.BME280, 
         [](void*) -> bool { return SensorNative::refresh(); }
     );
 };

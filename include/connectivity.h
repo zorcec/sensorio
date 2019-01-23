@@ -35,6 +35,7 @@ class Connectivity {
         static bool checkDiff();
         static void onMessageStatus(JsonObject&);
         static void onMessageData(JsonObject&);
+        static void onMessageConfiguration(JsonObject&);
         static MqttCallback* mqttCallbacks;
         static uint8_t mqttCallbackCount;
         static Timer<1> sendDataTimer;

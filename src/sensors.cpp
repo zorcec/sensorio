@@ -19,9 +19,9 @@ void Sensors::initialize() {
 void Sensors::startI2c() {
     int sensors[127];
     Logger::info("-> Starting I2c");
-    Logger::debug(" -> SDA GPIO" + String(Configurations::I2C_SDA));
-    Logger::debug(" -> SCL GPIO" + String(Configurations::I2C_SCL));
-    Wire.begin(Configurations::I2C_SDA, Configurations::I2C_SCL);
+    Logger::debug(" -> SDA GPIO" + String(Configurations::data.I2C_SDA));
+    Logger::debug(" -> SCL GPIO" + String(Configurations::data.I2C_SCL));
+    Wire.begin(Configurations::data.I2C_SDA, Configurations::data.I2C_SCL);
     Sensors::scan(sensors);
     Sensors::start(sensors);
 };
@@ -39,7 +39,7 @@ void Sensors::start(int* sensors) {
         Sensors::activeSensors[sensorsCount] = SensorTypes::AIR_BME280;
         sensorsCount++;
     }
-    if (Configurations::SENSORS_PIR_GPIO != NAN) { 
+    if (Configurations::data.SENSORS_PIR_GPIO != NAN) { 
         SensorPIR::initialize();
         sensorsCount++;
     }
