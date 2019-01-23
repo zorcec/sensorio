@@ -47,6 +47,7 @@ void Notifications::onMessage(JsonObject& data) {
     Notifications::led(color, brightness);
 }
 
+
 float_t Notifications::calculateBrightness(float_t percentage) {
     if (percentage <= 0) {
         return PWM_MAX;

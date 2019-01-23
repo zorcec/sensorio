@@ -27,7 +27,17 @@ void Connectivity::initialize() {
     delay(2000);
     Logger::debug("-> waiting for 2s");
     Connectivity::sendDataTimer.every(Configurations::MQTT_SEND_DATA_INTERVAL, Connectivity::autosendData);
-};
+}
+
+void Connectivity::onMessageStatus(JsonObject& data) {
+    Logger::info("Connectivity received STATUS request");
+    Connectivity::sendStatus();
+}
+
+void Connectivity::onMessageData(JsonObject& data) {
+    Logger::info("Connectivity received DATA request");
+    Connectivity::sendData();
+}
 
 void Connectivity::sendStatus() {
     StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
@@ -170,8 +180,8 @@ void Connectivity::autoconnectToMqtt() {
         while (!client.connected()) {
             if (client.connect(Configurations::ID.c_str())) {
                 Logger::info("MQTT connected");
-                Connectivity::subscribe(Configurations::MQTT_TOPIC_STATUS, Connectivity::callbackNoop);
-                Connectivity::subscribe(Configurations::MQTT_TOPIC_DATA, Connectivity::callbackNoop);
+                Connectivity::subscribe(Configurations::MQTT_TOPIC_STATUS, Connectivity::onMessageStatus);
+                Connectivity::subscribe(Configurations::MQTT_TOPIC_DATA, Connectivity::onMessageData);
                 Connectivity::subscribe(Configurations::MQTT_TOPIC_CONFIGURATION, Connectivity::callbackNoop);
                 Logger::debug("-> waiting 1s");
                 delay(1000);
