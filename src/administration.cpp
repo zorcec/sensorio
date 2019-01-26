@@ -1,6 +1,7 @@
 #include <administration.h>
 #include <configurations.h>
 #include <connectivity.h>
+#include <notifications.h>
 #include <Esp.h>
 #include <ESP8266WiFi.h>
 #include <ArduinoOTA.h>
@@ -14,6 +15,7 @@ void Administration::initialize() {
     // OTA
     ArduinoOTA.onStart([]() {
         String type;
+        Notifications::led(LedColor::RED, 100);
         if (ArduinoOTA.getCommand() == U_FLASH) {
             type = "sketch";
         } else { // U_SPIFFS
@@ -44,7 +46,7 @@ void Administration::initialize() {
             Logger::error("-> End Failed");
         }
     });
-    
+
     ArduinoOTA.begin();
 
     // power saving

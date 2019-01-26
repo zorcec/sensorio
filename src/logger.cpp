@@ -1,17 +1,23 @@
 #include <Arduino.h>
 #include <configurations.h>
+#include <connectivity.h>
 #include <logger.h>
 
 bool Logger::isSerialReady = false;
+bool Logger::isMqttReady = false;
 
 void Logger::initialize() {
+    Logger::info("Initializing logger");
     if (Configurations::data.SERIAL_LOGGING) {
         Serial.begin(115200);
         Serial.println();
         isSerialReady = true;
-        Logger::info("Serial logging activated");
+        Logger::info("-> serial logging activated");
     }
-    Logger::debug("Logger initialized");
+    if (Configurations::data.MQTT_LOGGING) {
+        isMqttReady = true;
+        Logger::info("-> MQTT logging activated");
+    }
 };
 
 void Logger::log(String message) { 
@@ -44,6 +50,9 @@ void Logger::log(LogType type, String message) {
         if (isSerialReady) {
             Serial.print(fullMessage);
             Serial.println();
+        }
+        if (isMqttReady) {
+            Connectivity::sendMessage(Connectivity::getTopic(Configurations::data.MQTT_TOPIC_LOGGING), fullMessage);
         }
     }
 };

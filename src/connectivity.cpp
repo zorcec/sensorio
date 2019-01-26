@@ -121,7 +121,9 @@ void Connectivity::sendJson(String topic, JsonObject& dataJson) {
 
 void Connectivity::sendMessage(String topic, String message) {
     String fullTopic = Connectivity::getTopic(topic).c_str();
-    Logger::info("MQTT sending to: " + fullTopic + ", message: " + message);
+    if (!Configurations::data.MQTT_LOGGING) {
+        Logger::info("MQTT sending to: " + fullTopic + ", message: " + message);
+    }
     client.beginPublish(fullTopic.c_str(), message.length(), false);
     client.print(message);
     client.endPublish();

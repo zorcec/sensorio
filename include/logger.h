@@ -24,6 +24,7 @@ class Logger {
 
     private:
         static bool isSerialReady;
+        static bool isMqttReady;
 };
 
 #endif

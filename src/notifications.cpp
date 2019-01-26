@@ -2,10 +2,15 @@
 #include <connectivity.h>
 
 #define PWM_MAX 1023.0f
+#define BLINK_INTERVAL 250
 
-LedColor Notifications::currentColor = LedColor::RED;
-float_t Notifications::currentBrightness = 0;
-LedEffect* Notifications::currentEffect = {};
+float_t Notifications::currentPwmRed;
+float_t Notifications::currentPwmGreen;
+float_t Notifications::currentPwmBlue;
+int16_t Notifications::elapsedBlinkingTime;
+bool Notifications::ledPowerState;
+LedEffect Notifications::currentEffect;
+Timer<1> Notifications::effectBlinkTimer;
 
 void Notifications::initialize() {
     Logger::info("Initializing Notifications");
@@ -24,12 +29,13 @@ void Notifications::initialize() {
         pinMode(Configurations::data.LED_GPIO.BLUE, OUTPUT);
         Notifications::led(LedColor::BLUE, 0);
     }
-    Connectivity::subscribe(Configurations::data.MQTT_TOPIC_NOTIFY, Notifications::onMessage);
+    Connectivity::subscribe(Configurations::data.MQTT_TOPIC_NOTIFICATIONS, Notifications::onMessage);
 };
 
 void Notifications::onMessage(JsonObject& data) {
     Logger::info("Notification received message");
     LedColor color;
+    LedEffect effect;
     uint8_t brightness = 100;
     if (data.containsKey("gpio") && data.containsKey("pwm")) {
         uint8_t gpio = data["gpio"].as<uint8_t>();
@@ -44,7 +50,10 @@ void Notifications::onMessage(JsonObject& data) {
     if (data.containsKey("brightness")) {
         brightness = data["brightness"].as<uint8_t>();
     }
-    Notifications::led(color, brightness);
+    if (data.containsKey("effect")) {
+        effect = static_cast<LedEffect>(data["effect"].as<uint8_t>());
+    }
+    Notifications::led(color, brightness, effect);
 }
 
 
@@ -56,61 +65,73 @@ float_t Notifications::calculateBrightness(float_t percentage) {
 };
 
 void Notifications::led(LedColor color, float_t brightness) {
-    LedEffect effects[] = { };
-    Notifications::led(color, brightness, effects);
+    Notifications::led(color, brightness, LedEffect::NONE);
 }
 
-void Notifications::led(LedColor color, float_t brightness, LedEffect* effect) {
+void Notifications::led(LedColor color, float_t brightness, LedEffect effect) {
     float_t pwmValue = Notifications::calculateBrightness(brightness);
-    Notifications::currentColor = color;;
-    Notifications::currentBrightness = brightness;
+    Notifications::elapsedBlinkingTime = 0;
+    Notifications::ledPowerState = false;
     Notifications::currentEffect = effect;
-    if (Configurations::data.LED_GPIO.RED >= 0) {
-        analogWrite(Configurations::data.LED_GPIO.RED, PWM_MAX);
-    }
-    if (Configurations::data.LED_GPIO.GREEN >= 0) {
-        analogWrite(Configurations::data.LED_GPIO.GREEN, PWM_MAX);
-    }
-    if (Configurations::data.LED_GPIO.BLUE >= 0) {
-        analogWrite(Configurations::data.LED_GPIO.BLUE, PWM_MAX);
-    }
+    currentPwmRed = PWM_MAX;
+    currentPwmBlue = PWM_MAX;
+    currentPwmGreen = PWM_MAX;
     switch(color) {
         case LedColor::RED:
-            Notifications::changeLed(Configurations::data.LED_GPIO.RED, pwmValue);
+            currentPwmRed = pwmValue;
             break;
         case LedColor::GREEN:
-            Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, pwmValue);
+            currentPwmGreen = pwmValue;
             break;
         case LedColor::BLUE:
-            Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, pwmValue);
+            currentPwmBlue = pwmValue;
             break;
         case LedColor::PURPLE:
-            Notifications::changeLed(Configurations::data.LED_GPIO.RED, pwmValue);
-            Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, pwmValue);
+            currentPwmRed = pwmValue;
+            currentPwmBlue = pwmValue;
             break;
         case LedColor::ORANGE:
-            Notifications::changeLed(Configurations::data.LED_GPIO.RED, pwmValue);
-            Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, pwmValue);
+            currentPwmRed = pwmValue;
+            currentPwmGreen = pwmValue;
             break;
         case LedColor::TURQUOISE:
-            Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, pwmValue);
-            Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, pwmValue);
+            currentPwmBlue= pwmValue;
+            currentPwmGreen = pwmValue;
             break;
         case LedColor::WHITE:
-            Notifications::changeLed(Configurations::data.LED_GPIO.RED, pwmValue);
-            Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, pwmValue);
-            Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, pwmValue);
+            currentPwmRed = pwmValue;
+            currentPwmBlue = pwmValue;
+            currentPwmGreen = pwmValue;
             break;
+    }
+
+    if (effect != LedEffect::NONE) {
+        Logger::debug("Activating effect");
+        Notifications::effectBlinkTimer.every(
+            BLINK_INTERVAL, [](void*) -> bool { 
+                Notifications::elapsedBlinkingTime += BLINK_INTERVAL;
+                Notifications::ledPowerState = !Notifications::ledPowerState;
+                Notifications::changeLed(Configurations::data.LED_GPIO.RED, Notifications::ledPowerState ? Notifications::currentPwmRed : PWM_MAX);
+                Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, Notifications::ledPowerState ? Notifications::currentPwmGreen : PWM_MAX);
+                Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, Notifications::ledPowerState ? Notifications::currentPwmBlue : PWM_MAX);
+                bool stopBlinking = Notifications::elapsedBlinkingTime >= Configurations::data.NOTIFICATIONS_LED_BLINK_TIME && !Notifications::ledPowerState;
+                return !stopBlinking;
+            }
+        ); 
+    } else {
+        Notifications::changeLed(Configurations::data.LED_GPIO.RED, Notifications::currentPwmRed);
+        Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, Notifications::currentPwmGreen);
+        Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, Notifications::currentPwmBlue);
     }
 };
 
 void Notifications::changeLed(int8_t gpio, float_t pwmValue) {
     if (gpio >= 0) {
-        Logger::debug("Changing led state on GPIO " + String(gpio) + ", pwm: " + String(pwmValue));
+        Logger::trace("Changing led state on GPIO " + String(gpio) + ", pwm: " + String(pwmValue));
         analogWrite(gpio, pwmValue);
     }
 }
 
 void Notifications::loop() {
-    
+    Notifications::effectBlinkTimer.tick();
 };

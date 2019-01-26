@@ -23,9 +23,11 @@ struct ConfigurationData {
     String NAME;
     String VERSION;
     bool SERIAL_LOGGING;
+    bool MQTT_LOGGING;
     LogType LOGGING_LEVEL;
     int16_t SLEEP_INTERVAL;
     int16_t SLEEP_TIME;
+    int16_t NOTIFICATIONS_LED_BLINK_TIME;
 
     String WIFI_SSID;
     String WIFI_PASSWORD;
@@ -36,7 +38,8 @@ struct ConfigurationData {
     String MQTT_TOPIC;
     int16_t MQTT_RECONNECT_TIME;
     int16_t MQTT_SEND_DATA_INTERVAL;
-    String MQTT_TOPIC_NOTIFY;
+    String MQTT_TOPIC_LOGGING;
+    String MQTT_TOPIC_NOTIFICATIONS;
     String MQTT_TOPIC_DATA;
     String MQTT_TOPIC_STATUS;
     String MQTT_TOPIC_CONFIGURATION;
