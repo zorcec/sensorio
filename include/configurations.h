@@ -24,6 +24,8 @@ struct ConfigurationData {
     String VERSION;
     bool SERIAL_LOGGING;
     LogType LOGGING_LEVEL;
+    int16_t SLEEP_INTERVAL;
+    int16_t SLEEP_TIME;
 
     String WIFI_SSID;
     String WIFI_PASSWORD;

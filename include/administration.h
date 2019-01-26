@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <ArduinoJson.h>
+#include <timer.h>
 
 class Administration {
     public:
@@ -10,6 +11,8 @@ class Administration {
         static void loop();
         static void onMessage(JsonObject&);
 
+    private:
+        static Timer<1> sleepTimer;
 };
 
 #endif
