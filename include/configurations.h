@@ -28,6 +28,7 @@ struct ConfigurationData {
     int16_t SLEEP_INTERVAL;
     int16_t SLEEP_TIME;
     int16_t NOTIFICATIONS_LED_BLINK_TIME;
+    int8_t NOTIFICATIONS_LED_ITENSITY;
 
     String WIFI_SSID;
     String WIFI_PASSWORD;
