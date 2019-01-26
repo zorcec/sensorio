@@ -11,9 +11,11 @@ void Configurations::initialize() {
     Configurations::data.NAME = "SENSORIO";
     Configurations::data.VERSION = "development";
     Configurations::data.SERIAL_LOGGING = true;
+    Configurations::data.MQTT_LOGGING = false;
     Configurations::data.LOGGING_LEVEL = LogType::DEBUG;
     Configurations::data.SLEEP_INTERVAL = 100;
-    Configurations::data.SLEEP_TIME = 2000;
+    Configurations::data.SLEEP_TIME = 1000;
+    Configurations::data.NOTIFICATIONS_LED_BLINK_TIME = 2000;
 
     Configurations::data.WIFI_SSID = "";
     Configurations::data.WIFI_PASSWORD = "";
@@ -25,7 +27,8 @@ void Configurations::initialize() {
     Configurations::data.MQTT_RECONNECT_TIME = 5000;
     Configurations::data.MQTT_SEND_DATA_INTERVAL = 200;
 
-    Configurations::data.MQTT_TOPIC_NOTIFY = "NOTIFICATIONS";
+    Configurations::data.MQTT_TOPIC_LOGGING = "LOGGING";
+    Configurations::data.MQTT_TOPIC_NOTIFICATIONS = "NOTIFICATIONS";
     Configurations::data.MQTT_TOPIC_DATA = "DATA";
     Configurations::data.MQTT_TOPIC_STATUS = "STATUS";
     Configurations::data.MQTT_TOPIC_CONFIGURATION = "CONFIGURATION";
