@@ -50,6 +50,7 @@ struct ConfigurationData {
     int8 I2C_SCL;
 
     int8_t SENSORS_PIR_GPIO;
+    int8_t TEMPERATURE_OFFSET;
 
     RefreshIntervals REFRESH_INTERVALS;
     SensorsData SEND_DATA_DIFFERENCES;
