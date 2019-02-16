@@ -10,7 +10,7 @@ void SensorPIR::initialize() {
     Logger::debug("-> on GPIO" + String(Configurations::data.SENSORS_PIR_GPIO));
 
     pinMode(Configurations::data.SENSORS_PIR_GPIO, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(Configurations::data.SENSORS_PIR_GPIO), SensorPIR::interupt, HIGH);
+    attachInterrupt(digitalPinToInterrupt(Configurations::data.SENSORS_PIR_GPIO), SensorPIR::interupt, CHANGE);
 };
 
 void SensorPIR::loop() {
@@ -18,5 +18,6 @@ void SensorPIR::loop() {
 };
 
 void SensorPIR::interupt() {
-    Connectivity::sendEvent("motion");
+    int input = digitalRead(Configurations::data.SENSORS_PIR_GPIO);
+    Connectivity::sendEvent("MOTION", String(input));
 };

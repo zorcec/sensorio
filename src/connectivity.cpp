@@ -77,20 +77,29 @@ bool Connectivity::checkDiff() {
     if (fabs(current.temperature - sent.temperature) >= diff.temperature) {
         return true;
     }
+    if (abs(current.pressure - sent.pressure) >= diff.pressure) {
+        return true;
+    }
+    if (fabs(current.humidity - sent.humidity) >= diff.humidity) {
+        return true;
+    }
+    if (abs(current.RSSI - sent.RSSI) >= diff.RSSI) {
+        return true;
+    }
     if (abs(current.fullSpectrumLight - sent.fullSpectrumLight) >= diff.fullSpectrumLight) {
         return true;
     }
     return false;
 }
 
-void Connectivity::sendEvent(String eventName) {
+void Connectivity::sendEvent(String eventName, String eventData) {
     StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
     JsonObject& data = jsonBuffer.createObject();
 
     // data to be sent
-    data["name"] = eventName;
+    data["data"] = eventData;
 
-    Connectivity::sendJson("EVENT", data);
+    Connectivity::sendJson("EVENT/" + eventName, data);
 }
 
 void Connectivity::sendData() {
@@ -105,6 +114,7 @@ void Connectivity::sendData() {
     json["infraredLight"]       = sent.infraredLight        = Sensors::data.infraredLight;
     json["fullSpectrumLight"]   = sent.fullSpectrumLight    = Sensors::data.fullSpectrumLight;
     json["RSSI"]                = sent.RSSI                 = Sensors::data.RSSI;
+    json["air"]                 = sent.air                  = Sensors::data.air;
 
     Connectivity::sendJson("DATA", Connectivity::jsonData);
 }

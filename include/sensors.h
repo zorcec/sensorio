@@ -18,6 +18,7 @@ struct SensorsData {
     uint16_t infraredLight;
     uint16_t fullSpectrumLight;
     int8_t RSSI;
+    int8_t air;
 };
 
 class Sensors {

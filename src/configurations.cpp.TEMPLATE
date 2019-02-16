@@ -16,6 +16,7 @@ void Configurations::initialize() {
     Configurations::data.SLEEP_INTERVAL = 100;
     Configurations::data.SLEEP_TIME = 1000;
     Configurations::data.NOTIFICATIONS_LED_BLINK_TIME = 2000;
+    Configurations::data.NOTIFICATIONS_LED_ITENSITY = 25;
 
     Configurations::data.WIFI_SSID = "";
     Configurations::data.WIFI_PASSWORD = "";
@@ -35,18 +36,21 @@ void Configurations::initialize() {
     Configurations::data.MQTT_TOPIC_ADMINISTRATION = "ADMINISTRATION";
 
     Configurations::data.REFRESH_INTERVALS = { 
-        /*native*/ 10000, /*BME280*/ 1000, /*TSL2561*/ 10000 
+        /*native*/ 10000, /*BME280*/ 1000, /*TSL2561*/ 10000, /*MQ135*/ 1000
     };
 
     Configurations::data.SEND_DATA_DIFFERENCES = { 
-        /*temperature*/ 0.05f, /*pressure*/ 10, /*humidity*/ 0.1f, /*visibleLight*/ 25, /*infraredLight*/ 25, /*fullSpectrumLight*/ 50, /*RSSI*/ 5
+        /*temperature*/ 0.01f, /*pressure*/ 10, /*humidity*/ 0.1f, /*visibleLight*/ 25, /*infraredLight*/ 25, /*fullSpectrumLight*/ 50, /*RSSI*/ 5
     };
+
+    Configurations::data.TEMPERATURE_OFFSET = -1.5f;
 
     Configurations::data.I2C_SCL = 5;
     Configurations::data.I2C_SDA = 4;
 
     // interupt sensors
     Configurations::data.SENSORS_PIR_GPIO = 14;
+    Configurations::data.SENSOR_MQ135 = true;
 
     Configurations::data.LED_GPIO = { /*red*/ 15, /*green*/ 13, /*blue*/ 12 };
 

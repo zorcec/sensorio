@@ -7,6 +7,7 @@
 #include <sensors/sensorBME280.h>
 #include <sensors/sensorTSL2561.h>
 #include <sensors/sensorPIR.h>
+#include <sensors/sensorMQ135.h>
 
 SensorsData Sensors::data { 0, 0, 0, 0, 0, 0, 0 };
 int Sensors::activeSensors[SUPORTED_SENSORS_NR] { 0, 0 };
@@ -41,6 +42,10 @@ void Sensors::start(int* sensors) {
     }
     if (Configurations::data.SENSORS_PIR_GPIO != NAN) { 
         SensorPIR::initialize();
+        sensorsCount++;
+    }
+    if (Configurations::data.SENSOR_MQ135) { 
+        SensorMQ135::initialize();
         sensorsCount++;
     }
     Logger::info("Number of sensors started: " + String(sensorsCount + 1));

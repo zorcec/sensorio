@@ -20,7 +20,7 @@ class Connectivity {
         static bool autosendData(void *);
         static void sendData();
         static void sendJson(String, JsonObject&);
-        static void sendEvent(String);
+        static void sendEvent(String, String);
         static void sendMessage(String, String);
         static String getTopic(String);
         static String askDevice(int8, byte);

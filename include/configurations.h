@@ -10,6 +10,7 @@ struct RefreshIntervals {
     int16_t native;
     int16_t BME280;
     int16_t TSL2561;
+    int16_t MQ135;
 };
 
 struct LedGPIO {
@@ -50,6 +51,7 @@ struct ConfigurationData {
     int8 I2C_SCL;
 
     int8_t SENSORS_PIR_GPIO;
+    bool SENSOR_MQ135;
     int8_t TEMPERATURE_OFFSET;
 
     RefreshIntervals REFRESH_INTERVALS;
