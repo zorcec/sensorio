@@ -8,8 +8,10 @@ float_t AirQuality::airQualityAdaptive = 0;
 
 void AirQuality::initialize() {
     Logger::info("Initializing air quality");
-    Logger::info("-> starting with air quality max: " + String(Configurations::data.AIR_QUALITY_DEFAULT));
-    AirQuality::airQualityMax = Configurations::data.AIR_QUALITY_DEFAULT;
+    Logger::info("-> starting with air quality min: " + String(Configurations::data.AIR_QUALITY_MIN));
+    Logger::info("-> starting with air quality max: " + String(Configurations::data.AIR_QUALITY_MAX));
+    AirQuality::airQualityMin = Configurations::data.AIR_QUALITY_MIN;
+    AirQuality::airQualityMax = Configurations::data.AIR_QUALITY_MAX;
 }
 
 void AirQuality::loop() {
