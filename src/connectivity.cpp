@@ -11,6 +11,8 @@
 #include <configurations.h>
 #include <logger.h>
 #include <sensors.h>
+#include <permanentStorage.h>
+#include <airQuality.h>
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -76,17 +78,17 @@ bool Connectivity::checkDiff() {
     SensorsData& diff = Configurations::data.SEND_DATA_DIFFERENCES;
     if (fabs(current.temperature - sent.temperature) >= diff.temperature) {
         return true;
-    }
-    if (abs(current.pressure - sent.pressure) >= diff.pressure) {
+    } else if (abs(current.pressure - sent.pressure) >= diff.pressure) {
         return true;
-    }
-    if (fabs(current.humidity - sent.humidity) >= diff.humidity) {
+    } else if (fabs(current.humidity - sent.humidity) >= diff.humidity) {
         return true;
-    }
-    if (abs(current.RSSI - sent.RSSI) >= diff.RSSI) {
+    } else if (abs(current.RSSI - sent.RSSI) >= diff.RSSI) {
         return true;
-    }
-    if (abs(current.fullSpectrumLight - sent.fullSpectrumLight) >= diff.fullSpectrumLight) {
+    } else if (abs(current.fullSpectrumLight - sent.fullSpectrumLight) >= diff.fullSpectrumLight) {
+        return true;
+    } else if (fabs(current.airQuality - sent.airQuality) >= diff.airQuality) {
+        return true;
+    } else if (abs(current.polutionValue - sent.polutionValue) >= diff.polutionValue) {
         return true;
     }
     return false;
@@ -114,7 +116,11 @@ void Connectivity::sendData() {
     json["infraredLight"]       = sent.infraredLight        = Sensors::data.infraredLight;
     json["fullSpectrumLight"]   = sent.fullSpectrumLight    = Sensors::data.fullSpectrumLight;
     json["RSSI"]                = sent.RSSI                 = Sensors::data.RSSI;
-    json["air"]                 = sent.air                  = Sensors::data.air;
+    json["polutionValue"]       = sent.polutionValue        = Sensors::data.polutionValue;
+    json["airQuality"]          = sent.airQuality           = Sensors::data.airQuality;
+    json["airQualityMin"]       = AirQuality::airQualityMin;
+    json["airQualityMax"]       = AirQuality::airQualityMax;
+    json["airQualityAdaptive"]  = AirQuality::airQualityAdaptive;
 
     Connectivity::sendJson("DATA", Connectivity::jsonData);
 }

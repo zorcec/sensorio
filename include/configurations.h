@@ -51,8 +51,10 @@ struct ConfigurationData {
     int8 I2C_SCL;
 
     int8_t SENSORS_PIR_GPIO;
-    bool SENSOR_MQ135;
+    SensorAnalogTypes SENSOR_ANALOG;
     int8_t TEMPERATURE_OFFSET;
+    int16_t POLUTION_VALUE_OFFSET;
+    float_t AIR_QUALITY_DEFAULT;
 
     RefreshIntervals REFRESH_INTERVALS;
     SensorsData SEND_DATA_DIFFERENCES;

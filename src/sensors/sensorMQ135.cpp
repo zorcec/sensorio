@@ -21,6 +21,8 @@ void SensorMQ135::loop() {
 };
 
 bool SensorMQ135::refresh() {
-    Sensors::data.air = analogRead(11);
+    int16_t readings = analogRead(PIN_A0);
+    Sensors::data.polutionValue = readings / 4 + Configurations::data.POLUTION_VALUE_OFFSET;  //                          clean |   0 - 255 | poluted
+    Sensors::data.airQuality = 1 - (float)readings / (float)1024;                             // calculates percentages   clean | 100 - 0   | poluted
     return true;
 }

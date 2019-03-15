@@ -10,6 +10,10 @@ enum SensorTypes {
     AIR_BME280
 };
 
+enum SensorAnalogTypes {
+    MQ135
+};
+
 struct SensorsData {
     float_t temperature;
     float_t pressure;
@@ -18,7 +22,8 @@ struct SensorsData {
     uint16_t infraredLight;
     uint16_t fullSpectrumLight;
     int8_t RSSI;
-    int8_t air;
+    float_t airQuality;
+    int16_t polutionValue;
 };
 
 class Sensors {
@@ -35,7 +40,7 @@ class Sensors {
         static void start(int*);
         static bool isSensorActive(SensorTypes);
         static int activeSensors[SUPORTED_SENSORS_NR];
-
+        
 };
 
 #endif

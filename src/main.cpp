@@ -5,12 +5,16 @@
 #include <sensors.h>
 #include <notifications.h>
 #include <administration.h>
+#include <permanentStorage.h>
+#include <airQuality.h>
 
 void setup() {
     Configurations::initialize();
     Logger::initialize();
+    PermanentStorage::initialize();
     Administration::initialize();
     Sensors::initialize();
+    AirQuality::initialize();
     Connectivity::initialize();
     Notifications::initialize();
 }
@@ -20,4 +24,5 @@ void loop() {
     Sensors::loop();
     Notifications::loop();
     Administration::loop();
+    AirQuality::loop();
 }

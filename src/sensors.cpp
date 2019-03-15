@@ -8,6 +8,7 @@
 #include <sensors/sensorTSL2561.h>
 #include <sensors/sensorPIR.h>
 #include <sensors/sensorMQ135.h>
+#include <permanentStorage.h>
 
 SensorsData Sensors::data { 0, 0, 0, 0, 0, 0, 0 };
 int Sensors::activeSensors[SUPORTED_SENSORS_NR] { 0, 0 };
@@ -44,7 +45,7 @@ void Sensors::start(int* sensors) {
         SensorPIR::initialize();
         sensorsCount++;
     }
-    if (Configurations::data.SENSOR_MQ135) { 
+    if (Configurations::data.SENSOR_ANALOG == SensorAnalogTypes::MQ135) { 
         SensorMQ135::initialize();
         sensorsCount++;
     }
@@ -81,4 +82,5 @@ void Sensors::loop() {
     SensorBME280::loop();
     SensorTSL2561::loop();
     SensorPIR::loop();
+    SensorMQ135::loop();
 };
