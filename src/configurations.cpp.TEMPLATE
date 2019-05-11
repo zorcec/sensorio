@@ -7,7 +7,7 @@ ConfigurationData Configurations::data { };
 void Configurations::initialize() {
     Logger::info("Initializing configurations");
 
-    Configurations::data.ID = "development_1";
+    Configurations::data.ID = "room";
     Configurations::data.NAME = "SENSORIO";
     Configurations::data.VERSION = "development";
     Configurations::data.SERIAL_LOGGING = true;
@@ -36,25 +36,28 @@ void Configurations::initialize() {
     Configurations::data.MQTT_TOPIC_ADMINISTRATION = "ADMINISTRATION";
 
     Configurations::data.REFRESH_INTERVALS = { 
-        /*native*/ 10000, /*BME280*/ 1000, /*TSL2561*/ 10000, /*MQ135*/ 1000
+        /*native*/ 10000, /*ANALOG*/ 1000, /*BME280*/ 1000, /*TSL2561*/ 10000
     };
 
     Configurations::data.SEND_DATA_DIFFERENCES = { 
-        /*temperature*/ 0.01f, /*pressure*/ 10, /*humidity*/ 0.1f, /*visibleLight*/ 25, /*infraredLight*/ 25, /*fullSpectrumLight*/ 50, /*RSSI*/ 5
+        /*temperature*/ 0.05f, /*pressure*/ 100, /*humidity*/ 0.5f, /*visibleLight*/ 25, /*infraredLight*/ 25, /*fullSpectrumLight*/ 75, /*RSSI*/ 10,  /*AIR QUALITY*/ 0.01f, /*BRIGHTNESS*/ 0.1f, /*ANALOG VALUE*/ 25
     };
 
     Configurations::data.TEMPERATURE_OFFSET = -1.5f;
+    Configurations::data.POLUTION_VALUE_OFFSET = 0;
+    Configurations::data.AIR_QUALITY_MIN = 0.5;
+    Configurations::data.AIR_QUALITY_MAX = 0.8;
 
     Configurations::data.I2C_SCL = 5;
     Configurations::data.I2C_SDA = 4;
 
     // interupt sensors
     Configurations::data.SENSORS_PIR_GPIO = 14;
-    Configurations::data.SENSOR_MQ135 = true;
+    Configurations::data.SENSOR_ANALOG = SensorAnalogTypes::CDS1;
 
     Configurations::data.LED_GPIO = { /*red*/ 15, /*green*/ 13, /*blue*/ 12 };
 
-    Connectivity::subscribe(Configurations::data.MQTT_TOPIC_CONFIGURATION, Configurations::onMessage);
+    //Connectivity::subscribe(Configurations::data.MQTT_TOPIC_CONFIGURATION, Configurations::onMessage);
 }
 
 void Configurations::onMessage(JsonObject& data) {

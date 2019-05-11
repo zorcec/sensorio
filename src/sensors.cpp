@@ -8,6 +8,7 @@
 #include <sensors/sensorTSL2561.h>
 #include <sensors/sensorPIR.h>
 #include <sensors/sensorMQ135.h>
+#include <sensors/sensorCDS1.h>
 #include <permanentStorage.h>
 
 SensorsData Sensors::data { 0, 0, 0, 0, 0, 0, 0 };
@@ -45,9 +46,17 @@ void Sensors::start(int* sensors) {
         SensorPIR::initialize();
         sensorsCount++;
     }
-    if (Configurations::data.SENSOR_ANALOG == SensorAnalogTypes::MQ135) { 
-        SensorMQ135::initialize();
-        sensorsCount++;
+    switch(Configurations::data.SENSOR_ANALOG) {
+        case SensorAnalogTypes::MQ135:
+            SensorMQ135::initialize();
+            sensorsCount++;
+            break;
+        case SensorAnalogTypes::CDS1:
+            SensorCDS1::initialize();
+            sensorsCount++;
+            break;
+        default:
+            Logger::info("-> Analog sensor is not active");
     }
     Logger::info("Number of sensors started: " + String(sensorsCount + 1));
 }
@@ -83,4 +92,5 @@ void Sensors::loop() {
     SensorTSL2561::loop();
     SensorPIR::loop();
     SensorMQ135::loop();
+    SensorCDS1::loop();
 };

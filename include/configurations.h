@@ -8,9 +8,9 @@
 
 struct RefreshIntervals {
     int16_t native;
+    int16_t ANALOG;
     int16_t BME280;
     int16_t TSL2561;
-    int16_t MQ135;
 };
 
 struct LedGPIO {

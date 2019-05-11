@@ -27,8 +27,9 @@ uint8_t Connectivity::mqttCallbackCount = 0;
 
 void Connectivity::initialize() {
     Logger::info("Initializing connectivity");
-    delay(2000);
     Logger::debug("-> waiting for 2s");
+    delay(2000);
+    Connectivity::loop();
     Connectivity::sendDataTimer.every(Configurations::data.MQTT_SEND_DATA_INTERVAL, Connectivity::autosendData);
 }
 
@@ -88,7 +89,7 @@ bool Connectivity::checkDiff() {
         return true;
     } else if (fabs(current.airQuality - sent.airQuality) >= diff.airQuality) {
         return true;
-    } else if (abs(current.polutionValue - sent.polutionValue) >= diff.polutionValue) {
+    } else if (abs(current.analogValue - sent.analogValue) >= diff.analogValue) {
         return true;
     }
     return false;
@@ -116,7 +117,8 @@ void Connectivity::sendData() {
     json["infraredLight"]       = sent.infraredLight        = Sensors::data.infraredLight;
     json["fullSpectrumLight"]   = sent.fullSpectrumLight    = Sensors::data.fullSpectrumLight;
     json["RSSI"]                = sent.RSSI                 = Sensors::data.RSSI;
-    json["polutionValue"]       = sent.polutionValue        = Sensors::data.polutionValue;
+    json["analogValue"]         = sent.analogValue          = Sensors::data.analogValue;
+    json["brightness"]          = sent.brightness           = Sensors::data.brightness;
     json["airQuality"]          = sent.airQuality           = Sensors::data.airQuality;
     json["airQualityMin"]       = AirQuality::airQualityMin;
     json["airQualityMax"]       = AirQuality::airQualityMax;
@@ -191,7 +193,7 @@ void Connectivity::autoconnectToWifi() {
         Logger::info("WiFi trying to connect");
         while (WiFi.status() != WL_CONNECTED) {
             if (WiFi.begin(Configurations::data.WIFI_SSID.c_str(), Configurations::data.WIFI_PASSWORD.c_str()) == WL_CONNECTED) {
-                Logger::info("WiFI connected, IP address: " + WiFi.localIP());
+                Logger::info("WiFI connected");
             } else {
                 Logger::error("WiFI connection is still not ready, will retry in 5s");
             }
@@ -250,7 +252,7 @@ void Connectivity::callbackNoop(JsonObject& message) {
 }
 
 void Connectivity::loop() {
-    //Connectivity::autoconnectToWifi(); not needed, done automatically by the MQTT lib
+    Connectivity::autoconnectToWifi();
     Connectivity::autoconnectToMqtt();
     Connectivity::sendDataTimer.tick();
     client.loop();

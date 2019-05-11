@@ -11,7 +11,8 @@ enum SensorTypes {
 };
 
 enum SensorAnalogTypes {
-    MQ135
+    MQ135,
+    CDS1
 };
 
 struct SensorsData {
@@ -23,7 +24,8 @@ struct SensorsData {
     uint16_t fullSpectrumLight;
     int8_t RSSI;
     float_t airQuality;
-    int16_t polutionValue;
+    float_t brightness;
+    int16_t analogValue;
 };
 
 class Sensors {

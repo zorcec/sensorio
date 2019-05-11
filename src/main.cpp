@@ -11,11 +11,11 @@
 void setup() {
     Configurations::initialize();
     Logger::initialize();
+    Connectivity::initialize();
     PermanentStorage::initialize();
     Administration::initialize();
     Sensors::initialize();
     AirQuality::initialize();
-    Connectivity::initialize();
     Notifications::initialize();
 }
 
