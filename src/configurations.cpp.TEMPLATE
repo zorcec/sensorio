@@ -7,19 +7,21 @@ ConfigurationData Configurations::data { };
 void Configurations::initialize() {
     Logger::info("Initializing configurations");
 
+    Configurations::data.DEVICE_TYPE = DeviceType::WALL_MOUNT;
+
     Configurations::data.ID = "room";
     Configurations::data.NAME = "SENSORIO";
     Configurations::data.VERSION = "development";
-    Configurations::data.SERIAL_LOGGING = true;
-    Configurations::data.MQTT_LOGGING = false;
-    Configurations::data.LOGGING_LEVEL = LogType::DEBUG;
-    Configurations::data.SLEEP_INTERVAL = 0;
-    Configurations::data.SLEEP_TIME = 0;
-    Configurations::data.NOTIFICATIONS_LED_BLINK_TIME = 2000;           // how long will it blink
-    Configurations::data.NOTIFICATIONS_LED_ITENSITY = 25;
 
     Configurations::data.WIFI_SSID = "";
     Configurations::data.WIFI_PASSWORD = "";
+
+    Configurations::data.SERIAL_LOGGING = true;
+    Configurations::data.MQTT_LOGGING = false;
+    Configurations::data.LOGGING_LEVEL = LogType::DEBUG;
+
+    Configurations::data.SLEEP_INTERVAL = 0;
+    Configurations::data.SLEEP_TIME = 0;
 
     Configurations::data.MQTT_SERVER = "192.168.0.2";
     Configurations::data.MQTT_PORT = 1883;
@@ -38,6 +40,9 @@ void Configurations::initialize() {
         /*temperature*/ 0.1f, /*pressure*/ 100, /*humidity*/ 0.5f, /*visibleLight*/ 25, /*infraredLight*/ 25, /*fullSpectrumLight*/ 75, /*RSSI*/ 10,  /*AIR QUALITY*/ 0.01f, /*BRIGHTNESS*/ 0.1f, /*ANALOG VALUE*/ 25
     };
 
+    Configurations::data.NOTIFICATIONS_LED_BLINK_TIME = 2000;           // how long will it blink
+    Configurations::data.NOTIFICATIONS_LED_ITENSITY = 25;
+
     Configurations::data.TEMPERATURE_OFFSET = 0;
     Configurations::data.POLUTION_VALUE_OFFSET = 0;
     Configurations::data.AIR_QUALITY_MIN = 0.5;
@@ -47,10 +52,21 @@ void Configurations::initialize() {
     Configurations::data.I2C_SDA = 4;
 
     // interupt sensors
-    Configurations::data.SENSORS_PIR_GPIO = 14;
-    Configurations::data.SENSOR_ANALOG = SensorAnalogTypes::CDS1;
+    Configurations::data.SENSORS_PIR_GPIO = 0;
+    Configurations::data.SENSOR_ANALOG = SensorAnalogTypes::DISABLED;
 
     Configurations::data.LED_GPIO = { /*red*/ 15, /*green*/ 13, /*blue*/ 12 };
+
+    switch (Configurations::data.DEVICE_TYPE) {
+        case DeviceType::BOX:
+            Configurations::data.SENSOR_ANALOG = SensorAnalogTypes::MQ135;
+            break;
+        case DeviceType::WALL_MOUNT:
+            // interupt sensors
+            Configurations::data.SENSORS_PIR_GPIO = 14;
+            Configurations::data.SENSOR_ANALOG = SensorAnalogTypes::CDS1;
+            break;
+    }
 
     //Connectivity::subscribe(Configurations::data.MQTT_TOPIC_CONFIGURATION, Configurations::onMessage);
 }

@@ -9,15 +9,24 @@
 #include <airQuality.h>
 
 void setup() {
-    delay(1);
+    delay(100);
     Configurations::initialize();
     Logger::initialize();
-    Connectivity::initialize();
-    PermanentStorage::initialize();
-    Sensors::initialize();
-    Administration::initialize();
-    AirQuality::initialize();
-    Notifications::initialize();
+    switch (Configurations::data.DEVICE_TYPE) {
+        case DeviceType::BOX:
+        case DeviceType::WALL_MOUNT:
+            Connectivity::initialize();
+            PermanentStorage::initialize();
+            Sensors::initialize();
+            Administration::initialize();
+            AirQuality::initialize();
+            Notifications::initialize();
+            break;
+        case DeviceType::FINDER:
+            Administration::initialize();
+            break;
+    }
+    
 }
 
 void loop() {

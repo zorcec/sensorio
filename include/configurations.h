@@ -6,6 +6,12 @@
 #include <logger.h>
 #include <ArduinoJson.h>
 
+enum DeviceType {
+    BOX,
+    WALL_MOUNT,
+    FINDER
+};
+
 struct LedGPIO {
     uint8_t RED;
     uint8_t GREEN;
@@ -13,6 +19,7 @@ struct LedGPIO {
 };
 
 struct ConfigurationData {
+    DeviceType DEVICE_TYPE;
     String ID;
     String NAME;
     String VERSION;
