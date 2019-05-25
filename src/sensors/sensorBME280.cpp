@@ -9,9 +9,9 @@
 bool SensorBME280::isActive = false;
 
 BME280I2C::Settings bme280Settings(
-    BME280::OSR_X16, // Temperature
-    BME280::OSR_X16, // Humidity
-    BME280::OSR_X16, // Pressure
+    BME280::OSR_Off, // Temperature
+    BME280::OSR_Off, // Humidity
+    BME280::OSR_Off, // Pressure
     BME280::Mode_Forced,
     BME280::StandbyTime_1000ms,
     BME280::Filter_16,
