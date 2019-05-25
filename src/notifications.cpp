@@ -2,7 +2,7 @@
 #include <connectivity.h>
 
 #define PWM_MAX 1023.0f
-#define BLINK_INTERVAL 250
+#define BLINK_INTERVAL 500
 
 float_t Notifications::currentPwmRed;
 float_t Notifications::currentPwmGreen;

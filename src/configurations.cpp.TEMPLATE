@@ -13,20 +13,19 @@ void Configurations::initialize() {
     Configurations::data.SERIAL_LOGGING = true;
     Configurations::data.MQTT_LOGGING = false;
     Configurations::data.LOGGING_LEVEL = LogType::DEBUG;
-    Configurations::data.SLEEP_INTERVAL = 100;
-    Configurations::data.SLEEP_TIME = 1000;
-    Configurations::data.NOTIFICATIONS_LED_BLINK_TIME = 2000;
+    Configurations::data.SLEEP_INTERVAL = 0;
+    Configurations::data.SLEEP_TIME = 0;
+    Configurations::data.NOTIFICATIONS_LED_BLINK_TIME = 2000;           // how long will it blink
     Configurations::data.NOTIFICATIONS_LED_ITENSITY = 25;
 
     Configurations::data.WIFI_SSID = "";
     Configurations::data.WIFI_PASSWORD = "";
-    Configurations::data.WIFI_RECONNECT_TIME = 5000; // will be ignored atm.
 
     Configurations::data.MQTT_SERVER = "192.168.0.2";
     Configurations::data.MQTT_PORT = 1883;
     Configurations::data.MQTT_TOPIC = "sensorio";
     Configurations::data.MQTT_RECONNECT_TIME = 5000;
-    Configurations::data.MQTT_SEND_DATA_INTERVAL = 200;
+    Configurations::data.MQTT_SEND_DATA_INTERVAL = 1000;
 
     Configurations::data.MQTT_TOPIC_LOGGING = "LOGGING";
     Configurations::data.MQTT_TOPIC_NOTIFICATIONS = "NOTIFICATIONS";
@@ -35,15 +34,11 @@ void Configurations::initialize() {
     Configurations::data.MQTT_TOPIC_CONFIGURATION = "CONFIGURATION";
     Configurations::data.MQTT_TOPIC_ADMINISTRATION = "ADMINISTRATION";
 
-    Configurations::data.REFRESH_INTERVALS = { 
-        /*native*/ 10000, /*ANALOG*/ 1000, /*BME280*/ 1000, /*TSL2561*/ 10000
-    };
-
     Configurations::data.SEND_DATA_DIFFERENCES = { 
-        /*temperature*/ 0.05f, /*pressure*/ 100, /*humidity*/ 0.5f, /*visibleLight*/ 25, /*infraredLight*/ 25, /*fullSpectrumLight*/ 75, /*RSSI*/ 10,  /*AIR QUALITY*/ 0.01f, /*BRIGHTNESS*/ 0.1f, /*ANALOG VALUE*/ 25
+        /*temperature*/ 0.1f, /*pressure*/ 100, /*humidity*/ 0.5f, /*visibleLight*/ 25, /*infraredLight*/ 25, /*fullSpectrumLight*/ 75, /*RSSI*/ 10,  /*AIR QUALITY*/ 0.01f, /*BRIGHTNESS*/ 0.1f, /*ANALOG VALUE*/ 25
     };
 
-    Configurations::data.TEMPERATURE_OFFSET = -1.5f;
+    Configurations::data.TEMPERATURE_OFFSET = 0;
     Configurations::data.POLUTION_VALUE_OFFSET = 0;
     Configurations::data.AIR_QUALITY_MIN = 0.5;
     Configurations::data.AIR_QUALITY_MAX = 0.8;
