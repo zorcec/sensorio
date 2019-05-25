@@ -3,7 +3,7 @@
 #include <timer.h>
 #include <sensors.h>
 
-#define MESSAGE_SIZE 500
+#define MESSAGE_SIZE 512
 
 typedef void (*callbackHandler_t)(JsonObject& data);
 
@@ -18,6 +18,7 @@ class Connectivity {
         static void loop();
         static void sendStatus();
         static bool autosendData(void *);
+        static void connectToWifi();
         static void sendData();
         static void sendJson(String, JsonObject&);
         static void sendEvent(String, String);
@@ -30,7 +31,6 @@ class Connectivity {
         static void callbackNoop(JsonObject&);
 
     private:
-        static void autoconnectToWifi();
         static void autoconnectToMqtt();
         static bool checkDiff();
         static void onMessageStatus(JsonObject&);

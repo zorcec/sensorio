@@ -20,7 +20,7 @@ PubSubClient client(espClient);
 Timer<1> Connectivity::sendDataTimer;
 StaticJsonBuffer<MESSAGE_SIZE> Connectivity::jsonBuffer;
 JsonObject& Connectivity::jsonData = jsonBuffer.createObject();
-SensorsData Connectivity::sentData;
+SensorsData Connectivity::sentData {};
 
 MqttCallback* Connectivity::mqttCallbacks = new MqttCallback[10];
 uint8_t Connectivity::mqttCallbackCount = 0;
@@ -29,7 +29,7 @@ void Connectivity::initialize() {
     Logger::info("Initializing connectivity");
     Logger::debug("-> waiting for 2s");
     delay(2000);
-    Connectivity::loop();
+    Connectivity::connectToWifi();
     Connectivity::sendDataTimer.every(Configurations::data.MQTT_SEND_DATA_INTERVAL, Connectivity::autosendData);
 }
 
@@ -65,6 +65,7 @@ void Connectivity::sendStatus() {
 }
 
 bool Connectivity::autosendData(void *) {
+    Sensors::refreshData();
     if(Connectivity::checkDiff()) {
         Connectivity::sendData();
     } else {
@@ -169,10 +170,11 @@ callbackHandler_t Connectivity::getMqttCallback(String topic) {
             return current->callback;
         }
     }
+    return NULL;
 }
 
 void callback(char* topic, byte* payload, unsigned int length) {
-    StaticJsonBuffer<500> jsonBuffer;   
+    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;   
     String topicStr = String(topic);
     payload[length] = '\0'; // will make sure payload is clean
     String message = (char*)payload;
@@ -185,10 +187,12 @@ void callback(char* topic, byte* payload, unsigned int length) {
         Logger::debug("-> " + data);
     }
     callbackHandler_t callback = Connectivity::getMqttCallback(topicStr);
-    callback(jsonObj);
+    if (callback != NULL) {
+        callback(jsonObj);
+    }
 }
 
-void Connectivity::autoconnectToWifi() {
+void Connectivity::connectToWifi() {
     if (WiFi.status() != WL_CONNECTED) {
         Logger::info("WiFi trying to connect");
         while (WiFi.status() != WL_CONNECTED) {
@@ -197,7 +201,7 @@ void Connectivity::autoconnectToWifi() {
             } else {
                 Logger::error("WiFI connection is still not ready, will retry in 5s");
             }
-            delay(Configurations::data.WIFI_RECONNECT_TIME);
+            delay(5000);
         }
     }
 }
@@ -252,7 +256,6 @@ void Connectivity::callbackNoop(JsonObject& message) {
 }
 
 void Connectivity::loop() {
-    Connectivity::autoconnectToWifi();
     Connectivity::autoconnectToMqtt();
     Connectivity::sendDataTimer.tick();
     client.loop();

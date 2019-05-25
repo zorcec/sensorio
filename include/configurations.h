@@ -6,13 +6,6 @@
 #include <logger.h>
 #include <ArduinoJson.h>
 
-struct RefreshIntervals {
-    int16_t native;
-    int16_t ANALOG;
-    int16_t BME280;
-    int16_t TSL2561;
-};
-
 struct LedGPIO {
     uint8_t RED;
     uint8_t GREEN;
@@ -33,7 +26,6 @@ struct ConfigurationData {
 
     String WIFI_SSID;
     String WIFI_PASSWORD;
-    int16_t WIFI_RECONNECT_TIME;
 
     String MQTT_SERVER;
     int16_t MQTT_PORT;
@@ -57,7 +49,6 @@ struct ConfigurationData {
     float_t AIR_QUALITY_MIN;
     float_t AIR_QUALITY_MAX;
 
-    RefreshIntervals REFRESH_INTERVALS;
     SensorsData SEND_DATA_DIFFERENCES;
 
     LedGPIO LED_GPIO;

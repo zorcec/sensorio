@@ -5,8 +5,8 @@ class SensorBME280  {
     public:
         static void initialize();
         static void loop();
+        static bool refresh();
 
     private:
-        static bool refresh();
-        static Timer<1> sensorReadTimer;
+        static bool isActive;
 };

@@ -26,6 +26,7 @@ class Notifications {
         static void led(LedColor, float_t);
         static void led(LedColor, float_t, LedEffect);
         static void onMessage(JsonObject&);
+        static bool getCurrentPowerState();
         static float_t currentPwmRed;
         static float_t currentPwmGreen;
         static float_t currentPwmBlue;

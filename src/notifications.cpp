@@ -34,8 +34,8 @@ void Notifications::initialize() {
 
 void Notifications::onMessage(JsonObject& data) {
     Logger::info("Notification received message");
-    LedColor color;
-    LedEffect effect;
+    LedColor color = LedColor::WHITE;
+    LedEffect effect = LedEffect::NONE;
     uint8_t brightness = 100;
     if (data.containsKey("gpio") && data.containsKey("pwm")) {
         uint8_t gpio = data["gpio"].as<uint8_t>();
@@ -62,7 +62,7 @@ float_t Notifications::calculateBrightness(float_t percentage) {
         return PWM_MAX;
     }
     return PWM_MAX - PWM_MAX * (percentage / 100.0f);
-};
+}
 
 void Notifications::led(LedColor color, float_t brightness) {
     Notifications::led(color, brightness, LedEffect::NONE);
@@ -123,7 +123,7 @@ void Notifications::led(LedColor color, float_t brightness, LedEffect effect) {
         Notifications::changeLed(Configurations::data.LED_GPIO.GREEN, Notifications::currentPwmGreen);
         Notifications::changeLed(Configurations::data.LED_GPIO.BLUE, Notifications::currentPwmBlue);
     }
-};
+}
 
 void Notifications::changeLed(int8_t gpio, float_t pwmValue) {
     if (gpio >= 0) {
@@ -134,4 +134,8 @@ void Notifications::changeLed(int8_t gpio, float_t pwmValue) {
 
 void Notifications::loop() {
     Notifications::effectBlinkTimer.tick();
-};
+}
+
+bool Notifications::getCurrentPowerState() {
+    return Notifications::currentPwmRed < PWM_MAX || Notifications::currentPwmGreen < PWM_MAX || Notifications::currentPwmBlue < PWM_MAX;
+}

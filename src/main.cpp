@@ -9,12 +9,13 @@
 #include <airQuality.h>
 
 void setup() {
+    delay(1);
     Configurations::initialize();
     Logger::initialize();
     Connectivity::initialize();
     PermanentStorage::initialize();
-    Administration::initialize();
     Sensors::initialize();
+    Administration::initialize();
     AirQuality::initialize();
     Notifications::initialize();
 }

@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 
-#define SUPORTED_SENSORS_NR 2
+#define SUPORTED_I2C_SENSORS_NR 2
 
 enum SensorTypes {
     LIGHT_TSL2561,
@@ -11,6 +11,7 @@ enum SensorTypes {
 };
 
 enum SensorAnalogTypes {
+    DISABLED,
     MQ135,
     CDS1
 };
@@ -32,8 +33,7 @@ class Sensors {
     public:
         static void initialize();
         static void loop();
-        static void readBME280();
-        static void startBME280();
+        static void refreshData();
         static SensorsData data;
 
     private:
@@ -41,7 +41,7 @@ class Sensors {
         static void scan(int*);
         static void start(int*);
         static bool isSensorActive(SensorTypes);
-        static int activeSensors[SUPORTED_SENSORS_NR];
+        static int activeSensors[SUPORTED_I2C_SENSORS_NR];
         
 };
 

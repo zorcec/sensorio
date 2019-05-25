@@ -11,8 +11,8 @@
 #include <sensors/sensorCDS1.h>
 #include <permanentStorage.h>
 
-SensorsData Sensors::data { 0, 0, 0, 0, 0, 0, 0 };
-int Sensors::activeSensors[SUPORTED_SENSORS_NR] { 0, 0 };
+SensorsData Sensors::data {};
+int Sensors::activeSensors[SUPORTED_I2C_SENSORS_NR] {};
 
 void Sensors::initialize() {
     Logger::info("Sensors are initializing");
@@ -47,6 +47,7 @@ void Sensors::start(int* sensors) {
         sensorsCount++;
     }
     switch(Configurations::data.SENSOR_ANALOG) {
+        Logger::info("Initializing analog sensor");
         case SensorAnalogTypes::MQ135:
             SensorMQ135::initialize();
             sensorsCount++;
@@ -78,12 +79,20 @@ void Sensors::scan(int* sensors) {
 };
 
 bool Sensors::isSensorActive(SensorTypes sensorType) {
-    for (int index = 0; index < SUPORTED_SENSORS_NR; index++) {
+    for (int index = 0; index < SUPORTED_I2C_SENSORS_NR; index++) {
         if (Sensors::activeSensors[index] == sensorType) {
             return true;
         }
     }
     return false;
+}
+
+void Sensors::refreshData() {
+    SensorNative::refresh();
+    SensorBME280::refresh();
+    SensorTSL2561::refresh();
+    SensorMQ135::refresh();
+    SensorCDS1::refresh();
 }
 
 void Sensors::loop() {
