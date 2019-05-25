@@ -1,5 +1,4 @@
 #include <sensors.h>
-#include <timer.h>
 
 class SensorMQ135 {
 

@@ -51,7 +51,7 @@ struct ConfigurationData {
 
     int8_t SENSORS_PIR_GPIO;
     SensorAnalogTypes SENSOR_ANALOG;
-    int8_t TEMPERATURE_OFFSET;
+    float_t TEMPERATURE_OFFSET;
     int16_t POLUTION_VALUE_OFFSET;
     float_t AIR_QUALITY_MIN;
     float_t AIR_QUALITY_MAX;
