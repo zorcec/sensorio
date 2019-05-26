@@ -130,7 +130,7 @@ void Connectivity::sendData() {
 
 void Connectivity::sendJson(String topic, JsonObject& dataJson) {
     char jsonMessage[MESSAGE_SIZE];
-    if (Configurations::data.LOGGING_LEVEL == LogType::DEBUG) {
+    if (Configurations::data.LOGGING_LEVEL <= LogType::DEBUG) {
         dataJson.prettyPrintTo(jsonMessage);
     } else {
         dataJson.printTo(jsonMessage);
