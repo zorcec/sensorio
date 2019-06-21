@@ -18,8 +18,7 @@ WiFiClient espClient;
 PubSubClient client(espClient);
 
 Timer<1> Connectivity::sendDataTimer;
-StaticJsonBuffer<MESSAGE_SIZE> Connectivity::jsonBuffer;
-JsonObject& Connectivity::jsonData = jsonBuffer.createObject();
+DynamicJsonBuffer Connectivity::jsonBuffer;
 SensorsData Connectivity::sentData {};
 
 MqttCallback* Connectivity::mqttCallbacks = new MqttCallback[10];
@@ -48,8 +47,7 @@ void Connectivity::onMessageConfiguration(JsonObject& data) {
 }
 
 void Connectivity::sendStatus() {
-    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
-    JsonObject& data = jsonBuffer.createObject();
+    JsonObject& data = Connectivity::jsonBuffer.createObject();
 
     // data to be sent
     data["name"] = Configurations::data.NAME;
@@ -97,8 +95,7 @@ bool Connectivity::checkDiff() {
 }
 
 void Connectivity::sendEvent(String eventName, String eventData) {
-    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
-    JsonObject& data = jsonBuffer.createObject();
+    JsonObject& data = Connectivity::jsonBuffer.createObject();
 
     // data to be sent
     data["data"] = eventData;
@@ -107,7 +104,7 @@ void Connectivity::sendEvent(String eventName, String eventData) {
 }
 
 void Connectivity::sendData() {
-    JsonObject& json = Connectivity::jsonData;
+    JsonObject& json = Connectivity::jsonBuffer.createObject();
     SensorsData& sent = Connectivity::sentData;
 
     // data to be sent
@@ -125,7 +122,7 @@ void Connectivity::sendData() {
     json["airQualityMax"]       = AirQuality::airQualityMax;
     json["airQualityAdaptive"]  = AirQuality::airQualityAdaptive;
 
-    Connectivity::sendJson("DATA", Connectivity::jsonData);
+    Connectivity::sendJson("DATA", json);
 }
 
 void Connectivity::sendJson(String topic, JsonObject& dataJson) {
@@ -162,7 +159,7 @@ void Connectivity::addMqttCallback(String topic, callbackHandler_t callback) {
     Connectivity::mqttCallbackCount++;
 }
 
-callbackHandler_t Connectivity::getMqttCallback(String topic) {
+callbackHandler_t ICACHE_RAM_ATTR Connectivity::getMqttCallback(String topic) {
     MqttCallback* current;
     for (uint8_t index = 0; index < Connectivity::mqttCallbackCount; index++) {
         current = &Connectivity::mqttCallbacks[index];
@@ -173,12 +170,11 @@ callbackHandler_t Connectivity::getMqttCallback(String topic) {
     return NULL;
 }
 
-void callback(char* topic, byte* payload, unsigned int length) {
-    StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;   
+void ICACHE_RAM_ATTR callback(char* topic, byte* payload, unsigned int length) {
     String topicStr = String(topic);
     payload[length] = '\0'; // will make sure payload is clean
     String message = (char*)payload;
-    JsonObject& jsonObj = jsonBuffer.parseObject(message);
+    JsonObject& jsonObj = Connectivity::jsonBuffer.parseObject(message);
 
     Logger::info("Received message on: " + topicStr);
     if (Configurations::data.LOGGING_LEVEL <= LogType::DEBUG) {
@@ -217,8 +213,6 @@ void Connectivity::autoconnectToMqtt() {
                 Connectivity::subscribe(Configurations::data.MQTT_TOPIC_STATUS, Connectivity::onMessageStatus);
                 Connectivity::subscribe(Configurations::data.MQTT_TOPIC_DATA, Connectivity::onMessageData);
                 Connectivity::subscribe(Configurations::data.MQTT_TOPIC_CONFIGURATION, Connectivity::callbackNoop);
-                Logger::debug("-> waiting 1s");
-                delay(1000);
                 Connectivity::sendStatus();
             } else {
                 Logger::info("MQTT connection is still not ready; will retry in 5s");

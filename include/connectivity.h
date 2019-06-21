@@ -29,6 +29,7 @@ class Connectivity {
         static void addMqttCallback(String, callbackHandler_t);
         static callbackHandler_t getMqttCallback(String);
         static void callbackNoop(JsonObject&);
+        static DynamicJsonBuffer jsonBuffer;
 
     private:
         static void autoconnectToMqtt();
@@ -40,8 +41,6 @@ class Connectivity {
         static uint8_t mqttCallbackCount;
         static Timer<1> sendDataTimer;
         static Timer<5> resubscribeTimer;
-        static JsonObject& jsonData;
-        static StaticJsonBuffer<MESSAGE_SIZE> jsonBuffer;
         static SensorsData sentData;
         static String subscribeTopicData;
         static String subscribeTopicStatus;

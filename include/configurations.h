@@ -59,6 +59,9 @@ struct ConfigurationData {
     SensorsData SEND_DATA_DIFFERENCES;
 
     LedGPIO LED_GPIO;
+
+    int16_t SEND_PROBES_INTERVAL;
+    bool PASSIVE_TRACKING;
 };
 
 class Configurations {

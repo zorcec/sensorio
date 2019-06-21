@@ -7,11 +7,13 @@
 #include <administration.h>
 #include <permanentStorage.h>
 #include <airQuality.h>
+#include <passiveTracking.h>
 
 void setup() {
     delay(100);
     Configurations::initialize();
     Logger::initialize();
+    PassiveTracking::initialize();
     switch (Configurations::data.DEVICE_TYPE) {
         case DeviceType::BOX:
         case DeviceType::WALL_MOUNT:
@@ -35,4 +37,5 @@ void loop() {
     Notifications::loop();
     Administration::loop();
     AirQuality::loop();
+    PassiveTracking::loop();
 }
