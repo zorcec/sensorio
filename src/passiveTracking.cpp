@@ -50,9 +50,9 @@ void PassiveTracking::sendToFind3() {
     Logger::debug("-> posting to FIND3");
     DynamicJsonBuffer jsonBuffer;
     JsonObject& data = jsonBuffer.createObject();
-    data["d"] = Configurations::data.ID;                // device
-    data["f"] = Configurations::data.FIND_FAMILY;       // family
-    data["s"] = jsonBuffer.createObject();              // sensors / probes
+    data["d"] = Configurations::data.NAME + "_" + Configurations::data.ID;  // device; e.q. SENSORIO_room
+    data["f"] = Configurations::data.FIND_FAMILY;                           // family
+    data["s"] = jsonBuffer.createObject();                                  // sensors / probes
     data["s"]["wifi"] = jsonBuffer.createObject();
     for(WiFiEventSoftAPModeProbeRequestReceived w : PassiveTracking::receivedProbeRequests){
         JsonObject& probe = jsonBuffer.createObject();
