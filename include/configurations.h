@@ -61,7 +61,10 @@ struct ConfigurationData {
     LedGPIO LED_GPIO;
 
     int16_t SEND_PROBES_INTERVAL;
+    String FIND_FAMILY;
     bool PASSIVE_TRACKING;
+    String FIND_SERVER;
+    String FIND_LOCATION;
 };
 
 class Configurations {

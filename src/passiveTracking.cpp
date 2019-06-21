@@ -10,7 +10,7 @@ void PassiveTracking::initialize() {
     Logger::info("Initializing passive tracking");
     WiFi.persistent(false);
     WiFi.mode(WIFI_AP_STA);
-    WiFi.softAP(Configurations::data.NAME, Configurations::data.NAME);
+    WiFi.softAP(Configurations::data.ID, Configurations::data.NAME);
     PassiveTracking::probeRequestPrintHandler = WiFi.onSoftAPModeProbeRequestReceived(&PassiveTracking::onProbeRequest);
     PassiveTracking::sendProbesTimer.every(Configurations::data.SEND_PROBES_INTERVAL, PassiveTracking::sendProbes);
 }
@@ -22,6 +22,7 @@ void ICACHE_RAM_ATTR PassiveTracking::onProbeRequest(const WiFiEventSoftAPModePr
 
 bool PassiveTracking::sendProbes(void *) {
     if (PassiveTracking::receivedProbeRequests.size() > 0) {
+        Logger::debug("Sending probes");
         DynamicJsonBuffer jsonBuffer;
         JsonObject& data = jsonBuffer.createObject();
         JsonArray& probes = data.createNestedArray("probes");
@@ -30,11 +31,36 @@ bool PassiveTracking::sendProbes(void *) {
             probe["address"] = macToString(w.mac);
             probe["rssi"] = w.rssi;
         }
-        PassiveTracking::receivedProbeRequests.clear();
+        Logger::debug("-> sending MQTT message");
         Connectivity::sendJson("PROBES", data);
-        Logger::debug("Sending probes");
+        if (Configurations::data.FIND_SERVER.length() > 0) {
+            PassiveTracking::sendToFind3();
+        }
+        PassiveTracking::receivedProbeRequests.clear();
     }
     return true;
+}
+
+void PassiveTracking::sendToFind3() {
+    Logger::debug("-> posting to FIND3");
+    DynamicJsonBuffer jsonBuffer;
+    JsonObject& data = jsonBuffer.createObject();
+    data["d"] = Configurations::data.ID;                // device
+    data["f"] = Configurations::data.FIND_FAMILY;       // family
+    data["s"] = jsonBuffer.createObject();              // sensors / probes
+    JsonArray& probes = data.createNestedArray("probes");
+    for(WiFiEventSoftAPModeProbeRequestReceived w : PassiveTracking::receivedProbeRequests){
+        JsonObject& probe = probes.createNestedObject();
+        probe[macToString(w.mac)] = w.rssi;
+    }
+    data["s"]["wifi"] = probes;
+    if (false) {
+        data["l"] = Configurations::data.FIND_LOCATION;     // location; if set will learn
+    }
+    // passive scanning
+    Connectivity::sendJsonHttp(Configurations::data.FIND_SERVER + "/passive", data);
+    // general scanning
+    Connectivity::sendJsonHttp(Configurations::data.FIND_SERVER + "/data", data);
 }
 
 String PassiveTracking::macToString(const unsigned char* mac) {

@@ -2,8 +2,14 @@
 #include <ArduinoJson.h>
 #include <timer.h>
 #include <sensors.h>
-
-#define MESSAGE_SIZE 512
+#include <ESP8266WiFi.h>
+#include <PubSubClient.h>
+#include <Ethernet.h>
+#include <Wire.h>
+#include "user_interface.h"
+#include <cmath> 
+#include <Esp.h>
+#include <ESP8266HTTPClient.h>
 
 typedef void (*callbackHandler_t)(JsonObject& data);
 
@@ -23,6 +29,7 @@ class Connectivity {
         static void sendJson(String, JsonObject&);
         static void sendEvent(String, String);
         static void sendMessage(String, String);
+        static void sendJsonHttp(String url, JsonObject& dataJson);
         static String getTopic(String);
         static String askDevice(int8, byte);
         static bool subscribe(String, callbackHandler_t);
@@ -45,5 +52,8 @@ class Connectivity {
         static String subscribeTopicData;
         static String subscribeTopicStatus;
         static String subscribeTopicConfiguration;
+        static WiFiClient espClient;
+        static PubSubClient client;
+        static HTTPClient http;
 
 };

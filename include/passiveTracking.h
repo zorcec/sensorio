@@ -22,6 +22,7 @@ class PassiveTracking {
         static std::vector<WiFiEventSoftAPModeProbeRequestReceived> receivedProbeRequests;
         static Timer<1> sendProbesTimer;
         static void onProbeRequest(const WiFiEventSoftAPModeProbeRequestReceived&);
+        static void sendToFind3();
 
 };
 

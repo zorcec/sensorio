@@ -1,12 +1,3 @@
-#include <Arduino.h>
-#include <ESP8266WiFi.h>
-#include <PubSubClient.h>
-#include <Ethernet.h>
-#include <Wire.h>
-#include "user_interface.h"
-#include <cmath> 
-#include <Esp.h>
-
 #include <connectivity.h>
 #include <configurations.h>
 #include <logger.h>
@@ -14,8 +5,9 @@
 #include <permanentStorage.h>
 #include <airQuality.h>
 
-WiFiClient espClient;
-PubSubClient client(espClient);
+WiFiClient Connectivity::espClient;
+PubSubClient Connectivity::client(espClient);
+HTTPClient Connectivity::http;
 
 Timer<1> Connectivity::sendDataTimer;
 DynamicJsonBuffer Connectivity::jsonBuffer;
@@ -126,13 +118,22 @@ void Connectivity::sendData() {
 }
 
 void Connectivity::sendJson(String topic, JsonObject& dataJson) {
-    char jsonMessage[MESSAGE_SIZE];
+    String jsonMessage;
     if (Configurations::data.LOGGING_LEVEL <= LogType::DEBUG) {
         dataJson.prettyPrintTo(jsonMessage);
     } else {
         dataJson.printTo(jsonMessage);
     }
     Connectivity::sendMessage(topic, jsonMessage);
+}
+
+void Connectivity::sendJsonHttp(String url, JsonObject& dataJson) {
+    String jsonMessage;
+    dataJson.printTo(jsonMessage);
+    http.begin(url);
+    http.addHeader("Content-Type", "application/json");
+    http.POST(jsonMessage);
+    http.end();
 }
 
 void Connectivity::sendMessage(String topic, String message) {
@@ -203,12 +204,12 @@ void Connectivity::connectToWifi() {
 }
 
 void Connectivity::autoconnectToMqtt() {
-    if (!client.connected()) {
+    if (!Connectivity::client.connected()) {
         Logger::info("MQTT trying to connect");
-        client.setServer(Configurations::data.MQTT_SERVER.c_str(), Configurations::data.MQTT_PORT);
-        client.setCallback(callback);
-        while (!client.connected()) {
-            if (client.connect(Configurations::data.ID.c_str())) {
+        Connectivity::client.setServer(Configurations::data.MQTT_SERVER.c_str(), Configurations::data.MQTT_PORT);
+        Connectivity::client.setCallback(callback);
+        while (!Connectivity::client.connected()) {
+            if (Connectivity::client.connect(Configurations::data.ID.c_str())) {
                 Logger::info("MQTT connected");
                 Connectivity::subscribe(Configurations::data.MQTT_TOPIC_STATUS, Connectivity::onMessageStatus);
                 Connectivity::subscribe(Configurations::data.MQTT_TOPIC_DATA, Connectivity::onMessageData);
