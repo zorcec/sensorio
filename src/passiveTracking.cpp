@@ -53,12 +53,11 @@ void PassiveTracking::sendToFind3() {
     data["d"] = Configurations::data.ID;                // device
     data["f"] = Configurations::data.FIND_FAMILY;       // family
     data["s"] = jsonBuffer.createObject();              // sensors / probes
-    JsonArray& probes = data.createNestedArray("probes");
+    data["s"]["wifi"] = jsonBuffer.createObject();
     for(WiFiEventSoftAPModeProbeRequestReceived w : PassiveTracking::receivedProbeRequests){
-        JsonObject& probe = probes.createNestedObject();
-        probe[macToString(w.mac)] = w.rssi;
+        JsonObject& probe = jsonBuffer.createObject();
+        data["s"]["wifi"][macToString(w.mac)] = w.rssi;
     }
-    data["s"]["wifi"] = probes;
 
     // passive scanning
     Connectivity::sendJsonHttp(Configurations::data.FIND_SERVER + "/passive", data);
