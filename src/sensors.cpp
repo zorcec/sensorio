@@ -1,5 +1,4 @@
 #include <Wire.h>
-
 #include <configurations.h>
 #include <logger.h>
 #include <sensors.h>
@@ -10,6 +9,7 @@
 #include <sensors/sensorMQ135.h>
 #include <sensors/sensorCDS1.h>
 #include <permanentStorage.h>
+#include <airQuality.h>
 
 SensorsData Sensors::data {};
 int Sensors::activeSensors[SUPORTED_I2C_SENSORS_NR] {};
@@ -93,6 +93,7 @@ void Sensors::refreshData() {
     SensorTSL2561::refresh();
     SensorMQ135::refresh();
     SensorCDS1::refresh();
+    AirQuality::calculate();
 }
 
 void Sensors::loop() {

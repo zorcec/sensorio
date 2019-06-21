@@ -14,7 +14,7 @@ void AirQuality::initialize() {
     AirQuality::airQualityMax = Configurations::data.AIR_QUALITY_MAX;
 }
 
-void AirQuality::loop() {
+void AirQuality::calculate() {
     if(Sensors::data.airQuality < AirQuality::airQualityMin) {
         AirQuality::airQualityMin = Sensors::data.airQuality;
     }
@@ -22,4 +22,8 @@ void AirQuality::loop() {
         AirQuality::airQualityMax = Sensors::data.airQuality;
     }
     AirQuality::airQualityAdaptive = (Sensors::data.airQuality - AirQuality::airQualityMin) / (AirQuality::airQualityMax - AirQuality::airQualityMin);
+}
+
+void AirQuality::loop() {
+    
 }

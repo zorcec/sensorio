@@ -60,7 +60,7 @@ void PassiveTracking::sendToFind3() {
     
     // passive scanning
     Connectivity::sendJsonHttp(Configurations::data.FIND_SERVER + "/passive", data);
-
+    
     // general scanning
     Connectivity::sendJsonHttp(Configurations::data.FIND_SERVER + "/data", data);
 }

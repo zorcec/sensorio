@@ -2,7 +2,6 @@
 .pioenvs/
 .piolibdeps/
 .vscode/
-
 project.code-workspace
-
 /src/configurations.cpp
+firmware.map

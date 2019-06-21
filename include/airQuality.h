@@ -8,6 +8,7 @@ class AirQuality {
 
     public:
         static void initialize();
+        static void calculate();
         static void loop();
         static float_t airQualityMin;
         static float_t airQualityMax;
