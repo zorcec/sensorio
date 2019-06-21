@@ -43,7 +43,7 @@ void Configurations::initialize() {
     Configurations::data.NOTIFICATIONS_LED_BLINK_TIME = 2000;           // how long will it blink
     Configurations::data.NOTIFICATIONS_LED_ITENSITY = 25;
 
-    Configurations::data.TEMPERATURE_OFFSET = 0;
+    Configurations::data.TEMPERATURE_OFFSET = -2;
     Configurations::data.POLUTION_VALUE_OFFSET = 0;
     Configurations::data.AIR_QUALITY_MIN = 0.5;
     Configurations::data.AIR_QUALITY_MAX = 0.8;
@@ -56,6 +56,9 @@ void Configurations::initialize() {
     Configurations::data.SENSOR_ANALOG = SensorAnalogTypes::DISABLED;
 
     Configurations::data.LED_GPIO = { /*red*/ 15, /*green*/ 13, /*blue*/ 12 };
+
+    Configurations::data.PASSIVE_TRACKING = true;
+    Configurations::data.SEND_PROBES_INTERVAL = 5000;
 
     switch (Configurations::data.DEVICE_TYPE) {
         case DeviceType::BOX:
