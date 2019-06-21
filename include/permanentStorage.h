@@ -1,3 +1,8 @@
+/*
+ * Author:  Tomislav Zorčec
+ * URL:     https://github.com/zorcec/sensorio
+ */
+
 #ifndef PERMANENTSTORAGE_H
 #define PERMANENTSTORAGE_H
 

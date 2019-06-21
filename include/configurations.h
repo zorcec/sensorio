@@ -1,3 +1,8 @@
+/*
+ * Author:  Tomislav Zorčec
+ * URL:     https://github.com/zorcec/sensorio
+ */
+
 #ifndef CONFIGURATION_H
 #define CONFIGURATION_H
 

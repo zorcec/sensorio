@@ -1,3 +1,8 @@
+/*
+ * Author:  Tomislav Zorčec
+ * URL:     https://github.com/zorcec/sensorio
+ */
+
 #include <airQuality.h>
 #include <configurations.h>
 #include <logger.h>

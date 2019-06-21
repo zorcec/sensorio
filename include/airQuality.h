@@ -1,3 +1,8 @@
+/*
+ * Author:  Tomislav Zorčec
+ * URL:     https://github.com/zorcec/sensorio
+ */
+
 #ifndef AIRQUALITY_H
 #define AIRQUALITY_H
 

@@ -1,3 +1,8 @@
+/*
+ * Author:  Tomislav Zorčec
+ * URL:     https://github.com/zorcec/sensorio
+ */
+
 #ifndef PASSIVE_TRACKING_H
 #define PASSIVE_TRACKING_H
 

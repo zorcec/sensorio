@@ -1,3 +1,8 @@
+/*
+ * Author:  Tomislav Zorčec
+ * URL:     https://github.com/zorcec/sensorio
+ */
+
 #include <permanentStorage.h>
 #include <configurations.h>
 #include <logger.h>

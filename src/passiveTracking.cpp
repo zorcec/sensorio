@@ -1,3 +1,8 @@
+/*
+ * Author:  Tomislav Zorčec
+ * URL:     https://github.com/zorcec/sensorio
+ */
+
 #include <passiveTracking.h>
 #include <configurations.h>
 #include <connectivity.h>
@@ -57,7 +62,7 @@ void PassiveTracking::sendToFind3() {
     if (false) {
         data["l"] = Configurations::data.FIND_LOCATION;     // location; if set will learn
     }
-    
+
     // passive scanning
     Connectivity::sendJsonHttp(Configurations::data.FIND_SERVER + "/passive", data);
     

@@ -1,3 +1,8 @@
+/*
+ * Author:  Tomislav Zorčec
+ * URL:     https://github.com/zorcec/sensorio
+ */
+
 #include <administration.h>
 #include <configurations.h>
 #include <connectivity.h>
