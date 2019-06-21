@@ -59,15 +59,15 @@ void PassiveTracking::sendToFind3() {
         probe[macToString(w.mac)] = w.rssi;
     }
     data["s"]["wifi"] = probes;
-    if (false) {
-        data["l"] = Configurations::data.FIND_LOCATION;     // location; if set will learn
-    }
 
     // passive scanning
     Connectivity::sendJsonHttp(Configurations::data.FIND_SERVER + "/passive", data);
     
-    // general scanning
-    Connectivity::sendJsonHttp(Configurations::data.FIND_SERVER + "/data", data);
+    // general scanning / learning
+    if (false) {
+        data["l"] = Configurations::data.FIND_LOCATION;     // location; if set will learn
+        Connectivity::sendJsonHttp(Configurations::data.FIND_SERVER + "/data", data);
+    }
 }
 
 String PassiveTracking::macToString(const unsigned char* mac) {

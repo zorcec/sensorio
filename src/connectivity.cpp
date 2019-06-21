@@ -134,7 +134,12 @@ void Connectivity::sendJson(String topic, JsonObject& dataJson) {
 
 void Connectivity::sendJsonHttp(String url, JsonObject& dataJson) {
     String jsonMessage;
-    dataJson.printTo(jsonMessage);
+    if (Configurations::data.LOGGING_LEVEL <= LogType::DEBUG) {
+        dataJson.prettyPrintTo(jsonMessage);
+    } else {
+        dataJson.printTo(jsonMessage);
+    }
+    Logger::info("HTTP POST to: " + url + ", message: " + jsonMessage);
     http.begin(url);
     http.addHeader("Content-Type", "application/json");
     http.POST(jsonMessage);
@@ -146,9 +151,9 @@ void Connectivity::sendMessage(String topic, String message) {
     if (!Configurations::data.MQTT_LOGGING) {
         Logger::info("MQTT sending to: " + fullTopic + ", message: " + message);
     }
-    client.beginPublish(fullTopic.c_str(), message.length(), false);
-    client.print(message);
-    client.endPublish();
+    Connectivity::client.beginPublish(fullTopic.c_str(), message.length(), false);
+    Connectivity::client.print(message);
+    Connectivity::client.endPublish();
 }
 
 String Connectivity::getTopic(String name) {
