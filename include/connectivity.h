@@ -52,7 +52,6 @@ class Connectivity {
         static uint8_t mqttCallbackCount;
         static Timer<1> sendDataTimer;
         static Timer<5> resubscribeTimer;
-        static SensorsData sentData;
         static String subscribeTopicData;
         static String subscribeTopicStatus;
         static String subscribeTopicConfiguration;

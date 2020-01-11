@@ -16,7 +16,6 @@ HTTPClient Connectivity::http;
 
 Timer<1> Connectivity::sendDataTimer;
 DynamicJsonBuffer Connectivity::jsonBuffer;
-SensorsData Connectivity::sentData {};
 
 MqttCallback* Connectivity::mqttCallbacks = new MqttCallback[25];
 uint8_t Connectivity::mqttCallbackCount = 0;
@@ -76,19 +75,18 @@ void Connectivity::sendEvent(String eventName, String eventData) {
 
 void Connectivity::sendData() {
     JsonObject& json = Connectivity::jsonBuffer.createObject();
-    SensorsData& sent = Connectivity::sentData;
 
     // data to be sent
-    json["temperature"]         = sent.temperature          = Sensors::data.temperature;
-    json["pressure"]            = sent.pressure             = Sensors::data.pressure;
-    json["humidity"]            = sent.humidity             = Sensors::data.humidity;
-    json["visibleLight"]        = sent.visibleLight         = Sensors::data.visibleLight;
-    json["infraredLight"]       = sent.infraredLight        = Sensors::data.infraredLight;
-    json["fullSpectrumLight"]   = sent.fullSpectrumLight    = Sensors::data.fullSpectrumLight;
-    json["RSSI"]                = sent.RSSI                 = Sensors::data.RSSI;
-    json["analogValue"]         = sent.analogValue          = Sensors::data.analogValue;
-    json["brightness"]          = sent.brightness           = Sensors::data.brightness;
-    json["airQuality"]          = sent.airQuality           = Sensors::data.airQuality;
+    json["temperature"]         = Sensors::data.temperature;
+    json["pressure"]            = Sensors::data.pressure;
+    json["humidity"]            = Sensors::data.humidity;
+    json["visibleLight"]        = Sensors::data.visibleLight;
+    json["infraredLight"]       = Sensors::data.infraredLight;
+    json["fullSpectrumLight"]   = Sensors::data.fullSpectrumLight;
+    json["RSSI"]                = Sensors::data.RSSI;
+    json["analogValue"]         = Sensors::data.analogValue;
+    json["brightness"]          = Sensors::data.brightness;
+    json["airQuality"]          = Sensors::data.airQuality;
     json["airQualityMin"]       = AirQuality::airQualityMin;
     json["airQualityMax"]       = AirQuality::airQualityMax;
     json["airQualityAdaptive"]  = AirQuality::airQualityAdaptive;
