@@ -18,8 +18,15 @@ void SensorDS18B20::initialize() {
     SensorDS18B20::oneWire.begin(Configurations::data.DS18B20_GPIO);
     SensorDS18B20::sensor.setOneWire(&SensorDS18B20::oneWire);
     SensorDS18B20::sensor.begin();
-    SensorDS18B20::isActive = true;
-    SensorDS18B20::refresh();
+    DeviceAddress sensorAddress;
+    SensorDS18B20::sensor.getAddress(sensorAddress, 0);
+    if (SensorDS18B20::sensor.validFamily(sensorAddress)) {
+        Logger::debug("-> DS18B20 connected");
+        SensorDS18B20::isActive = true;
+        SensorDS18B20::refresh();
+    } else {
+        Logger::debug("-> DS18B20 not connected");
+    }
 };
 
 void SensorDS18B20::loop() {

@@ -129,7 +129,7 @@ void Connectivity::sendMessage(String topic, String message) {
 }
 
 String Connectivity::getTopic(String name) {
-    String topic = "/{TOPIC}/{ID}/{NAME}";
+    String topic = "{TOPIC}/{ID}/{NAME}";
     topic.replace("{TOPIC}", Configurations::data.MQTT_TOPIC);
     topic.replace("{ID}", Configurations::data.ID);
     topic.replace("{NAME}", name);
@@ -211,7 +211,7 @@ bool Connectivity::subscribe(String topic, callbackHandler_t callback) {
         if (topic[0] == '/') {
             fullTopic = topic;
         } else {
-            fullTopic = "/cmd" + Connectivity::getTopic(topic);
+            fullTopic = "cmnd/" + Connectivity::getTopic(topic);
         }
         client.subscribe(fullTopic.c_str());
         Connectivity::addMqttCallback(fullTopic, callback);

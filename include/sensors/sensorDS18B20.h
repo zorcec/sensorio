@@ -13,9 +13,9 @@ class SensorDS18B20 {
         static void initialize();
         static void loop();
         static bool refresh();
+        static bool isActive;
 
     private:
-        static bool isActive;
         static OneWire oneWire;
         static DallasTemperature sensor;
 

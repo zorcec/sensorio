@@ -7,6 +7,7 @@
 
 #include <logger.h>
 #include <configurations.h>
+#include <sensors/sensorDS18B20.h>
 #include <sensors/sensorBME280.h>
 
 #include "BME280I2C.h"
@@ -56,7 +57,7 @@ void SensorBME280::loop() {
 bool SensorBME280::refresh() {
     if (SensorBME280::isActive) {
         Logger::trace("Refreshing BME280");
-        if(Configurations::data.DS18B20_GPIO > 0) {
+        if (SensorDS18B20::isActive) {
             // DS has the priority and we will not read temperature
             float ignore;
             sensorAirBME280.read(Sensors::data.pressure, ignore, Sensors::data.humidity, temperatureUnit, pressureUnit);
