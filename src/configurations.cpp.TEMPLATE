@@ -12,7 +12,7 @@ ConfigurationData Configurations::data { };
 void Configurations::initialize() {
     Logger::info("Initializing configurations");
 
-    Configurations::data.DEVICE_TYPE = DeviceType::WALL_MOUNT;
+    Configurations::data.DEVICE_TYPE = DeviceType::BOX;
 
     Configurations::data.ID = "room";
     Configurations::data.NAME = "SENSORIO";
@@ -28,11 +28,11 @@ void Configurations::initialize() {
     Configurations::data.SLEEP_INTERVAL = 0;
     Configurations::data.SLEEP_TIME = 0;
 
-    Configurations::data.MQTT_SERVER = "192.168.0.2";
+    Configurations::data.MQTT_SERVER = "192.168.0.7";
     Configurations::data.MQTT_PORT = 1883;
     Configurations::data.MQTT_TOPIC = "sensorio";
     Configurations::data.MQTT_RECONNECT_TIME = 5000;
-    Configurations::data.MQTT_SEND_DATA_INTERVAL = 1000;
+    Configurations::data.MQTT_SEND_DATA_INTERVAL = 5000;
 
     Configurations::data.MQTT_TOPIC_LOGGING = "LOGGING";
     Configurations::data.MQTT_TOPIC_NOTIFICATIONS = "NOTIFICATIONS";
@@ -41,20 +41,19 @@ void Configurations::initialize() {
     Configurations::data.MQTT_TOPIC_CONFIGURATION = "CONFIGURATION";
     Configurations::data.MQTT_TOPIC_ADMINISTRATION = "ADMINISTRATION";
 
-    Configurations::data.SEND_DATA_DIFFERENCES = { 
-        /*temperature*/ 0.1f, /*pressure*/ 100, /*humidity*/ 0.5f, /*visibleLight*/ 25, /*infraredLight*/ 25, /*fullSpectrumLight*/ 75, /*RSSI*/ 10,  /*AIR QUALITY*/ 0.01f, /*BRIGHTNESS*/ 0.1f, /*ANALOG VALUE*/ 25
-    };
-
     Configurations::data.NOTIFICATIONS_LED_BLINK_TIME = 2000;           // how long will it blink
     Configurations::data.NOTIFICATIONS_LED_ITENSITY = 25;
 
-    Configurations::data.TEMPERATURE_OFFSET = -2;
+    Configurations::data.TEMPERATURE_OFFSET = 0;
     Configurations::data.POLUTION_VALUE_OFFSET = 0;
     Configurations::data.AIR_QUALITY_MIN = 0.5;
     Configurations::data.AIR_QUALITY_MAX = 0.8;
 
     Configurations::data.I2C_SCL = 5;
     Configurations::data.I2C_SDA = 4;
+
+    // OneWire sensors
+    Configurations::data.DS18B20_GPIO = 2;
 
     // interupt sensors
     Configurations::data.SENSORS_PIR_GPIO = 0;
@@ -64,6 +63,9 @@ void Configurations::initialize() {
 
     Configurations::data.PASSIVE_TRACKING = true;
     Configurations::data.SEND_PROBES_INTERVAL = 5000;
+    Configurations::data.FIND_FAMILY = "zorcec";
+    Configurations::data.FIND_SERVER = "http://enbkn49dukiy.x.pipedream.net"; // SSL not supported
+    Configurations::data.FIND_LOCATION = "development";
 
     switch (Configurations::data.DEVICE_TYPE) {
         case DeviceType::BOX:

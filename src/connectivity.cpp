@@ -18,7 +18,7 @@ Timer<1> Connectivity::sendDataTimer;
 DynamicJsonBuffer Connectivity::jsonBuffer;
 SensorsData Connectivity::sentData {};
 
-MqttCallback* Connectivity::mqttCallbacks = new MqttCallback[10];
+MqttCallback* Connectivity::mqttCallbacks = new MqttCallback[25];
 uint8_t Connectivity::mqttCallbackCount = 0;
 
 void Connectivity::initialize() {
@@ -61,34 +61,8 @@ void Connectivity::sendStatus() {
 
 bool Connectivity::autosendData(void *) {
     Sensors::refreshData();
-    if(Connectivity::checkDiff()) {
-        Connectivity::sendData();
-    } else {
-        Logger::trace("Not sending; difference is not large enough");
-    }
+    Connectivity::sendData();
     return true;
-}
-
-bool Connectivity::checkDiff() {
-    SensorsData& sent = Connectivity::sentData;
-    SensorsData& current = Sensors::data;
-    SensorsData& diff = Configurations::data.SEND_DATA_DIFFERENCES;
-    if (fabs(current.temperature - sent.temperature) >= diff.temperature) {
-        return true;
-    } else if (abs(current.pressure - sent.pressure) >= diff.pressure) {
-        return true;
-    } else if (fabs(current.humidity - sent.humidity) >= diff.humidity) {
-        return true;
-    } else if (abs(current.RSSI - sent.RSSI) >= diff.RSSI) {
-        return true;
-    } else if (abs(current.fullSpectrumLight - sent.fullSpectrumLight) >= diff.fullSpectrumLight) {
-        return true;
-    } else if (fabs(current.airQuality - sent.airQuality) >= diff.airQuality) {
-        return true;
-    } else if (abs(current.analogValue - sent.analogValue) >= diff.analogValue) {
-        return true;
-    }
-    return false;
 }
 
 void Connectivity::sendEvent(String eventName, String eventData) {

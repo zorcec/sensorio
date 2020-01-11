@@ -13,6 +13,7 @@
 #include <sensors/sensorPIR.h>
 #include <sensors/sensorMQ135.h>
 #include <sensors/sensorCDS1.h>
+#include <sensors/sensorDS18B20.h>
 #include <permanentStorage.h>
 #include <airQuality.h>
 
@@ -50,6 +51,9 @@ void Sensors::start(int* sensors) {
     if (Configurations::data.SENSORS_PIR_GPIO != NAN) { 
         SensorPIR::initialize();
         sensorsCount++;
+    }
+    if (Configurations::data.DS18B20_GPIO > 0) {
+        SensorDS18B20::initialize();
     }
     switch(Configurations::data.SENSOR_ANALOG) {
         Logger::info("Initializing analog sensor");
@@ -98,6 +102,7 @@ void Sensors::refreshData() {
     SensorTSL2561::refresh();
     SensorMQ135::refresh();
     SensorCDS1::refresh();
+    SensorDS18B20::refresh();
     AirQuality::calculate();
 }
 
@@ -108,4 +113,5 @@ void Sensors::loop() {
     SensorPIR::loop();
     SensorMQ135::loop();
     SensorCDS1::loop();
+    SensorDS18B20::loop();
 };

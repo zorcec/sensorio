@@ -45,7 +45,6 @@ class Connectivity {
 
     private:
         static void autoconnectToMqtt();
-        static bool checkDiff();
         static void onMessageStatus(JsonObject&);
         static void onMessageData(JsonObject&);
         static void onMessageConfiguration(JsonObject&);

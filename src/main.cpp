@@ -15,7 +15,7 @@
 #include <passiveTracking.h>
 
 void setup() {
-    delay(100);
+    delay(500);
     Configurations::initialize();
     Logger::initialize();
     PassiveTracking::initialize();

@@ -17,7 +17,7 @@ BME280I2C::Settings bme280Settings(
     BME280::OSR_X2, // Temperature
     BME280::OSR_X1, // Humidity
     BME280::OSR_X16, // Pressure
-    BME280::Mode_Normal,
+    BME280::Mode_Forced,
     BME280::StandbyTime_500us,
     BME280::Filter_16,
     BME280::SpiEnable_False,
@@ -56,7 +56,13 @@ void SensorBME280::loop() {
 bool SensorBME280::refresh() {
     if (SensorBME280::isActive) {
         Logger::trace("Refreshing BME280");
-        sensorAirBME280.read(Sensors::data.pressure, Sensors::data.temperature, Sensors::data.humidity, temperatureUnit, pressureUnit);
+        if(Configurations::data.DS18B20_GPIO > 0) {
+            // DS has the priority and we will not read temperature
+            float ignore;
+            sensorAirBME280.read(Sensors::data.pressure, ignore, Sensors::data.humidity, temperatureUnit, pressureUnit);
+        } else {
+            sensorAirBME280.read(Sensors::data.pressure, Sensors::data.temperature, Sensors::data.humidity, temperatureUnit, pressureUnit);
+        }
         Sensors::data.temperature += Configurations::data.TEMPERATURE_OFFSET;
         Logger::trace("-> pressure:\t" + String(Sensors::data.pressure));
         Logger::trace("-> temperature:\t" + String(Sensors::data.temperature));

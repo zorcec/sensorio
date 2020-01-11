@@ -61,7 +61,7 @@ struct ConfigurationData {
     float_t AIR_QUALITY_MIN;
     float_t AIR_QUALITY_MAX;
 
-    SensorsData SEND_DATA_DIFFERENCES;
+    int8 DS18B20_GPIO;
 
     LedGPIO LED_GPIO;
 
