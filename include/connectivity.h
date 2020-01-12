@@ -58,5 +58,6 @@ class Connectivity {
         static WiFiClient espClient;
         static PubSubClient client;
         static HTTPClient http;
+        static JsonObject& dataJson;
 
 };

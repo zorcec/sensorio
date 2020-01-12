@@ -17,8 +17,10 @@ HTTPClient Connectivity::http;
 Timer<1> Connectivity::sendDataTimer;
 DynamicJsonBuffer Connectivity::jsonBuffer;
 
-MqttCallback* Connectivity::mqttCallbacks = new MqttCallback[25];
+MqttCallback* Connectivity::mqttCallbacks = new MqttCallback[10];
 uint8_t Connectivity::mqttCallbackCount = 0;
+
+JsonObject& Connectivity::dataJson = Connectivity::jsonBuffer.createObject();
 
 void Connectivity::initialize() {
     Logger::info("Initializing connectivity");
@@ -74,24 +76,23 @@ void Connectivity::sendEvent(String eventName, String eventData) {
 }
 
 void Connectivity::sendData() {
-    JsonObject& json = Connectivity::jsonBuffer.createObject();
 
     // data to be sent
-    json["temperature"]         = Sensors::data.temperature;
-    json["pressure"]            = Sensors::data.pressure;
-    json["humidity"]            = Sensors::data.humidity;
-    json["visibleLight"]        = Sensors::data.visibleLight;
-    json["infraredLight"]       = Sensors::data.infraredLight;
-    json["fullSpectrumLight"]   = Sensors::data.fullSpectrumLight;
-    json["RSSI"]                = Sensors::data.RSSI;
-    json["analogValue"]         = Sensors::data.analogValue;
-    json["brightness"]          = Sensors::data.brightness;
-    json["airQuality"]          = Sensors::data.airQuality;
-    json["airQualityMin"]       = AirQuality::airQualityMin;
-    json["airQualityMax"]       = AirQuality::airQualityMax;
-    json["airQualityAdaptive"]  = AirQuality::airQualityAdaptive;
+    Connectivity::dataJson["temperature"]         = Sensors::data.temperature;
+    Connectivity::dataJson["pressure"]            = Sensors::data.pressure;
+    Connectivity::dataJson["humidity"]            = Sensors::data.humidity;
+    Connectivity::dataJson["visibleLight"]        = Sensors::data.visibleLight;
+    Connectivity::dataJson["infraredLight"]       = Sensors::data.infraredLight;
+    Connectivity::dataJson["fullSpectrumLight"]   = Sensors::data.fullSpectrumLight;
+    Connectivity::dataJson["RSSI"]                = Sensors::data.RSSI;
+    Connectivity::dataJson["analogValue"]         = Sensors::data.analogValue;
+    Connectivity::dataJson["brightness"]          = Sensors::data.brightness;
+    Connectivity::dataJson["airQuality"]          = Sensors::data.airQuality;
+    Connectivity::dataJson["airQualityMin"]       = AirQuality::airQualityMin;
+    Connectivity::dataJson["airQualityMax"]       = AirQuality::airQualityMax;
+    Connectivity::dataJson["airQualityAdaptive"]  = AirQuality::airQualityAdaptive;
 
-    Connectivity::sendJson("DATA", json);
+    Connectivity::sendJson("DATA", Connectivity::dataJson);
 }
 
 void Connectivity::sendJson(String topic, JsonObject& dataJson) {
@@ -211,7 +212,7 @@ bool Connectivity::subscribe(String topic, callbackHandler_t callback) {
         if (topic[0] == '/') {
             fullTopic = topic;
         } else {
-            fullTopic = "cmnd/" + Connectivity::getTopic(topic);
+            fullTopic = "cmd/" + Connectivity::getTopic(topic);
         }
         client.subscribe(fullTopic.c_str());
         Connectivity::addMqttCallback(fullTopic, callback);
