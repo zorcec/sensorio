@@ -122,7 +122,7 @@ void Connectivity::sendJsonHttp(String url, JsonObject& dataJson) {
 void Connectivity::sendMessage(String topic, String message) {
     String fullTopic = Connectivity::getTopic(topic).c_str();
     if (!Configurations::data.MQTT_LOGGING) {
-        Logger::info("MQTT sending to: " + fullTopic + ", message: " + message);
+        Logger::trace("MQTT sending to: " + fullTopic + ", message: " + message);
     }
     Connectivity::client.beginPublish(fullTopic.c_str(), message.length(), false);
     Connectivity::client.print(message);
@@ -179,9 +179,9 @@ void Connectivity::connectToWifi() {
             if (WiFi.begin(Configurations::data.WIFI_SSID.c_str(), Configurations::data.WIFI_PASSWORD.c_str()) == WL_CONNECTED) {
                 Logger::info("WiFI connected");
             } else {
-                Logger::error("WiFI connection is still not ready, will retry in 5s");
+                Logger::error("WiFI connection is still not ready, will retry in 30s");
             }
-            delay(5000);
+            delay(30000);
         }
     }
 }

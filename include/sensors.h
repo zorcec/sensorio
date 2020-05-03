@@ -12,7 +12,8 @@
 
 enum SensorTypes {
     LIGHT_TSL2561,
-    AIR_BME280
+    AIR_BME280,
+    AIR_SHT21
 };
 
 enum SensorAnalogTypes {

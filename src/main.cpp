@@ -18,7 +18,7 @@ void setup() {
     delay(500);
     Configurations::initialize();
     Logger::initialize();
-    PassiveTracking::initialize();
+    // PassiveTracking::initialize();
     switch (Configurations::data.DEVICE_TYPE) {
         case DeviceType::BOX:
         case DeviceType::WALL_MOUNT:

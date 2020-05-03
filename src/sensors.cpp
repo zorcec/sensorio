@@ -10,6 +10,7 @@
 #include <sensors/sensorNative.h>
 #include <sensors/sensorBME280.h>
 #include <sensors/sensorTSL2561.h>
+#include <sensors/sensorSHT21.h>
 #include <sensors/sensorPIR.h>
 #include <sensors/sensorMQ135.h>
 #include <sensors/sensorCDS1.h>
@@ -46,6 +47,11 @@ void Sensors::start(int* sensors) {
     if (sensors[118] == 0) {
         SensorBME280::initialize();
         Sensors::activeSensors[sensorsCount] = SensorTypes::AIR_BME280;
+        sensorsCount++;
+    }
+    if (sensors[64] == 0) {
+        SensorSHT21::initialize();
+        Sensors::activeSensors[sensorsCount] = SensorTypes::AIR_SHT21;
         sensorsCount++;
     }
     if (Configurations::data.SENSORS_PIR_GPIO != NAN) { 
@@ -103,6 +109,7 @@ void Sensors::refreshData() {
     SensorMQ135::refresh();
     SensorCDS1::refresh();
     SensorDS18B20::refresh();
+    SensorSHT21::refresh();
     AirQuality::calculate();
 }
 
@@ -114,4 +121,5 @@ void Sensors::loop() {
     SensorMQ135::loop();
     SensorCDS1::loop();
     SensorDS18B20::loop();
+    SensorSHT21::loop();
 };

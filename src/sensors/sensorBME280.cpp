@@ -15,11 +15,11 @@
 bool SensorBME280::isActive = false;
 
 BME280I2C::Settings bme280Settings(
-    BME280::OSR_X2, // Temperature
-    BME280::OSR_X1, // Humidity
-    BME280::OSR_X16, // Pressure
-    BME280::Mode_Forced,
-    BME280::StandbyTime_500us,
+    BME280::OSR_X16, // Temperature
+    BME280::OSR_X16, // Humidity
+    BME280::OSR_X1, // Pressure
+    BME280::Mode_Normal,
+    BME280::StandbyTime_1000ms,
     BME280::Filter_16,
     BME280::SpiEnable_False,
     BME280I2C::I2CAddr_0x76 // I2C address. I2C specific.
